@@ -15,6 +15,13 @@ public class ReturnOrder {
 	private int status;
 	private String operator;
 	private String operateDate;
+	
+	public Date getGeneraDate() {
+		return generaDate;
+	}
+	public void setGeneraDate(Date generaDate) {
+		this.generaDate = generaDate;
+	}
 	public int getReturnOrderId() {
 		return returnOrderId;
 	}

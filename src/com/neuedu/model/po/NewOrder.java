@@ -22,7 +22,7 @@ public class NewOrder {
 	private Data finishDate;
 	private String newOrderRemark;
 	private String deliverRequest;
-	private int status;
+	private int status; 
 	private String operator;
 	private Date operateDate;
 	
