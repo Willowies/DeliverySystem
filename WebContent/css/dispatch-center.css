@@ -239,3 +239,50 @@
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+
+.homeblock1{
+	height: 350px;
+	width: 250px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 0 10px 0 50px;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 10px;
+}
+
+.homeblock2{
+	height: 180px;
+	width: 300px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 0 30px 20px 40px;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 5px;
+}
+
+.homeblock2 .buttonblock {
+	width: 120px;
+	margin: 30px 20px 0 0;
+	float: right;
+}
+
+.homeblock2 button {
+	width: 120px;
+	height: 30px;
+	background: #aaddee;
+	margin: ;
+	color: #31708f;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
