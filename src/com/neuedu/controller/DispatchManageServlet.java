@@ -32,10 +32,19 @@ public class DispatchManageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		System.out.println("½øÈëdispatch servlet");
+		
 		String action = request.getParameter("action");
 		if ("home".equals(action)) {
 			
 		}else if ("searchOrder".equals(action)) {
+			String createDate = request.getParameter("createDate");
+			String requireDate = request.getParameter("requireDate");
+			String dispatchOrNot = request.getParameter("dispatchOrNot");
+			String orderType = request.getParameter("orderType");
+			
+			System.out.println("createDate:"+createDate+" requireDate:"+requireDate
+					+" dispatchOrNot:"+dispatchOrNot+" orderType:"+orderType);
 			
 		}else if ("dispatch".equals(action)) {
 			

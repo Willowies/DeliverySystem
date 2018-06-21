@@ -13,7 +13,7 @@
     <description></description>
     <display-name>DispatchManageServlet</display-name>
     <servlet-name>DispatchManageServlet</servlet-name>
-    <servlet-class>com.neu.controller.DispatchManageServlet</servlet-class>
+    <servlet-class>com.neuedu.controller.DispatchManageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DispatchManageServlet</servlet-name>
