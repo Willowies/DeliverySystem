@@ -2,8 +2,6 @@ package com.neuedu.model.po;
 
 import java.util.Date;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-
 public class NewOrder {
 	private int orderId;
 	private Client client;
@@ -19,7 +17,7 @@ public class NewOrder {
 	private int whetherInvoice;
 	private Date requireDate;
 	private Date generateDate;
-	private Data finishDate;
+	private Date finishDate;
 	private String newOrderRemark;
 	private String deliverRequest;
 	private int status; 
@@ -27,10 +25,10 @@ public class NewOrder {
 	private Date operateDate;
 	
 	
-	public Data getFinishDate() {
+	public Date getFinishDate() {
 		return finishDate;
 	}
-	public void setFinishDate(Data finishDate) {
+	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 	public int getOrderId() {

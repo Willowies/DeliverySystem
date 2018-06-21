@@ -16,7 +16,7 @@ public class ReturnOrder {
 	private String deliverRequest;
 	private int status;
 	private String operator;
-	private String operateDate;
+	private Date operateDate;
 	
 	public int getOrderState() {
 		return orderState;
@@ -90,11 +90,18 @@ public class ReturnOrder {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
-	public String getOperateDate() {
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public Date getOperateDate() {
 		return operateDate;
 	}
-	public void setOperateDate(String operateDate) {
+	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
 	}
+	
 	
 }
