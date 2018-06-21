@@ -1,6 +1,6 @@
 package com.neuedu.model.po;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class NewOrder {
 	private int orderId;

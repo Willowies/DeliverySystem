@@ -1,5 +1,4 @@
 package com.neuedu.model.po;
-
 public class Product {
 	private int productId;
 	private String productName;
