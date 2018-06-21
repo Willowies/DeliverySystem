@@ -11,11 +11,19 @@ public class ReturnOrder {
 	private Date generateDate;//生成日期
 	private Date returnDate;//要求完成日期
 	private float returnTotal;
+	private int orderState;
+	private int employeeId;
 	private String deliverRequest;
 	private int status;
 	private String operator;
 	private String operateDate;
 	
+	public int getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
+	}
 	public Date getGenerateDate() {
 		return generateDate;
 	}
