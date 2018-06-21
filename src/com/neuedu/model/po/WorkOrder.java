@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class WorkOrder {
 	private int workId;
+	private int orderId;
 	private String warehouseName;
 	private int workStatus;
 	private int workType;
@@ -13,6 +14,12 @@ public class WorkOrder {
 	private Date requireDate;
 	private String remark;
 	
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 	public int getWorkId() {
 		return workId;
 	}
