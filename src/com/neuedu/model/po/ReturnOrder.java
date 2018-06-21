@@ -8,7 +8,8 @@ public class ReturnOrder {
 	private int returnQuantity;
 	private String receiverName;
 	private String returnReason;
-	private Date returnDate;
+	private Date generaDate;//生成日期
+	private Date returnDate;//要求完成日期
 	private float returnTotal;
 	private String deliverRequest;
 	private int status;
