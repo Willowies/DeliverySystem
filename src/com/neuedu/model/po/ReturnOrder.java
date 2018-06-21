@@ -8,7 +8,7 @@ public class ReturnOrder {
 	private int returnQuantity;
 	private String receiverName;
 	private String returnReason;
-	private Date generaDate;//生成日期
+	private Date generateDate;//生成日期
 	private Date returnDate;//要求完成日期
 	private float returnTotal;
 	private String deliverRequest;
@@ -16,11 +16,11 @@ public class ReturnOrder {
 	private String operator;
 	private String operateDate;
 	
-	public Date getGeneraDate() {
-		return generaDate;
+	public Date getGenerateDate() {
+		return generateDate;
 	}
-	public void setGeneraDate(Date generaDate) {
-		this.generaDate = generaDate;
+	public void setGenerateDate(Date generaDate) {
+		this.generateDate = generaDate;
 	}
 	public int getReturnOrderId() {
 		return returnOrderId;

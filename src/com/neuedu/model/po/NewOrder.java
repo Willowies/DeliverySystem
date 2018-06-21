@@ -18,7 +18,7 @@ public class NewOrder {
 	private int employeeId;
 	private int whetherInvoice;
 	private Date requireDate;
-	private Date generaDate;
+	private Date generateDate;
 	private Data finishDate;
 	private String newOrderRemark;
 	private String deliverRequest;
@@ -111,11 +111,11 @@ public class NewOrder {
 	public void setRequireDate(Date requireDate) {
 		this.requireDate = requireDate;
 	}
-	public Date getGeneraDate() {
-		return generaDate;
+	public Date getGenerateDate() {
+		return generateDate;
 	}
-	public void setGeneraDate(Date generaDate) {
-		this.generaDate = generaDate;
+	public void setGenerateDate(Date generaDate) {
+		this.generateDate = generaDate;
 	}
 	public String getNewOrderRemark() {
 		return newOrderRemark;
