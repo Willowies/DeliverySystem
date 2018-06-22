@@ -8,7 +8,7 @@ public class Client {
 	private String clientName;
 	private String clientWrokPlace;
 	private String clientPhoneNumber;
-	private String clientMobileNumber;
+	private String clientMobilePhone;
 	private String clientContactAddress;
 	private int clientPostCode;
 	private String clientEmail;
@@ -39,11 +39,11 @@ public class Client {
 	public void setClientPhoneNumber(String clientPhoneNumber) {
 		this.clientPhoneNumber = clientPhoneNumber;
 	}
-	public String getClientMobileNumber() {
-		return clientMobileNumber;
+	public String getClientMobilePhone() {
+		return clientMobilePhone;
 	}
-	public void setClientMobileNumber(String clientMobileNumber) {
-		this.clientMobileNumber = clientMobileNumber;
+	public void setClientMobilePhone(String clientMobilePhone) {
+		this.clientMobilePhone = clientMobilePhone;
 	}
 	public String getClientWrokPlace() {
 		return clientWrokPlace;

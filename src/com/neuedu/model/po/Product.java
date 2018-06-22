@@ -1,11 +1,13 @@
 package com.neuedu.model.po;
+
 public class Product {
 	private int productId;
 	private String productName;
-	private int firstClassId;
-	private int secondeClassId;
+	private int firstClassId=0;
+	private int secondClassId=0;
 	private float productPrice = 1;
 	private float productDiscount = 1;
+	
 	public int getProductId() {
 		return productId;
 	}
@@ -24,11 +26,11 @@ public class Product {
 	public void setFirstClassId(int firstClassId) {
 		this.firstClassId = firstClassId;
 	}
-	public int getSecondeClassId() {
-		return secondeClassId;
+	public int getSecondClassId() {
+		return secondClassId;
 	}
-	public void setSecondeClassId(int secondeClassId) {
-		this.secondeClassId = secondeClassId;
+	public void setSecondClassId(int secondClassId) {
+		this.secondClassId = secondClassId;
 	}
 	public float getProductPrice() {
 		return productPrice;
