@@ -25,7 +25,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("select a.*,b.clientName,b.clientMobilephone,d.warehouseName "
 				+ "from workorder a,userinfo b,neworder c,warehouse d "
-				+ "where a.orderId=c.newOrderId and b.clientId=c.clientId abd d.warehouseId=a.warehouseId ");
+				+ "where a.orderId=c.newOrderId and b.clientId=c.clientId and d.warehouseId=a.warehouseId ");
 		int flag = 0;
 		if (order.getWorkId() != 0) {
 			sbf.append(" and workId = ? ");
@@ -40,10 +40,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			sbf.append(" and d.warehouseName = ? ");
 		}
 		if (order.getWorkType() != 0) {
-			sbf.append(" and workType = ? ");
+			sbf.append(" and a.workType = ? ");
 		}
 		if (order.getWorkStatus() != 0) {
-			sbf.append(" and workStatus = ? ");
+			sbf.append(" and a.workStatus = ? ");
 		}
 		if (order.getClientName() != null) {
 			flag = 1;
@@ -83,11 +83,11 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				index++;
 			}
 			if (order.getWorkType() != 0) {
-				ps.setInt(index, order.getWorkId());
+				ps.setInt(index, order.getWorkType());
 				index++;
 			}
 			if (order.getWorkStatus() != 0) {
-				ps.setInt(index, order.getWorkId());
+				ps.setInt(index, order.getWorkStatus());
 				index++;
 			}
 			if (order.getClientName() != null) {
@@ -100,12 +100,14 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			}
 			
 			ResultSet rs = ps.executeQuery();
+			
 			while (rs.next()) {
+				System.out.println("exist");
 				WorkOrder o = new WorkOrder();
 				o.setWorkId(rs.getInt("workId"));
 				o.setWarehouseName(rs.getString("warehouseName"));
 				o.setClientName(rs.getString("clientName"));
-				o.setClientPhone(rs.getString("clientPhone"));
+				o.setClientPhone(rs.getString("clientMobilephone"));
 				o.setWorkStatus(rs.getInt("workStatus"));
 				o.setWorkType(rs.getInt("workType"));
 				o.setCreateDate(rs.getDate("createDate"));
