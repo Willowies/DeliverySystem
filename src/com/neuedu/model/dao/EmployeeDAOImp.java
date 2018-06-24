@@ -18,7 +18,6 @@ public class EmployeeDAOImp implements EmployeeDAO {
 	//到数据库中查询该账户信息
 	@Override
 	public Employee login(String account){
-		// TODO Auto-generated method stub
 		PreparedStatement ps = null;
 		Employee employee = null;
 		try {
@@ -36,7 +35,6 @@ public class EmployeeDAOImp implements EmployeeDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return employee;
