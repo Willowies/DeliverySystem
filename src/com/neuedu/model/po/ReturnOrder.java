@@ -6,30 +6,17 @@ public class ReturnOrder {
 	private int returnOrderId;
 	private NewOrder newOrder;
 	private int returnQuantity;
-	private String receiverName;
 	private String returnReason;
-	private Date generateDate;//生成日期
-	private Date returnDate;//要求完成日期
-	private float returnTotal;
-	private int orderState;
-	private int employeeId;
+	private Date returnDate;
 	private String deliverRequest;
+	private int employeeId;
+	private int orderState;
+	private float returnTotal;
 	private int status;
 	private String operator;
 	private Date operateDate;
+	private Date generateDate;
 	
-	public int getOrderState() {
-		return orderState;
-	}
-	public void setOrderState(int orderState) {
-		this.orderState = orderState;
-	}
-	public Date getGenerateDate() {
-		return generateDate;
-	}
-	public void setGenerateDate(Date generaDate) {
-		this.generateDate = generaDate;
-	}
 	public int getReturnOrderId() {
 		return returnOrderId;
 	}
@@ -47,12 +34,6 @@ public class ReturnOrder {
 	}
 	public void setReturnQuantity(int returnQuantity) {
 		this.returnQuantity = returnQuantity;
-	}
-	public String getReceiverName() {
-		return receiverName;
-	}
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
 	}
 	public String getReturnReason() {
 		return returnReason;
@@ -78,6 +59,18 @@ public class ReturnOrder {
 	public void setDeliverRequest(String deliverRequest) {
 		this.deliverRequest = deliverRequest;
 	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public int getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
+	}
 	public int getStatus() {
 		return status;
 	}
@@ -90,17 +83,17 @@ public class ReturnOrder {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
 	public Date getOperateDate() {
 		return operateDate;
 	}
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
+	}
+	public Date getGenerateDate() {
+		return generateDate;
+	}
+	public void setGenerateDate(Date generateDate) {
+		this.generateDate = generateDate;
 	}
 	
 	
