@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.neuedu.model.po.ReturnOrder;
-import com.neuedu.utils.DBUtil;
+import  com.neuedu.model.po.NewOrder;
+import  com.neuedu.model.po.ReturnOrder;
+import  com.neuedu.model.service.NewOrderService;
+import  com.neuedu.utils.DBUtil;
 
 public class ReturnOrderDAOImp implements ReturnOrderDAO{
 	private Connection conn;
@@ -65,6 +67,7 @@ public class ReturnOrderDAOImp implements ReturnOrderDAO{
 	public List<ReturnOrder> selectReturnOrder(ReturnOrder r) {
 		StringBuffer sbf = new StringBuffer("");
 		int returnOrderId = r.getReturnOrderId();
+		int newOrderId = r.getNewOrder().getOrderId();
 		int returnQuantity = r.getReturnQuantity();
 		String returnReason = r.getReturnReason();
 		Date returnDate= r.getReturnDate();
@@ -81,6 +84,9 @@ public class ReturnOrderDAOImp implements ReturnOrderDAO{
 		sbf.append("select *  from  returnorder where 1=1  ");
 		if(returnOrderId != 0){
 			sbf.append(" and returnOrderId=?");
+		}
+		if(newOrderId != 0){
+			sbf.append(" and newOrderId=?");
 		}
 		if(returnQuantity != 0){
 			sbf.append(" and returnQuantity=?");
@@ -122,6 +128,10 @@ public class ReturnOrderDAOImp implements ReturnOrderDAO{
 			int index=1;
 			if(returnOrderId != 0){
 				ps.setInt(index, returnOrderId);
+				index++;
+			}
+			if(newOrderId != 0){
+				ps.setInt(index, newOrderId);
 				index++;
 			}
 			if(returnQuantity != 0){
@@ -176,6 +186,12 @@ public class ReturnOrderDAOImp implements ReturnOrderDAO{
 			while (rs.next()) {
 				ReturnOrder returnOrder = new ReturnOrder();
 				returnOrder.setReturnOrderId(rs.getInt("returnOrderId"));
+				
+				NewOrder n1 = new NewOrder();
+				n1.setOrderId(rs.getInt("newOrderId"));
+				NewOrder n2 = NewOrderService.getInstance().selectNewOrder(n1).get(0);
+				returnOrder.setNewOrder(n2);
+				
 				returnOrder.setReturnQuantity(rs.getInt("returnQuantity"));
 				returnOrder.setReturnReason(rs.getString("returnReason"));
 				returnOrder.setReturnDate(rs.getDate("returnDate"));

@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.neuedu.model.po.NewOrder;
-import com.neuedu.utils.DBUtil;
-
+import  com.neuedu.model.po.Client;
+import  com.neuedu.model.po.NewOrder;
+import  com.neuedu.model.po.Product;
+import  com.neuedu.model.service.ClientService;
+import  com.neuedu.model.service.ProductService;
+import  com.neuedu.utils.DBUtil;
 
 public class NewOrderDAOImp implements NewOrderDAO {
 	private Connection conn;
@@ -93,6 +96,8 @@ public class NewOrderDAOImp implements NewOrderDAO {
 	public List<NewOrder> selectNewOrder(NewOrder n) {
 		StringBuffer sbf = new StringBuffer("");
 		int orderId = n.getOrderId();
+		int clienitId = n.getClient().getClientId();
+		int productId = n.getProduct().getProductId();
 		int productQuantity = n.getProductQuantity();
 		String receiverName = n.getReceiverName();
 		String receiverPhone= n.getReceiverPhone();
@@ -114,6 +119,12 @@ public class NewOrderDAOImp implements NewOrderDAO {
 		sbf.append("select *  from  neworder where 1=1  ");
 		if(orderId != 0){
 			sbf.append(" and orderId=?");
+		}
+		if(clienitId != 0){
+			sbf.append(" and clienitId=?");
+		}
+		if(productId != 0){
+			sbf.append(" and productId=?");
 		}
 		if(productQuantity != 0){
 			sbf.append(" and productQuantity=?");
@@ -174,6 +185,14 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			int index=1;
 			if(orderId != 0){
 				ps.setInt(index, orderId);
+				index++;
+			}
+			if(clienitId != 0){
+				ps.setInt(index, clienitId);
+				index++;
+			}
+			if(productId != 0){
+				ps.setInt(index, productId);
 				index++;
 			}
 			if(productQuantity != 0){
@@ -252,6 +271,16 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			while (rs.next()) {
 				NewOrder newOrder = new NewOrder();
 				newOrder.setOrderId(rs.getInt("neworderId"));
+				
+				Client c1 = new Client();
+				c1.setClientId(rs.getInt("clientid"));
+				newOrder.setClient(ClientService.getInstance().selectClient(c1));
+				
+				Product p = new Product();
+				p.setProductId(rs.getInt("productId"));
+				Product product = ProductService.getInstance().selectProduct(p).get(0);
+				newOrder.setProduct(product);
+				
 				newOrder.setProductQuantity(rs.getInt("productQuantity"));
 				newOrder.setReceiverName(rs.getString("receiverName"));
 				newOrder.setReceiverPhone(rs.getString("receiverPhone"));
@@ -279,13 +308,11 @@ public class NewOrderDAOImp implements NewOrderDAO {
 
 	@Override
 	public List<NewOrder> selectNewOrderByPage(NewOrder newOrder, int pageSize, int pageNum) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int selectNewOrderPageCount(NewOrder newOrder, int pageSize, int pageNum) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
