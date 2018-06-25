@@ -292,6 +292,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				p.setProductDiscount(rs.getFloat("productprice"));
 				newOrder.setProduct(p);
 				
+				
 				newOrder.setProductQuantity(rs.getInt("productQuantity"));
 				newOrder.setReceiverName(rs.getString("receiverName"));
 				newOrder.setReceiverPhone(rs.getString("receiverPhone"));

@@ -33,6 +33,7 @@ public class NewOrderService {
 		Connection conn = DBUtil.getConn();
 		NewOrderDAO dao = new NewOrderDAOImp(conn);
 		dao.setNewOrderState(orderId,orderState,operator,operatorDate);
+		
 	}
 	public void updateNewOrder(NewOrder newOrder){}{
 		
