@@ -78,7 +78,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 
 	public void deleteNewOrderById(int newOrderId,String operator,Date operatorDate) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("update neworder set status =0,operator=?,operatorDate=? where neworderid = ?");
+			PreparedStatement ps = conn.prepareStatement("update neworder set status =0,operator=?,operateDate=? where neworderid = ?");
 			ps.setString(1, operator);
 			ps.setDate(2, new java.sql.Date(operatorDate.getTime()));
 			ps.setInt(3, newOrderId);
@@ -296,7 +296,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				newOrder.setOrderState(rs.getInt("orderstate"));
 				newOrder.setStatus(rs.getInt("status"));
 				newOrder.setOperator(rs.getString("operator"));
-				newOrder.setOperateDate(rs.getDate("operatorDate"));
+				newOrder.setOperateDate(rs.getDate("operateDate"));
 				newOrder.setFinishDate(rs.getDate("finishDate"));
 				newOrders.add(newOrder);
 			}
