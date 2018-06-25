@@ -47,7 +47,7 @@ public class ReturnOrderDAOImp implements ReturnOrderDAO{
 	@Override
 	public void deleteReturnOrderById(int returnOrderId, String operator, Date operatorDate) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("update returnOrder set status =0,operator=?,operatorDate=? where returnorderid = ?");
+			PreparedStatement ps = conn.prepareStatement("update returnOrder set status =0,operator=?,operateDate=? where returnorderid = ?");
 			ps.setString(1, operator);
 			ps.setDate(2, new java.sql.Date(operatorDate.getTime()));
 			ps.setInt(3, returnOrderId);
