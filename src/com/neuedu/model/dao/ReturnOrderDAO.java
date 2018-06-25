@@ -13,5 +13,5 @@ public interface ReturnOrderDAO {
 	public void upDateReturnOrder(ReturnOrder returnOrder);
 	public List<ReturnOrder> selectReturnOrder(ReturnOrder returnOrder);
 	public List<ReturnOrder> selectReturnOrderByPage(ReturnOrder returnOrder,int pageSize,int pageNum);
-	public int selectReturnOrderPageCount(ReturnOrder returnOrder,int pageSize,int pageNum);
+	public int selectReturnOrderPageCount(ReturnOrder returnOrder,int pageSize);
 }
