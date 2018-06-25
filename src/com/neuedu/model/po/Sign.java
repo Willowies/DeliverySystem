@@ -3,20 +3,28 @@ package com.neuedu.model.po;
 import java.util.Date;
 
 public class Sign {
-	private int signId;
-	private int workId;
-	private Date deliveryDate;
-	private int receiptNeedOrNot;
-	private int clearingStatus;
-	private String remark;
-	private int customerFeedback;
-	private String customerSignature;
-	private int orderId;//������
-	private int signType;//�ͻ��˻�
-	private String productName;//��Ʒ����
-	private float productPrice;//��Ʒ����
-	private int productQuantity;//��Ʒ����
-	private float total;//��Ʒ�ܼ�
+	private int signId;//签收单号
+	private int workId;//任务单号
+	private Date deliveryDate;//送货日期
+	private int receiptNeedOrNot;//是否要发票
+	private int clearingStatus;//结算状态
+	private String remark;//备注
+	private int customerFeedback;//客户反馈
+	private String customerSignature;//客户签名
+	private int orderId;//订单号
+	private int workType;//任务类型
+	private String productName;//商品名称
+	private float productPrice;//单价
+	private int productQuantity;//商品数量
+	private float total;//商品总价
+	private String customerName;//客户姓名
+	private String customerPhone;//客户联系电话
+	private int postCode;//邮编
+	private String deliveryAddress;//送货地址
+	private String deliveryRequirement;//送货要求
+	private int deliverySubstation;//送货分站
+	private String substationPhone;//分站电话
+	
 	public int getSignId() {
 		return signId;
 	}
@@ -71,12 +79,6 @@ public class Sign {
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public int getSignType() {
-		return signType;
-	}
-	public void setSignType(int signType) {
-		this.signType = signType;
-	}
 	public String getProductName() {
 		return productName;
 	}
@@ -100,5 +102,53 @@ public class Sign {
 	}
 	public void setTotal(float total) {
 		this.total = total;
+	}
+	public int getWorkType() {
+		return workType;
+	}
+	public void setWorkType(int workType) {
+		this.workType = workType;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getCustomerPhone() {
+		return customerPhone;
+	}
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
+	}
+	public int getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(int postCode) {
+		this.postCode = postCode;
+	}
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
+	public String getDeliveryRequirement() {
+		return deliveryRequirement;
+	}
+	public void setDeliveryRequirement(String deliveryRequirement) {
+		this.deliveryRequirement = deliveryRequirement;
+	}
+	public int getDeliverySubstation() {
+		return deliverySubstation;
+	}
+	public void setDeliverySubstation(int deliverySubstation) {
+		this.deliverySubstation = deliverySubstation;
+	}
+	public String getSubstationPhone() {
+		return substationPhone;
+	}
+	public void setSubstationPhone(String substationPhone) {
+		this.substationPhone = substationPhone;
 	}
 }

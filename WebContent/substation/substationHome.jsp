@@ -33,7 +33,7 @@
 		<div id="wrapper">
 			<!-- Navigation -->
 			<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-				<div class="navbar-header" style="padding-top:2.5px;">
+				<div class="navbar-header" style="padding-top:1px;">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	                    <span class="sr-only">Toggle navigation</span>
 	                    <span class="icon-bar"></span>
