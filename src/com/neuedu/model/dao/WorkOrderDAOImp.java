@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.fabric.xmlrpc.base.Data;
 import com.neuedu.model.po.WorkOrder;
+import com.neuedu.utils.DBUtil;
 
 public class WorkOrderDAOImp implements WorkOrderDAO {
 
@@ -121,6 +123,71 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		
 		
 		return orders;
+	}
+	
+	public void createWorkOrder(int orderId,int orderType,String warehouseName,String remark,String operator) {
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("select * from warehouse where warehouseName = ? ;");
+			ps.setString(1, warehouseName);
+		
+			int warehouseId = 0;
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				warehouseId = rs.getInt("warehouseId");
+			}
+			
+			Date date = new Date(new java.util.Date().getTime());
+			Date date2 = new Date(new java.util.Date().getTime()+7*24*60*60*1000);
+			Date date3 = new Date(new java.util.Date().getTime()+24*60*60*1000);
+			ps = conn.prepareStatement(" insert into workorder (warehouseId,orderId,workStatus,workType,"
+					+ "createDate,requireDate,operator,operateDate,remark,status) values (?,?,?,?,?,?,?,?,?,?)");
+			ps.setInt(1, warehouseId);
+			ps.setInt(2, orderId);
+			ps.setInt(3, 1);
+			ps.setInt(4, orderType);
+			ps.setDate(5, date);
+			ps.setDate(6, date2);
+			ps.setString(7, operator);
+			ps.setDate(8, date);
+			ps.setString(9, remark);
+			ps.setInt(10, 1);
+			
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement("select * from workorder where orderId = ? and workType=? ;");
+			ps.setInt(1, orderId);
+			ps.setInt(2, orderType);
+		
+			int workId = 0;
+			ResultSet rs2 = ps.executeQuery();
+			while (rs2.next()) {
+				workId = rs2.getInt("workId");
+			}
+			
+			ps = conn.prepareStatement(" insert into producttransferorder (workId,planOutDate) values (?,?)");
+			ps.setInt(1, workId);
+			ps.setDate(2, date3);
+			
+			ps.executeUpdate();
+			
+			if (orderType == 1) {
+				ps = conn.prepareStatement(" update neworder set orderState = 6 where newOrderId=?");
+				ps.setInt(1, orderId);
+				
+				ps.executeUpdate();
+			}else {
+				ps = conn.prepareStatement(" update returnorder set orderState = 6 where returnOrderId=?");
+				ps.setInt(1, orderId);
+				
+				ps.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.closePS(ps);
+		}
 	}
 
 }
