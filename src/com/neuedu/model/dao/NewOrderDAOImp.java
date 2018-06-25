@@ -289,7 +289,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				p.setFirstClassId(rs.getInt("firstClassId"));
 				p.setSecondClassId(rs.getInt("secondclassid"));
 				p.setProductPrice(rs.getFloat("productprice"));
-				p.setProductDiscount(rs.getFloat("productprice"));
+				p.setProductDiscount(rs.getFloat("productDiscount"));
 				newOrder.setProduct(p);
 				
 				
@@ -524,7 +524,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				p.setFirstClassId(rs.getInt("firstClassId"));
 				p.setSecondClassId(rs.getInt("secondclassid"));
 				p.setProductPrice(rs.getFloat("productprice"));
-				p.setProductDiscount(rs.getFloat("productprice"));
+				p.setProductDiscount(rs.getFloat("productDiscount"));
 				newOrder.setProduct(p);
 				
 				newOrder.setProductQuantity(rs.getInt("productQuantity"));
