@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CancelOrder {
 	private int cancelOrderId;
-	private NewOrder newOrder;
+	private NewOrder newOrder = new NewOrder();
 	private int employeeId;
 	private String cancelReason;
 	private Date cancelDate;
@@ -51,10 +51,9 @@ public class CancelOrder {
 	public Date getOperateDate() {
 		return operateDate;
 	}
-	public void setOperateDate(Date operateDate) {
-		this.operateDate = operateDate;
+	public void setOperateDate(Date operatorDate) {
+		this.operateDate = operatorDate;
 	}
-	
 	
 	
 }

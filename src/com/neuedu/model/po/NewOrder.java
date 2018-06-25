@@ -3,47 +3,26 @@ package com.neuedu.model.po;
 import java.util.Date;
 
 public class NewOrder {
-	private int orderId;
-	private Client client;
-	private Product product;
-	private int productQuantity;
-	private String receiverName;
-	private String receiverPhone;
-	private String receiverAddress;
-	private int receiverPostCode;
-	private float total;
-	private int orderState;
-	private int employeeId;
-	private int whetherInvoice;
-	private Date requireDate;
-	private Date generateDate;
-	private Date finishDate;
-	private String newOrderRemark;
-	private String deliverRequest;
-	private int status; 
-	private String operator;
-	private Date operateDate;
-	private String productName;
-	private String productUnit;
-	
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	public String getProductUnit() {
-		return productUnit;
-	}
-	public void setProductUnit(String productUnit) {
-		this.productUnit = productUnit;
-	}
-	public Date getFinishDate() {
-		return finishDate;
-	}
-	public void setFinishDate(Date finishDate) {
-		this.finishDate = finishDate;
-	}
+	private int orderId =0;
+	private Client client = new Client();
+	private Product product = new Product();
+	private int productQuantity = 0;
+	private String receiverName= "";
+	private String receiverPhone= "";
+	private String receiverAddress= "";
+	private int receiverPostCode = 0;
+	private float total = 0;
+	private int orderState = 0;
+	private int employeeId = 0;
+	private int whetherInvoice = 0;
+	private Date requireDate=null;
+	private Date finishDate=null;
+	private Date generateDate=null;
+	private String newOrderRemark= "";
+	private String deliverRequest= "";
+	private int status=0;
+	private String operator= "";
+	private Date operateDate=null;
 	public int getOrderId() {
 		return orderId;
 	}
@@ -125,8 +104,14 @@ public class NewOrder {
 	public Date getGenerateDate() {
 		return generateDate;
 	}
-	public void setGenerateDate(Date generaDate) {
-		this.generateDate = generaDate;
+	public void setGenerateDate(Date generateDate) {
+		this.generateDate = generateDate;
+	}
+	public Date getFinishDate() {
+		return finishDate;
+	}
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
 	}
 	public String getNewOrderRemark() {
 		return newOrderRemark;
