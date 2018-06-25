@@ -23,6 +23,7 @@ public class NewOrder {
 	private int status=0;
 	private String operator= "";
 	private Date operateDate=null;
+	
 	public int getOrderId() {
 		return orderId;
 	}
