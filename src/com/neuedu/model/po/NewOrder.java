@@ -6,6 +6,8 @@ public class NewOrder {
 	private int orderId =0;
 	private Client client = new Client();
 	private Product product = new Product();
+	private String productUnit;
+	private String productName;
 	private int productQuantity = 0;
 	private String receiverName= "";
 	private String receiverPhone= "";
@@ -46,6 +48,18 @@ public class NewOrder {
 	}
 	public Product getProduct() {
 		return product;
+	}
+	public String getProductUnit() {
+		return productUnit;
+	}
+	public void setProductUnit(String productUnit) {
+		this.productUnit = productUnit;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public void setProduct(Product product) {
 		this.product = product;
