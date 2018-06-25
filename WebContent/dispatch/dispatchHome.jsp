@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"   %>
 <!DOCTYPE HTML>
 <html>
 
@@ -46,17 +49,17 @@
 					<li class="dropdown">
 					</li>
 					<li class="dropdown">
-						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
+						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="./images/exit.png" alt="" /></a>
 					</li>
 				</ul>
 				<!--左侧导航栏-->
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li >
+							<li class="highlight-item">
 								<a href="dispatchHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
-							<li  class="highlight-item">
+							<li>
 								<a href="dispatchGoods.jsp"><i class="fa fa-exchange nav_icon"></i>调度商品</a>
 								<!-- /.nav-second-level -->
 							</li>
@@ -80,27 +83,44 @@
 			</nav>
 			<!--页面-->
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
-				<form action="../dispatchManageServlet?action=searchOrder" method="post">
-					<div class="page-navigation">调度商品 / Dispatch goods</div>
-					<div class="searchblock">
-						<p1>搜索订单</p1>
-						<p>生成日期</p>
-						<input type="date" name="createDate" id="createDate">
-						<p>要求完成日期</p>
-						<input type="date" name="requireDate" id="requireDate">
-						<p>订单类型</p>
-						<select name="orderType">
-							<option value="新订">新订</option>
-							<option value="退货">退货</option>
-						</select>
-						<div style="margin: 12px 0;">
-							<input type="checkbox" name="dispatchOrNot" style="width: 20px;"><p2>只显示未调度</p2>
+				<div class="page-navigation">主页 / Home page</div>
+				<div style="display: flex;flex-direction: row;">
+					<div class="homeblock1">
+						<div style="display: flex;margin: 40px 10px;">
+							<img src="../images/profile.png" />
+							<p style="margin: 30px 0 0 10px;">姓名：张三</p>
 						</div>
-						<div class="buttonblock">
-							<button type="submit">搜索</button>
+						<hr style="border-top: 2px solid #999; width: 220px;" />
+						<p style="margin: 40px 0 0 20px;">职位：调度中心管理员</p>
+					</div>
+					<div style="display: flex;flex-direction: column;">
+						<div class="homeblock2">
+							<p style="margin: 15px;font-size: 20px;font-family: '微软雅黑';">调度商品</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<p style="margin: 0 0 0 15px;">手动调度可分配订单到对应分站</p>
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='dispatchGoods.jsp'">前往</button>
+							</div>
+						</div>
+						<div class="homeblock2">
+							<p style="margin: 10px;font-size: 20px;font-family: '微软雅黑';">修改订单状态</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<p style="margin: 0 0 0 15px;">商品到货后，修改缺货订单至可分配</p>
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='modifyOrderStatus.jsp'">前往</button>
+							</div>
 						</div>
 					</div>
-				</form>
+					<div class="homeblock2">
+							
+							<p style="margin: 15px;font-size: 20px;font-family: '微软雅黑';">查询任务单</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='searchWorkOrder.jsp'">前往</button>
+							</div>
+						</div>
+				</div>
+
 			</div>
 			<!-- /#page-wrapper -->
 		</div>

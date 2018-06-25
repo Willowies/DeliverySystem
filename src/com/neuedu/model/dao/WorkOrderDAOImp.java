@@ -8,8 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.neuedu.model.po.Client;
+import com.neuedu.model.po.NewOrder;
+import com.neuedu.model.po.Product;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.utils.DBUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class WorkOrderDAOImp implements WorkOrderDAO {
 
@@ -171,13 +175,19 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			ps.executeUpdate();
 			
 			if (orderType == 1) {
-				ps = conn.prepareStatement(" update neworder set orderState = 6 where newOrderId=?");
-				ps.setInt(1, orderId);
+				ps = conn.prepareStatement(" update neworder set orderState = 6 "
+						+ "and operator=? and operateDate=?  where newOrderId=?");
+				ps.setString(1, operator);
+				ps.setDate(2, date);
+				ps.setInt(3, orderId);
 				
 				ps.executeUpdate();
 			}else {
-				ps = conn.prepareStatement(" update returnorder set orderState = 6 where returnOrderId=?");
-				ps.setInt(1, orderId);
+				ps = conn.prepareStatement(" update returnorder set orderState = 6 "
+						+ "and operator=? and operateDate=?  where returnOrderId=?");
+				ps.setString(1, operator);
+				ps.setDate(2, date);
+				ps.setInt(3, orderId);
 				
 				ps.executeUpdate();
 			}
@@ -189,4 +199,86 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 	}
 
+	@Override
+	public List<NewOrder> searchLackOrder(NewOrder order) {
+		java.util.Date generateDate = order.getGenerateDate();
+		java.util.Date requireDate = order.getRequireDate();
+		boolean enough = order.isEnoughOrNot();
+		
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append("select o.*,b.allocatableQuantity,product.productName "
+				+ "FROM neworder o,warehouse a,warehouseproduct b LEFT JOIN product using(productId) "
+				+ "WHERE a.warehouseRank = 1 and a.warehouseId = b.warehouseId and o.productId = b.productId  and o.orderState = 3");
+		if (generateDate != null) {
+			sbf.append(" and generateDate = ? ");
+		}
+		if (requireDate != null) {
+			sbf.append(" and requireDate = ? ");
+		}
+		
+		List<NewOrder> newOrders = new ArrayList<NewOrder>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sbf.toString());
+			int index=1;
+			if (generateDate != null) {
+				ps.setDate(index,new Date(generateDate.getTime()));
+				index++;
+			}
+			if (requireDate != null) {
+				ps.setDate(index, new Date(requireDate.getTime()));
+				index++;
+			}
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				NewOrder newOrder = new NewOrder();
+				newOrder.setOrderId(rs.getInt("neworderId"));
+				
+				Product p = new Product();
+				p.setProductName(rs.getString("productName"));
+				newOrder.setProduct(p);
+				
+				newOrder.setProductQuantity(rs.getInt("productQuantity"));
+				newOrder.setGenerateDate(rs.getDate("generateDate"));
+				newOrder.setRequireDate(rs.getDate("requireDate"));
+				if (rs.getInt("productQuantity")>rs.getInt("allocatableQUantity")) {
+					newOrder.setEnoughOrNot(false);
+					if (!enough) {
+						newOrders.add(newOrder);
+					}
+				}else {
+					newOrder.setEnoughOrNot(true);
+					newOrders.add(newOrder);
+				}
+
+			}
+			
+		} catch (SQLException e) {
+			
+		}
+		return newOrders;
+	}
+
+	//ÐÞ¸Ä¶©µ¥×´Ì¬
+	public void modifyLackStatus(int orderId, String operator) {
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(" update neworder set orderState = 1 "
+					+ "and operator=? and operateDate=? where newOrderId=?");
+			ps.setString(1, operator);
+			ps.setDate(2, new Date(new java.util.Date().getTime()));
+			ps.setInt(3, orderId);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.closePS(ps);
+		}
+	}
+
+	
+	
+	
 }

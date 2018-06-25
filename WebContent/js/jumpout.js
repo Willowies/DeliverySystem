@@ -30,13 +30,27 @@ window.onload = findDimensions;
 window.onresize = findDimensions;
 
 function jumpout(){
-	$("#jumpout-block").fadeIn(500);
+	var id = $("input[name='check']:checked").val();
+	 if(id == null){
+	 	alert("请先选择一个订单");
+	 }else{
+	 	$("#p-id").text("订单号："+$("#orderId"+id).text());
+	 	$("#hide-p-id").val($("#orderId"+id).text());
+	 	$("#p-type").text("订单类型："+$("#orderType"+id).text());
+	 	$("#hide-p-type").val($("#orderType"+id).text());
+	 	$("#p-product").text("订单商品："+$("#productName"+id).text());
+	 	$("#p-num").text("商品数量："+$("#productQuantity"+id).text());
+	 	$("#p-address").text("订单地址："+$("#receiverAddress"+id).text());
+	 	$("#jumpout"+"-block").fadeIn(500);
+	 }
 }
 
 function jumpback(event){
 	 if (event.target.id == "jump-actual-block"|| event.target.id =="use-in-jumpout-js"){
 	 	 return
-	 }else if(event.target.tagName == "P" ||event.target.tagName == "SELECT"||event.target.tagName == "BUTTON"||event.target.tagName == "INPUT" ){
+	 }else if(event.target.tagName == "P" ||event.target.tagName == "SELECT"
+	 ||event.target.tagName == "BUTTON"||event.target.tagName == "INPUT" || event.target.tagName == "UL"
+	 || event.target.tagName == "LI"){
 	 	return
 	 }else{
 		$("#jumpout-block").fadeOut(500);

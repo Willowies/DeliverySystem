@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"   %>
 <!DOCTYPE HTML>
 <html>
 
@@ -26,6 +29,24 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
+		<!--
+        	下拉框的滚轮和回收js
+        -->
+        <script src="../js/autocomplete.js"></script>
+        <link href="../css/autocomplete.css" rel='stylesheet' type='text/css' />
+		<script type="text/javascript">
+			var proposals = ['at', 'boat', 'bear', 'chief', 'dog', 'drink', 'elephant', 'fruit', 'grave', 'hotel', 'illness', 'London', 'motorbike', 'xw素材网官网', 'xw素材网之家', 'xw素材网下载'];
+			$(document).ready(function() {
+				$('#search-form').autocomplete({
+					hints: proposals,
+					width: 420,
+					height: 30,
+					onSubmit: function(text) {
+						$('#message').html('Selected: <b>' + text + '</b>');
+					}
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -53,20 +74,19 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li >
+							<li>
 								<a href="dispatchHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
-							<li  class="highlight-item">
+							<li>
 								<a href="dispatchGoods.jsp"><i class="fa fa-exchange nav_icon"></i>调度商品</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
 								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>修改订单状态</span>
 								</a>
-
 								<!-- /.nav-second-level -->
 							</li>
-							<li>
+							<li class="highlight-item">
 								<a href="searchWorkOrder.jsp"><i class="fa fa-search nav_icon"></i>查询任务单</span>
 								</a>
 
@@ -80,22 +100,34 @@
 			</nav>
 			<!--页面-->
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
-				<form action="../dispatchManageServlet?action=searchOrder" method="post">
-					<div class="page-navigation">调度商品 / Dispatch goods</div>
-					<div class="searchblock">
-						<p1>搜索订单</p1>
-						<p>生成日期</p>
-						<input type="date" name="createDate" id="createDate">
+				<form action="../dispatchManageServlet?action=searchWorkOrder" method="post">
+					<div class="page-navigation">查询任务单 / Search workOrder</div>
+					<div class="searchblock3">
+						<p1>搜索任务单</p1>
+						<p>任务单号</p>
+						<input type="number" name="workId" id="workId">
 						<p>要求完成日期</p>
 						<input type="date" name="requireDate" id="requireDate">
-						<p>订单类型</p>
+						<p>选择分站</p>
+						<div id="search-form"></div>
+						<div id="message"></div>
+						<p>任务单类型</p>
 						<select name="orderType">
-							<option value="新订">新订</option>
-							<option value="退货">退货</option>
+							<option value="1">新订</option>
+							<option value="2">退货</option>
 						</select>
-						<div style="margin: 12px 0;">
-							<input type="checkbox" name="dispatchOrNot" style="width: 20px;"><p2>只显示未调度</p2>
-						</div>
+						<p>任务单状态</p>
+						<select name="orderStatus">
+							<option value="1">已调度</option>
+							<option value="2">可分配</option>
+							<option value="3">已分配</option>
+							<option value="4">已领货</option>
+							<option value="5">已完成</option>
+						</select>
+						<p>客户姓名</p>
+						<input type="text" name="clientName" id="clientName">
+						<p>客户电话</p>
+						<input type="number" name="clientPhone" id="clientPhone">
 						<div class="buttonblock">
 							<button type="submit">搜索</button>
 						</div>
