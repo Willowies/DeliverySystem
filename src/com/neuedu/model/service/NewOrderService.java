@@ -10,7 +10,6 @@ import com.neuedu.model.po.NewOrder;
 import com.neuedu.utils.DBUtil;
 
 
-
 public class NewOrderService {
 	private NewOrderService(){
 	}
@@ -44,7 +43,10 @@ public class NewOrderService {
 		return dao.selectNewOrder(newOrder);
 	}
 	public List<NewOrder> selectNewOrderByPage(NewOrder newOrder,int pageSize,int pageNum){
-		return null;
+		Connection conn = DBUtil.getConn();
+		NewOrderDAO dao = new NewOrderDAOImp(conn);
+		DBUtil.closeConn(conn);
+		return dao.selectNewOrderByPage(newOrder,pageSize,pageNum);
 	}
 	public int selectNewOrderPageCount(NewOrder newOrder,int pageSize,int pageNum){
 		return 0;

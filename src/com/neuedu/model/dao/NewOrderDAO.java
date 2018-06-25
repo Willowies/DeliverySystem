@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.neuedu.model.po.NewOrder;
 
-
 public interface NewOrderDAO {
 	public void creatNewOrder(NewOrder newOrder);
 	public void deleteNewOrderById(int newOrderId,String operator,Date operatorDate);
