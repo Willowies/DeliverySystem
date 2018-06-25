@@ -893,8 +893,8 @@ canvas#doughnut, canvas#line, canvas#polarArea, #bar, #pie, #radar{
   background: #fff;
   box-shadow: none !important;
   width: 100%;
-  font-size: 0.85em;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   height: 40px;
   border-radius: 0;
   -webkit-appearance: none;
