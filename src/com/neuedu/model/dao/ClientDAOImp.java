@@ -36,7 +36,7 @@ public class ClientDAOImp implements ClientDAO {
 		            + "values(?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, client.getClientname());
+			ps.setString(1, client.getClientName());
 			ps.setString(2, client.getClientIc());
 			ps.setString(3, client.getClientWorkPlace());
 			ps.setString(4, client.getClientPhoneNumber());
@@ -112,7 +112,7 @@ public class ClientDAOImp implements ClientDAO {
 				Client client = new Client();
 				System.out.println(rs.getInt("clientId"));
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientname"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -170,7 +170,7 @@ public class ClientDAOImp implements ClientDAO {
 
 				System.out.println(rs.getInt("clientId"));
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientname"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -248,7 +248,7 @@ public class ClientDAOImp implements ClientDAO {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientname"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -280,7 +280,7 @@ public class ClientDAOImp implements ClientDAO {
 			ps = conn.prepareStatement(sql);
 			
 			System.out.println("id:"+client.getClientId());
-			ps.setString(1, client.getClientname());
+			ps.setString(1, client.getClientName());
 			ps.setString(2, client.getClientIc());
 			ps.setString(3, client.getClientWorkPlace());
 			ps.setString(4, client.getClientPhoneNumber());

@@ -3,7 +3,7 @@ package com.neuedu.model.po;
 public class Client {
 	
 	private int clientId;
-	private String clientname;
+	private String clientName;
 	private String clientIc;
 	private String clientWorkPlace;
 	private String clientPhoneNumber;
@@ -22,11 +22,11 @@ public class Client {
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
-	public String getClientname() {
-		return clientname;
+	public String getClientName() {
+		return clientName;
 	}
-	public void setClientname(String clientname) {
-		this.clientname = clientname;
+	public void setClientName(String clientname) {
+		this.clientName = clientname;
 	}
 	public String getClientIc() {
 		return clientIc;
