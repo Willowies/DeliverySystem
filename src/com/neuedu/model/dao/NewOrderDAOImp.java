@@ -278,9 +278,9 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				c1.setClientIc(rs.getString("ClientIc"));
 				c1.setClientId(rs.getInt("ClientId"));
 				c1.setClientMobilePhone(rs.getString("clientmobilephone"));
-				c1.setClientName(rs.getString("ClientName"));
+				c1.setClientname(rs.getString("ClientName"));
 				c1.setClientPhoneNumber(rs.getString("ClientPhoneNumber"));
-				c1.setClientPostCode(rs.getInt("ClientPostCode"));
+				c1.setClientPostcode(rs.getInt("ClientPostCode"));
 				newOrder.setClient(c1);
 				
 				Product p = new Product();
@@ -512,9 +512,9 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				c1.setClientIc(rs.getString("ClientIc"));
 				c1.setClientId(rs.getInt("ClientId"));
 				c1.setClientMobilePhone(rs.getString("clientmobilephone"));
-				c1.setClientName(rs.getString("ClientName"));
+				c1.setClientname(rs.getString("ClientName"));
 				c1.setClientPhoneNumber(rs.getString("ClientPhoneNumber"));
-				c1.setClientPostCode(rs.getInt("ClientPostCode"));
+				c1.setClientPostcode(rs.getInt("ClientPostCode"));
 				newOrder.setClient(c1);
 				
 				Product p = new Product();

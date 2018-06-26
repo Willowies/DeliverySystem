@@ -1,25 +1,32 @@
 package com.neuedu.model.po;
 
-import java.util.Date;
-
 public class Client {
+	
 	private int clientId;
+	private String clientname;
 	private String clientIc;
-	private String clientName;
-	private String clientWrokPlace;
+	private String clientWorkPlace;
 	private String clientPhoneNumber;
 	private String clientMobilePhone;
 	private String clientContactAddress;
-	private int clientPostCode;
+	private int clientPostcode;
 	private String clientEmail;
 	private int status;
-	private String operator ;
-	private Date operateDate;
+	private String operator;
+	private String operateDate;
+	
+	
 	public int getClientId() {
 		return clientId;
 	}
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
+	}
+	public String getClientname() {
+		return clientname;
+	}
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
 	}
 	public String getClientIc() {
 		return clientIc;
@@ -27,11 +34,11 @@ public class Client {
 	public void setClientIc(String clientIc) {
 		this.clientIc = clientIc;
 	}
-	public String getClientName() {
-		return clientName;
+	public String getClientWorkPlace() {
+		return clientWorkPlace;
 	}
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setClientWorkPlace(String clientWorkPlace) {
+		this.clientWorkPlace = clientWorkPlace;
 	}
 	public String getClientPhoneNumber() {
 		return clientPhoneNumber;
@@ -45,23 +52,17 @@ public class Client {
 	public void setClientMobilePhone(String clientMobilePhone) {
 		this.clientMobilePhone = clientMobilePhone;
 	}
-	public String getClientWrokPlace() {
-		return clientWrokPlace;
-	}
-	public void setClientWrokPlace(String clientWrokPlace) {
-		this.clientWrokPlace = clientWrokPlace;
-	}
 	public String getClientContactAddress() {
 		return clientContactAddress;
 	}
 	public void setClientContactAddress(String clientContactAddress) {
 		this.clientContactAddress = clientContactAddress;
 	}
-	public int getClientPostCode() {
-		return clientPostCode;
+	public int getClientPostcode() {
+		return clientPostcode;
 	}
-	public void setClientPostCode(int clientPostCode) {
-		this.clientPostCode = clientPostCode;
+	public void setClientPostcode(int clientPostcode) {
+		this.clientPostcode = clientPostcode;
 	}
 	public String getClientEmail() {
 		return clientEmail;
@@ -81,10 +82,10 @@ public class Client {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
-	public Date getOperateDate() {
+	public String getOperateDate() {
 		return operateDate;
 	}
-	public void setOperateDate(Date operateDate) {
+	public void setOperateDate(String operateDate) {
 		this.operateDate = operateDate;
 	}
 	
