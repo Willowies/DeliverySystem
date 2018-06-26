@@ -12,8 +12,31 @@ public class WorkOrder {
 	private String clientPhone;
 	private Date createDate;
 	private Date requireDate;
+	private String productName;
+	private String productUnit;
+	private int productQuantity;
 	private String remark;
 	
+	
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductUnit() {
+		return productUnit;
+	}
+	public void setProductUnit(String productUnit) {
+		this.productUnit = productUnit;
+	}
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
 	public int getOrderId() {
 		return orderId;
 	}
