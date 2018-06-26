@@ -19,11 +19,26 @@ public class ProductService {
 	public static ProductService getInstance(){
 		return service;
 	}
+	public void creatProduct(Product p){
+		Connection conn = DBUtil.getConn();
+		ProductDAO dao = new ProductDAOImp(conn);
+		dao.createProduct(p);
+	}
 	public List<Product> selectProduct(Product p){
 		List<Product> products;
 		Connection conn = DBUtil.getConn();
 		ProductDAO dao = new ProductDAOImp(conn);
 		products = dao.selectProduct(p);
 		return products;
+	}
+	public void updateProduct(Product p){
+		Connection conn = DBUtil.getConn();
+		ProductDAO dao = new ProductDAOImp(conn);
+		dao.updateProduct(p);
+	}
+	public void deleteProduct(Product p){
+		Connection conn = DBUtil.getConn();
+		ProductDAO dao = new ProductDAOImp(conn);
+		dao.deleteProduct(p);
 	}
 }
