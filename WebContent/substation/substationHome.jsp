@@ -40,7 +40,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </button>
-					<a class="navbar-brand" href="">调度中心</a>
+					<a class="navbar-brand" href="">分站中心</a>
 				</div>
 				<!-- /.navbar-header -->
 				<ul class="nav navbar-nav navbar-right">
@@ -63,7 +63,7 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="workAssign.jsp"><i class="fa fa-tasks nav_icon"></i>分配任务</a>
+								<a href="workAssign.jsp"><i class="fa fa-tasks nav_icon"></i>任务分配</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
