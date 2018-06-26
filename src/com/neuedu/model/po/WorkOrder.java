@@ -15,10 +15,17 @@ public class WorkOrder {
 	private String productName;
 	private String productUnit;
 	private int productQuantity;
+	private String productCode;
 	private String remark;
 	
 	
 	
+	public String getProductCode() {
+		return productCode;
+	}
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
 	public String getProductName() {
 		return productName;
 	}
