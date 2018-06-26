@@ -26,6 +26,10 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
+		<!--
+			弹窗的js
+        -->
+		<script src="../js/jumpout.js"></script>
 	</head>
 
 	<body>
@@ -46,7 +50,7 @@
 					<li class="dropdown">
 					</li>
 					<li class="dropdown">
-						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
+						<a href=" "onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
 					</li>
 				</ul>
 				<!--左侧导航栏-->
@@ -79,10 +83,10 @@
 				<!-- /.navbar-static-side -->
 			</nav>
 			<!--页面-->
-			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
+			<div id="page-wrapper" style="background: #f2f2f2;display: flex;">
 				<form action="../dispatchManageServlet?action=searchOrder" method="post">
 					<div class="page-navigation">调度商品 / Dispatch goods</div>
-					<div class="searchblock">
+					<div class="searchblock2">
 						<p1>搜索订单</p1>
 						<p>生成日期</p>
 						<input type="date" name="createDate" id="createDate">
@@ -93,14 +97,97 @@
 							<option value="新订">新订</option>
 							<option value="退货">退货</option>
 						</select>
-						<div style="margin: 12px 0;">
-							<input type="checkbox" name="dispatchOrNot" style="width: 20px;"><p2>只显示未调度</p2>
+						<div style="margin: 5px 0;display: flex;">
+							<input type="checkbox" name="dispatchOrNot" style="width: 15px;margin: 0 10px;">
+							<p2 style="margin: 3px;font-size: 12px;">只显示未调度</p2>
 						</div>
 						<div class="buttonblock">
 							<button type="submit">搜索</button>
 						</div>
 					</div>
 				</form>
+				<div class="resultblock">
+					<div class="title">
+						<p3>订单号</p3>
+						<p3>订单类型</p3>
+						<p3>生成日期</p3>
+						<p3>要求完成日期</p3>
+						<p3>订单状态</p3>
+						<p3>调度状态</p3>
+					</div>
+					<div class="result-content">
+						<div class="result-item">
+							<input type="radio" name="check" style="float: left;width: 20px;" />
+							<p3 style="margin-left: 10px;">101861234</p3>
+							<p3 style="margin-left: 45px;">新订</p3>
+							<p3 style="margin-left: 65px;">2018.06.19</p3>
+							<p3 style="margin-left: 50px;">2018.06.20</p3>
+							<p3 style="margin-left: 65px;">可分配</p3>
+							<p3 style="margin-left: 65px;">可调度</p3>
+						</div>
+						<div class="result-item">
+							<input type="radio" name="check" style="float: left;width: 20px;" />
+							<p3 style="margin-left: 10px;">101861234</p3>
+							<p3 style="margin-left: 45px;">新订</p3>
+							<p3 style="margin-left: 65px;">2018.06.19</p3>
+							<p3 style="margin-left: 50px;">2018.06.20</p3>
+							<p3 style="margin-left: 65px;">可分配</p3>
+							<p3 style="margin-left: 65px;">可调度</p3>
+						</div>
+						<div class="result-item">
+							<input type="radio" name="check" style="float: left;width: 20px;" />
+							<p3 style="margin-left: 10px;">101861234</p3>
+							<p3 style="margin-left: 45px;">新订</p3>
+							<p3 style="margin-left: 65px;">2018.06.19</p3>
+							<p3 style="margin-left: 50px;">2018.06.20</p3>
+							<p3 style="margin-left: 65px;">可分配</p3>
+							<p3 style="margin-left: 65px;">可调度</p3>
+						</div>
+					</div>
+					<div class="result-foot">
+						<div class="page-turner">
+							<ul class="pagination pagination-lg">
+								<li class="disabled">
+									<a href="#"><i class="fa fa-angle-left"></i></a>
+								</li>
+								<li class="active">
+									<a href="#">1</a>
+								</li>
+								<li>
+									<a href="#">2</a>
+								</li>
+
+								<li>
+									<a href="#"><i class="fa fa-angle-right"></i></a>
+								</li>
+							</ul>
+						</div>
+						<div class="operate-button">
+							<button class="b" onclick="jumpout()">调度订单</button>
+						</div>
+					</div>
+
+				</div>
+				<div id="jumpout-block" style="display: none;" onclick="jumpback(event)" >
+					
+					<div id="jump-actual-block" >
+						<p>订单号：101861234</p>
+						<p>订单类型：新订</p>
+						<p>订单商品：冰箱</p>
+						<p>商品数量：2</p>
+						<p>订单地址：辽宁省沈阳市浑南区东北大学浑南校区</p>
+						<p>调度分站：</p>
+						<select name="orderTyor">
+							<option value="辽宁省沈阳市浑南区分站">辽宁省沈阳市浑南区分站</option>
+							<option value="辽宁省沈阳市和平区分站">辽宁省沈阳市和平区分站</option>
+						</select>
+						<p>备注：</p>
+						<input type="text" >
+						<div class="buttonblock" id="use-in-jumpout-js">
+							<button type="submit">确认调度</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- /#page-wrapper -->
 		</div>

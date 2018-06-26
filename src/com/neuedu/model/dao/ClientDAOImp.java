@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.neuedu.model.po.Client;
 
 
+
 public class ClientDAOImp implements ClientDAO{
 	private Connection conn;
 	public ClientDAOImp(Connection conn) {
@@ -18,7 +19,6 @@ public class ClientDAOImp implements ClientDAO{
 		StringBuffer sbf = new StringBuffer("");
 		String clientName = c.getClientName();
 		String clientIc = c.getClientIc();
-		/*在前端通过用户输入的位数判断是传固话还是手机,两个只需要一个*/
 		String clientMobilePhone = c.getClientMobilePhone();
 		String clientPhoneNumber = c.getClientPhoneNumber();
 		sbf.append("select *  from  userinfo where 1=1  ");
@@ -74,7 +74,7 @@ public class ClientDAOImp implements ClientDAO{
 				client.setClientPostCode(rs.getInt("ClientPostCode"));
 			}*/
 			if(rs_row == 0){
-				client = null;//表示未找到
+				client = null;//表示未找到Ss
 			}else if (rs_row ==1){
 				rs.next();
 				client.setClientContactAddress(rs.getString("ClientContactAddress"));

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ReturnOrder {
 	private int returnOrderId;
-	private NewOrder newOrder;
+	private NewOrder newOrder = new NewOrder();
 	private int returnQuantity;
 	private String returnReason;
 	private Date returnDate;

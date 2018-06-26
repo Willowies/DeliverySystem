@@ -7,7 +7,6 @@ public class Product {
 	private int secondClassId=0;
 	private float productPrice = 1;
 	private float productDiscount = 1;
-	
 	public int getProductId() {
 		return productId;
 	}

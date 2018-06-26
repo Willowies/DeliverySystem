@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"   %>
 <!DOCTYPE HTML>
 <html>
 
@@ -56,11 +59,11 @@
 							<li >
 								<a href="dispatchHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
-							<li  class="highlight-item">
+							<li>
 								<a href="dispatchGoods.jsp"><i class="fa fa-exchange nav_icon"></i>调度商品</a>
 								<!-- /.nav-second-level -->
 							</li>
-							<li>
+							<li  class="highlight-item">
 								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>修改订单状态</span>
 								</a>
 
@@ -80,24 +83,20 @@
 			</nav>
 			<!--页面-->
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
-				<form action="../dispatchManageServlet?action=searchOrder" method="post">
-					<div class="page-navigation">调度商品 / Dispatch goods</div>
-					<div class="searchblock">
-						<p1>搜索订单</p1>
+				<form action="../dispatchManageServlet?action=searchLackOrder" method="post">
+					<div class="page-navigation">修改订单状态  / Modify status</div>
+					<div class="searchblock" style="height: 420px;">
+						<p1>搜索缺货订单</p1>
 						<p>生成日期</p>
 						<input type="date" name="createDate" id="createDate">
 						<p>要求完成日期</p>
 						<input type="date" name="requireDate" id="requireDate">
-						<p>订单类型</p>
-						<select name="orderType">
-							<option value="新订">新订</option>
-							<option value="退货">退货</option>
-						</select>
+						
 						<div style="margin: 12px 0;">
-							<input type="checkbox" name="dispatchOrNot" style="width: 20px;"><p2>只显示未调度</p2>
+							<input type="checkbox" name="enoughOrNot" style="width: 20px;"><p2>只显示已到货</p2>
 						</div>
 						<div class="buttonblock">
-							<button type="submit">搜索</button>
+							<button type="submit" style="margin-top: 20px;">搜索</button>
 						</div>
 					</div>
 				</form>

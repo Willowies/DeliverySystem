@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"   %>
 <!DOCTYPE HTML>
 <html>
 
@@ -46,7 +49,7 @@
 					<li class="dropdown">
 					</li>
 					<li class="dropdown">
-						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
+						<a href="" onclick="window.location.href='../exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
 					</li>
 				</ul>
 				<!--左侧导航栏-->
@@ -90,8 +93,8 @@
 						<input type="date" name="requireDate" id="requireDate">
 						<p>订单类型</p>
 						<select name="orderType">
-							<option value="新订">新订</option>
-							<option value="退货">退货</option>
+							<option value="1">新订</option>
+							<option value="2">退货</option>
 						</select>
 						<div style="margin: 12px 0;">
 							<input type="checkbox" name="dispatchOrNot" style="width: 20px;"><p2>只显示未调度</p2>

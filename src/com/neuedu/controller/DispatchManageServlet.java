@@ -20,7 +20,6 @@ import com.neuedu.model.po.Product;
 import com.neuedu.model.po.ReturnOrder;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.model.service.DispatchService;
-import com.oracle.jrockit.jfr.Producer;
 
 /**
  * Servlet implementation class DispatchManageServlet
@@ -70,53 +69,23 @@ public class DispatchManageServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		if ("searchOrder".equals(action)) {
-			
+			//搜索框中搜索订单
 			searchOrder(request, response);
-			
 		}else if ("searchOrderByPage".equals(action)) {
-			
-			int orderType =(Integer) request.getSession().getAttribute("type");
-			String p = request.getParameter("page");
-			int page = 1;
-			if (p != null && !"".equals(p)) {
-				page = Integer.parseInt(p);
-			}
-			
-			//通过订单类型查询特定的订单
-			if (orderType == 0) {
-				request.getRequestDispatcher("dispatchGoods.jsp").forward(request, response);
-			}else if (orderType == 1) {
-				NewOrder order =(NewOrder) request.getSession().getAttribute("dispatchOrder");
-				List<NewOrder> l = DispatchService.getInstance().searchNewOrder(order);
-				List<NewOrder> list = DispatchService.getInstance().searchNewOrderByPage(order,1,6);
-				
-				for(NewOrder o:list) {
-					Product p1 = new Product();
-					p1.setProductName("冰箱");
-					o.setProduct(p1);
-				}
-				int pageNum = l.size()%6 == 0?list.size()/6:list.size()/6+1;
-				
-				request.getSession().setAttribute("type", 1);
-				request.getSession().setAttribute("pageNum", pageNum);
-				request.setAttribute("page", 1);
-				request.setAttribute("orderList", list);
-				
-				request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
-			}else if (orderType == 2) {
-				ReturnOrder returnOrder = parseReturnOrder(request, response);
-				
-			}
-			
+			//跳转页面的搜索
+			searchOrderByPage(request, response);
 		} else if ("dispatch".equals(action)) {
 			//调度订单
 			dispatch(request, response);
-			
 		} else if ("searchLackOrder".equals(action)) {
 			//搜索缺货订单
-			
+			searchLackOrder(request, response);
+		} else if ("searchLackOrderByPage".equals(action)) {
+			//搜索缺货订单
+			searchLackOrderByPage(request, response);
 		} else if ("modify".equals(action)) {
-
+			//更改状态
+			modify(request, response);
 		} else if ("searchWorkOrder".equals(action)) {
 			searchWorkOrder(request, response);
 		} else if ("searchWorkOrderByPage".equals(action)) {
@@ -124,10 +93,81 @@ public class DispatchManageServlet extends HttpServlet {
 		}
 	}
 	
+	//改变订单状态
+	private void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("check");
+		int orderId = 0;
+		
+		if (id!=null && !"".equals(id)) {
+			orderId = Integer.parseInt(id);
+		}
+		
+		if (orderId != 0) {
+			DispatchService.getInstance().modify(orderId,"王昊文");
+			response.sendRedirect(request.getContextPath()+"/dispatchManageServlet?action=searchLackOrderByPage&page=1");
+		}else {
+			response.sendRedirect(request.getContextPath()+"/dispatch/dispatchHome.jsp");
+		}
+	}
 	
+	//搜索缺货订单
+	private void searchLackOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		NewOrder order =  parseNewOrder(request, response);
+		order.setOrderState(3);
+		
+		List<NewOrder> l = DispatchService.getInstance().searchLackOrder(order);
+		List<NewOrder> list = new ArrayList<NewOrder>();
+		
+		for (int i = 0; i < l.size(); i++) {
+			if (i>5) {
+				break;
+			}
+			list.add(l.get(i));
+		}
+		
+		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		
+		
+		request.getSession().setAttribute("modifyPageNum", pageNum);
+		request.setAttribute("page", 1);
+		request.setAttribute("orderList", list);
+		request.getSession().setAttribute("modifyOrder", order);
+		
+		request.getRequestDispatcher("dispatch/modifyOrderStatusResult.jsp").forward(request, response);
+	}
+	
+	//分页 查询缺货
+	private void searchLackOrderByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		NewOrder order =  (NewOrder) request.getSession().getAttribute("modifyOrder");
+		String p = request.getParameter("page");
+		int page = 1;
+		if (p != null && !"".equals(p)) {
+			page = Integer.parseInt(p);
+		}
+		
+		List<NewOrder> l = DispatchService.getInstance().searchLackOrder(order);
+		List<NewOrder> list = new ArrayList<NewOrder>();
+		
+		for (int i = (page-1)*5; i < page*5 ; i++) {
+			if (i>=l.size()) {
+				break;
+			}
+			list.add(l.get(i));
+		}
+		
+		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		
+		
+		request.getSession().setAttribute("modifyPageNum", pageNum);
+		request.setAttribute("page", 1);
+		request.setAttribute("orderList", list);
+		
+		request.getRequestDispatcher("dispatch/modifyOrderStatusResult.jsp").forward(request, response);
+	}
+	
+	//搜索订单
 	private void searchOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String orderType = request.getParameter("orderType");
-		System.out.println(orderType);
 		//通过订单类型查询特定的订单
 		if (orderType == null) {
 			request.getRequestDispatcher("dispatchGoods.jsp").forward(request, response);
@@ -143,7 +183,7 @@ public class DispatchManageServlet extends HttpServlet {
 				list.add(l.get(i));
 			}
 			
-			int pageNum = l.size()%6 == 0?list.size()/6:list.size()/6+1;
+			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
 			
 			request.getSession().setAttribute("type", 1);
 			request.getSession().setAttribute("dispatchPageNum", pageNum);
@@ -155,8 +195,87 @@ public class DispatchManageServlet extends HttpServlet {
 		}else if (orderType.equals("2")) {
 			ReturnOrder returnOrder = parseReturnOrder(request, response);
 			
+			
+			
+			List<ReturnOrder> l = DispatchService.getInstance().searchReturnOrder(returnOrder);
+			List<ReturnOrder> list = new ArrayList<ReturnOrder>();
+			
+			for (int i = 0; i < l.size(); i++) {
+				if (i>5) {
+					break;
+				}
+				list.add(l.get(i));
+			}
+			
+			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			
+			request.getSession().setAttribute("type", 2);
+			request.getSession().setAttribute("dispatchPageNum", pageNum);
+			request.setAttribute("page", 1);
+			request.setAttribute("orderList", list);
+			request.getSession().setAttribute("dispatchOrder", returnOrder);
+			
+			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
 		}
 		
+	}
+	
+	//跳转页面的搜索
+	private void searchOrderByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int orderType =(Integer) request.getSession().getAttribute("type");
+		String p = request.getParameter("page");
+		int page = 1;
+		if (p != null && !"".equals(p)) {
+			page = Integer.parseInt(p);
+		}
+		
+		//通过订单类型查询特定的订单
+		if (orderType == 0) {
+			request.getRequestDispatcher("dispatchGoods.jsp").forward(request, response);
+		}else if (orderType == 1) {
+			NewOrder order =(NewOrder) request.getSession().getAttribute("dispatchOrder");
+			List<NewOrder> l = DispatchService.getInstance().searchNewOrder(order);
+			List<NewOrder> list = new ArrayList<NewOrder>();
+			
+			for (int i = (page-1)*5; i < page*5 ; i++) {
+				if (i>=l.size()) {
+					break;
+				}
+				list.add(l.get(i));
+			}
+			
+			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			
+			request.getSession().setAttribute("type", 1);
+			request.getSession().setAttribute("pageNum", pageNum);
+			request.setAttribute("page", 1);
+			request.setAttribute("orderList", list);
+			
+			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
+		}else if (orderType == 2) {
+			ReturnOrder returnOrder = (ReturnOrder) request.getSession().getAttribute("dispatchOrder");
+			
+			List<ReturnOrder> l = DispatchService.getInstance().searchReturnOrder(returnOrder);
+			List<ReturnOrder> list = new ArrayList<ReturnOrder>();
+			
+			for (int i = 0; i < l.size(); i++) {
+				if (i>5) {
+					break;
+				}
+				list.add(l.get(i));
+			}
+			
+			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			
+			request.getSession().setAttribute("type", 2);
+			request.getSession().setAttribute("dispatchPageNum", pageNum);
+			request.setAttribute("page", 1);
+			request.setAttribute("orderList", list);
+			request.getSession().setAttribute("dispatchOrder", returnOrder);
+			
+			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
+		}
 	}
 	
 	//调度订单
@@ -195,7 +314,6 @@ public class DispatchManageServlet extends HttpServlet {
 		String createDate = request.getParameter("createDate");
 		String requireDate = request.getParameter("requireDate");
 		String dispatchOrNot = request.getParameter("dispatchOrNot");
-		String enoughOrNot = request.getParameter("enoughOrNot");
 
 		System.out.println("createDate:" + createDate + " requireDate:" + requireDate + " dispatchOrNot:"
 				+ dispatchOrNot);
@@ -240,6 +358,7 @@ public class DispatchManageServlet extends HttpServlet {
 				+ dispatchOrNot);
 		
 		ReturnOrder returnOrder = new ReturnOrder();
+		returnOrder.setNewOrder(new NewOrder());
 		if (createDate != null  && !"".equals(createDate)) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			try {
@@ -347,6 +466,8 @@ public class DispatchManageServlet extends HttpServlet {
 		request.getRequestDispatcher("dispatch/searchWorkOrderResult.jsp").forward(request, response);
 	}
 	
+	
+	//分页搜索任务单
 	private void searchWorkOrderByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		int p = Integer.parseInt(page);
@@ -368,6 +489,7 @@ public class DispatchManageServlet extends HttpServlet {
 		request.getRequestDispatcher("dispatch/searchWorkOrderResult.jsp").forward(request, response);
 	}
 
+	//自动调度
 	private void dispatchAuto() {
 		 
 	}
