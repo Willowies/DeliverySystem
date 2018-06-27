@@ -11,7 +11,7 @@ public interface ClientDAO {
 	void registerClient(Client client,Employee e) throws SQLException;
 
 
-	void deleteUsers(int[] ids);
+	void deleteUsers(int[] ids,Employee e);
 
 
 	//×éºÏ²éÑ¯

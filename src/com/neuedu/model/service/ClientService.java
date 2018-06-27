@@ -43,17 +43,17 @@ public class ClientService {
 	}
 
 	// 批量删除
-	public void deleteUsers(int[] ids) {
+	public void deleteUsers(int[] ids,Employee e) {
 		// 获取与数据库的连接
 		Connection conn = DBUtil.getConn();
 		// 开启事务
 		DBUtil.beginTransaction(conn);
 		try {
 			ClientDAO dao = new ClientDAOImp(conn);
-			dao.deleteUsers(ids);
+			dao.deleteUsers(ids,e);
 			// 提交
 			DBUtil.commit(conn);
-		} catch (Exception e) {
+		} catch (Exception e1) {
 			// 回滚
 			DBUtil.rollback(conn);
 		} finally {

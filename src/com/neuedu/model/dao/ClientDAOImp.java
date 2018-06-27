@@ -45,7 +45,7 @@ public class ClientDAOImp implements ClientDAO {
 			ps.setInt(7, client.getClientPostcode());
 			ps.setString(8, client.getClientEmail());
 			
-			ps.setInt(9, 2);
+			ps.setInt(9, 1);
 			ps.setString(10, e.getEmployeeName());
 			ps.setString(11, currentDate);
 			
@@ -63,26 +63,39 @@ public class ClientDAOImp implements ClientDAO {
 	}
 
 	@Override
-	public void deleteUsers(int[] ids) {
+	public void deleteUsers(int[] ids,Employee e) {
+
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
+		String currentDate = df.format(new Date());
+		
 		String id = Arrays.toString(ids).replace('[', '(').replace(']', ')');
 		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement(" delete  from  userinfo  " + "  where clientId in  " + id);
+			ps = conn.prepareStatement(" update userinfo  set status = 0,operator=? ,operateDate=? "
+		       + "  where clientId in  " + id);
+			ps.setString(1, e.getEmployeeName());
+			ps.setString(2, currentDate);
+			
 			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		} finally {
 			DBUtil.closePS(ps);
 		}
 
 	}
+	
+	public void seleteClient(int[] ids) {
+		
+	}
+	
 
 	// 组合查询
 	@Override
-	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone) {
+ 	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone) {
 		List<Client> list = new ArrayList<Client>();
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append("  select *  from  userinfo where 1=1  ");
+		sbf.append("  select *  from  userinfo where 1=1 and status =1 ");
 		if (clientName != null && !"".equals(clientName)) {
 			sbf.append(" and clientName=? ");
 		}
@@ -137,7 +150,7 @@ public class ClientDAOImp implements ClientDAO {
 	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone,int pageNum) {
 		List<Client> list = new ArrayList<Client>();
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append("  select * from  userinfo where 1=1  ");
+		sbf.append("  select * from  userinfo where 1=1 and status =1 ");
 		if (clientName != null && !"".equals(clientName)) {
 			sbf.append(" and clientName=? ");
 		}
