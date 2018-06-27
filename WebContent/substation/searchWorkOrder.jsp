@@ -134,8 +134,7 @@
 										<option value="1">送货收款</option>
 										<option value="2">送货</option>
 										<option value="3">收款</option>
-										<option value="4">换货</option>
-										<option value="5">退货</option>
+										<option value="4">退货</option>
 									</select>
 								</div>
 							</div>
@@ -143,12 +142,12 @@
 								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">任务状态</p>
 								<div style="margin: 0 0 0 15px; width:254px;">
 									<select class="selectpicker" style="width: 254px;" name="workStatus" id="site_id">
-										<option value="0">已调度</option>
-										<option value="1">可分配</option>
-										<option value="2">已分配</option>
-										<option value="3">已领货</option>
-										<option value="4">已完成</option>
-										<option value="5">失败</option>
+										<option value="0"></option>
+										<option value="1">已调度</option>
+										<option value="2">可分配</option>
+										<option value="3">已分配</option>
+										<option value="4">已领货</option>
+										<option value="5">已完成</option>
 									</select>
 								</div>
 							</div>
@@ -209,7 +208,7 @@
 											<div class="infoRow">
 												<div class="infoRowColumn">
 													<p>服务资金信息</p>
-													<span class="infoBorder"></span>
+													<span class="infoBorder"><%= workOrder.getTotalAmount() %></span>
 												</div>
 												<div class="infoRowColumn">
 													<p>备注</p>
@@ -226,7 +225,7 @@
 												</div>
 												<div class="infoRowColumn">
 													<p>配送员代号</p>
-													<span class="infoBorder"></span>
+													<span class="infoBorder"><%= workOrder.getDeliveryStaffId() %></span>
 												</div>
 											</div>
 										</div>
@@ -244,7 +243,7 @@
 											</div>
 											<div class="infoRowColumnlong">
 												<p>地址</p>
-												<span class="infoBorderlong"></span>
+												<span class="infoBorderlong"><%= workOrder.getClientAddress() %></span>
 											</div>
 										</div>
 										<div class="infoBlock">
@@ -271,33 +270,43 @@
 								</div>
 							</div>
 							<p class="p60">
-								<%=workOrder.getWorkType() %>
+								<%
+									if(workOrder.getWorkType()==1){
+								%>送货收款
+								<%} %>
+								<%
+									if(workOrder.getWorkType()==2){
+								%>送货
+								<%} %>
+								<%
+									if(workOrder.getWorkType()==3){
+								%>收款
+								<%} %>
+								<%
+									if(workOrder.getWorkType()==4){
+								%>退货
+								<%} %>
 							</p>
 							<p class="p60">
 								<%
 									if(workOrder.getWorkStatus()==1){
-								%>"	
-									已调度
+								%>已调度
 								<%} %>
 								<%
-									if(workOrder.getWorkStatus()==1){
-								%>"	
-									可分配
+									if(workOrder.getWorkStatus()==2){
+								%>可分配
 								<%} %>
 								<%
-									if(workOrder.getWorkStatus()==1){
-								%>"	
-									已分配									
+									if(workOrder.getWorkStatus()==3){
+								%>已分配									
 								<%} %>
 								<%
-									if(workOrder.getWorkStatus()==1){
-								%>"	
-									已领货
+									if(workOrder.getWorkStatus()==4){
+								%>已领货
 								<%} %>
 								<%
-									if(workOrder.getWorkStatus()==1){
-								%>"	
-									已完成
+									if(workOrder.getWorkStatus()==5){
+								%>已完成
 								<%} %>
 							</p>
 							<p class="p90"><%=workOrder.getRequireDate() %></p>

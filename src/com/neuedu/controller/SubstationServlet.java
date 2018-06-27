@@ -85,42 +85,20 @@ public class SubstationServlet extends HttpServlet {
 		}
 		int newWorkType = 0;
 		if(workType!=null && !workType.equals("")){
-			if(workType.equals("送货收款")){
-				newWorkType = 1;
-			}
-			if(workType.equals("送货")){
-				newWorkType = 2;
-			}
-			if(workType.equals("收款")){
-				newWorkType = 3;
-			}
-			if(workType.equals("退货")){
-				newWorkType = 4;
-			}
+			System.out.println("workType:::"+workType);
+			newWorkType = Integer.parseInt(workType);
 		}
 		
 		int newWorkStatus = 0;
 		if(workStatus!=null && !workStatus.equals("")){
-			if(workStatus.equals("已调度")){
-				newWorkStatus = 1;
-			}
-			if(workStatus.equals("可分配")){
-				newWorkStatus = 2;
-			}
-			if(workStatus.equals("已分配")){
-				newWorkStatus = 3;
-			}
-			if(workStatus.equals("已领货")){
-				newWorkStatus = 4;
-			}
-			if(workStatus.equals("已完成")){
-				newWorkStatus = 5;
-			}
+			System.out.println("workStatus:::"+workStatus);
+			newWorkStatus = Integer.parseInt(workStatus);
 		}
 		//查询,注意要传转换之后的参数
 		List<WorkOrder> list = SubstationService.getInstance().selectPageWork(newRequireDate, newWorkStatus, newWorkType, pageNum);
 		for(WorkOrder workOrder:list){
 			System.out.println(workOrder.getClientName()+":"+workOrder.getClientPhone());
+			System.out.println(workOrder.getWorkStatus()+"::workStatus");
 		}
 		//获取页码
 		int pageCount = SubstationService.getInstance().selectPageCount(newRequireDate, newWorkStatus, newWorkType);

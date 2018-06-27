@@ -13,6 +13,7 @@ public class WorkOrder {
 	private int workType;
 	private String clientName;
 	private String clientPhone;
+	private String clientAddress;
 	private Date createDate;
 	private Date requireDate;
 	private String productName;
@@ -122,6 +123,12 @@ public class WorkOrder {
 	}
 	public void setTotalAmount(float totalAmount) {
 		this.totalAmount = totalAmount;
+	}
+	public String getClientAddress() {
+		return clientAddress;
+	}
+	public void setClientAddress(String clientAddress) {
+		this.clientAddress = clientAddress;
 	}
 
 }

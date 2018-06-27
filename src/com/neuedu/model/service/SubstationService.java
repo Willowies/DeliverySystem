@@ -29,6 +29,7 @@ public class SubstationService {
 	public List<WorkOrder> selectPageWork(Date requireDate, int workStatus, int workType, int pageNum){
 		Connection conn = (Connection) DBUtil.getConn();
 		WorkOrderDAO dao = new WorkOrderDAOImp(conn);
+		System.out.println("Service+++workStatus:"+workStatus+"  workType:"+workType);
 		return dao.selectPageWork(requireDate, workStatus, workType, pageNum);
 	}
 	//2.查询数据的页数

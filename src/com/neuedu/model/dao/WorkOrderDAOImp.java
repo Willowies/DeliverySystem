@@ -622,8 +622,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		//查询，构建sql
 		try {
 			PreparedStatement ps = conn.prepareStatement(" select * from ( "
-					+ " select @rownum:=@rownum+1 as rownum, a.* "
-					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a) as c "
+					+ " select @rownum:=@rownum+1 as rownum, a.*, b.total, b.receiverName, b.receiverPhone, b.receiverAddress, b.productQuantity, d.productCode, d.productUnit "
+					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a, neworder as b, product as d "
+					+ " where a.orderId=b.newOrderId and b.productId=d.productId "
+					+ " ) as c "
 					+ " where c.rownum <= "+ pageSize*pageNum +" and c.rownum >"+ pageSize*(pageNum-1)
 					);
 			int index = 1;
@@ -643,20 +645,25 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			ResultSet rs = ps.executeQuery();//执行查询，返回结果集
 			while(rs.next()){
 				WorkOrder workOrder = new WorkOrder();
+				
 				workOrder.setWorkId(rs.getInt("workId"));
-				workOrder.setOrderId(rs.getInt("orderId"));
-				workOrder.setWarehouseName(rs.getString("warehouseName"));
-				workOrder.setWorkStatus(rs.getInt("workStatus"));
 				workOrder.setWorkType(rs.getInt("workType"));
-				workOrder.setClientName(rs.getString("clientName"));
-				workOrder.setClientPhone(rs.getString("clientPhone"));
-				workOrder.setCreateDate(rs.getDate("createDate"));//取出来的是sql的date，但是他是util的date的子类，所以不用转化
+				workOrder.setWorkStatus(rs.getInt("workStatus"));
 				workOrder.setRequireDate(rs.getDate("requireDate"));
-				workOrder.setProductName(rs.getString("productName"));
+				workOrder.setTotalAmount(rs.getFloat("total"));//订单的total
+				workOrder.setRemark(rs.getString("remark"));
+				
+				workOrder.setWarehouseId(rs.getInt("warehouseId"));
+				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder原本就有的
+				
+				workOrder.setClientName(rs.getString("receiverName"));
+				workOrder.setClientPhone(rs.getString("receiverPhone"));
+				workOrder.setClientAddress(rs.getString("receiverAddress"));//订单的receiverAddress
+				
 				workOrder.setProductUnit(rs.getString("productUnit"));
 				workOrder.setProductQuantity(rs.getInt("productQuantity"));
 				workOrder.setProductCode(rs.getString("productCode"));
-				workOrder.setRemark(rs.getString("remark"));
+				
 				list.add(workOrder);//添加查询到的数据
 			}
 		} catch (SQLException e) {
