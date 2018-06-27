@@ -69,4 +69,24 @@
     <servlet-name>SubstationServlet</servlet-name>
     <url-pattern>/substationServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>SupManageServlet</display-name>
+    <servlet-name>SupManageServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.SupManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupManageServlet</servlet-name>
+    <url-pattern>/supService/supManageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SupSearchServlet</display-name>
+    <servlet-name>SupSearchServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.SupSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupSearchServlet</servlet-name>
+    <url-pattern>/supService/supSearchServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
