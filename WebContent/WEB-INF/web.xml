@@ -19,4 +19,24 @@
     <servlet-name>DispatchManageServlet</servlet-name>
     <url-pattern>/dispatchManageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientManageServlet</display-name>
+    <servlet-name>ClientManageServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.ClientManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientManageServlet</servlet-name>
+    <url-pattern>/clientService/clientManageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientSearchServlet</display-name>
+    <servlet-name>ClientSearchServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.ClientSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientSearchServlet</servlet-name>
+    <url-pattern>/clientService/clientSearchServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

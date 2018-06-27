@@ -70,18 +70,17 @@ public class ClientService {
 	}
 
 	// 分页查询
-	public List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone, int pageSize,
-			int pageNum) {
+	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone,int pageNum) {
 		Connection conn = DBUtil.getConn();
 		ClientDAO dao = new ClientDAOImp(conn);
-		return dao.selectClient(clientname, clientIc, clientMobilePhone, pageSize, pageNum);
+		return dao.selectClient(clientName, clientIc, clientMobilePhone, pageNum);
 	}
 
 	// 查询页数
-	public int selectPageCount(String clientname, String clientIc, String clientMobilePhone, int pageSize) {
+	public int selectPageCount(String clientName, String clientIc, String clientMobilePhone) {
 		Connection conn = DBUtil.getConn();
 		ClientDAO dao = new ClientDAOImp(conn);
-		return dao.selectPageCount(clientname, clientIc, clientMobilePhone, pageSize);
+		return dao.selectPageCount(clientName, clientIc, clientMobilePhone);
 	}
 
 	// 获取客户ID，然后好编辑客户
