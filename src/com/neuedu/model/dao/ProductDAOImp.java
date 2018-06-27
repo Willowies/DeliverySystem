@@ -41,7 +41,7 @@ public class ProductDAOImp implements ProductDAO {
 		Date operateDate = p.getOperateDate();
 		
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append("select *  from  product left join supplier using(supid) where 1=1  ");
+		sbf.append("select *  from  product left join supplierinfo using(supid) where 1=1   ");
 		if(productId != 0){
 			sbf.append(" and productId=?");
 		}
@@ -116,10 +116,6 @@ public class ProductDAOImp implements ProductDAO {
 			}
 			if(firstClassId != 0){
 				ps.setInt(index, firstClassId);
-				index++;
-			}
-			if(secondClassId != 0){
-				ps.setInt(index, secondClassId);
 				index++;
 			}
 			if(secondClassId != 0){

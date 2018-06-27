@@ -6,6 +6,9 @@ public class WorkOrder {
 	private int workId;
 	private int orderId;
 	private String warehouseName;
+	private int warehouseId;
+	private int deliveryStaffId;
+	private float totalAmount;//服务资金信息，就是订单的总金额
 	private int workStatus;
 	private int workType;
 	private String clientName;
@@ -17,9 +20,7 @@ public class WorkOrder {
 	private int productQuantity;
 	private String productCode;
 	private String remark;
-	
-	
-	
+
 	public String getProductCode() {
 		return productCode;
 	}
@@ -103,6 +104,24 @@ public class WorkOrder {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public int getWarehouseId() {
+		return warehouseId;
+	}
+	public void setWarehouseId(int warehouseId) {
+		this.warehouseId = warehouseId;
+	}
+	public int getDeliveryStaffId() {
+		return deliveryStaffId;
+	}
+	public void setDeliveryStaffId(int deliveryStaffId) {
+		this.deliveryStaffId = deliveryStaffId;
+	}
+	public float getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(float totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 }

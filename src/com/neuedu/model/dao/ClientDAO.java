@@ -18,10 +18,10 @@ public interface ClientDAO {
 	List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone);
 
 	//分页查询
-	List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone, int pageSize, int pageNum);
+	List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone, int pageNum);
 
 	//查询页数
-	int selectPageCount(String clientname, String clientIc, String clientMobilePhone, int pageSize);
+	int selectPageCount(String clientname, String clientIc, String clientMobilePhone);
 
 
 	Client getClientById(int clientId);

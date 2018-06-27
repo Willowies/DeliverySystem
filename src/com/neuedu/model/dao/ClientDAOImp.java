@@ -30,13 +30,13 @@ public class ClientDAOImp implements ClientDAO {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
 		String currentDate = df.format(new Date());
 		try {
-			String sql = "insert into userinfo(clientname,clientIc,clientWorkPlace,"
+			String sql = "insert into userinfo(clientName,clientIc,clientWorkPlace,"
 					+ "clientPhoneNumber,clientMobilePhone,clientContactAddress,"
 					+ "clientPostcode,clientEmail,status,operator,operateDate)"
 		            + "values(?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, client.getClientname());
+			ps.setString(1, client.getClientName());
 			ps.setString(2, client.getClientIc());
 			ps.setString(3, client.getClientWorkPlace());
 			ps.setString(4, client.getClientPhoneNumber());
@@ -79,12 +79,12 @@ public class ClientDAOImp implements ClientDAO {
 
 	// 组合查询
 	@Override
-	public List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone) {
+	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone) {
 		List<Client> list = new ArrayList<Client>();
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select *  from  userinfo where 1=1  ");
-		if (clientname != null && !"".equals(clientname)) {
-			sbf.append(" and clientname=? ");
+		if (clientName != null && !"".equals(clientName)) {
+			sbf.append(" and clientName=? ");
 		}
 		if (clientIc != null && !"".equals(clientIc)) {
 			sbf.append(" and clientIc=? ");
@@ -95,8 +95,8 @@ public class ClientDAOImp implements ClientDAO {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sbf.toString());
 			int index = 1;
-			if (clientname != null && !"".equals(clientname)) {
-				ps.setString(index, clientname);
+			if (clientName != null && !"".equals(clientName)) {
+				ps.setString(index, clientName);
 				index++;
 			}
 			if (clientIc != null && !"".equals(clientIc)) {
@@ -112,7 +112,7 @@ public class ClientDAOImp implements ClientDAO {
 				Client client = new Client();
 				System.out.println(rs.getInt("clientId"));
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientName"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -134,12 +134,12 @@ public class ClientDAOImp implements ClientDAO {
 
 	// 分页查询
 	@Override
-	public List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone, int pageSize,int pageNum) {
+	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone,int pageNum) {
 		List<Client> list = new ArrayList<Client>();
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select * from  userinfo where 1=1  ");
-		if (clientname != null && !"".equals(clientname)) {
-			sbf.append(" and clientname=? ");
+		if (clientName != null && !"".equals(clientName)) {
+			sbf.append(" and clientName=? ");
 		}
 		if (clientIc != null && !"".equals(clientIc)) {
 			sbf.append(" and clientIc=? ");
@@ -148,12 +148,12 @@ public class ClientDAOImp implements ClientDAO {
 			sbf.append(" and clientMobilePhone=? ");
 		}
 		try {
-			String selectSql = sbf.toString() + " limit "+ pageSize * (pageNum - 1)+","+pageSize;
+			String selectSql = sbf.toString() + " limit "+ 5 * (pageNum - 1)+","+5;
 			PreparedStatement ps = conn.prepareStatement(selectSql);
 			
 			int index = 1;
-			if (clientname != null && !"".equals(clientname)) {
-				ps.setString(index, clientname);
+			if (clientName != null && !"".equals(clientName)) {
+				ps.setString(index, clientName);
 				index++;
 			}
 			if (clientIc != null && !"".equals(clientIc)) {
@@ -170,7 +170,7 @@ public class ClientDAOImp implements ClientDAO {
 
 				System.out.println(rs.getInt("clientId"));
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientName"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -192,12 +192,12 @@ public class ClientDAOImp implements ClientDAO {
 
 	// 查询页数
 	@Override
-	public int selectPageCount(String clientname, String clientIc, String clientMobilePhone, int pageSize) {
+	public int selectPageCount(String clientName, String clientIc, String clientMobilePhone) {
 		int count = 0;
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select count(*) cc  from  userinfo where 1=1  ");
-		if (clientname != null && !"".equals(clientname)) {
-			sbf.append(" and clientname=? ");
+		if (clientName != null && !"".equals(clientName)) {
+			sbf.append(" and clientName=? ");
 		}
 		if (clientIc != null && !"".equals(clientIc)) {
 			sbf.append(" and clientIc=? ");
@@ -208,8 +208,8 @@ public class ClientDAOImp implements ClientDAO {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sbf.toString());
 			int index = 1;
-			if (clientname != null && !"".equals(clientname)) {
-				ps.setString(index, clientname);
+			if (clientName != null && !"".equals(clientName)) {
+				ps.setString(index, clientName);
 				index++;
 			}
 			if (clientIc != null && !"".equals(clientIc)) {
@@ -228,10 +228,10 @@ public class ClientDAOImp implements ClientDAO {
 			e.printStackTrace();
 		}
 		int pagecount = 0;
-		if (count % pageSize == 0) {
-			pagecount = count / pageSize;
+		if (count % 5 == 0) {
+			pagecount = count / 5;
 		} else {
-			pagecount = count / pageSize + 1;
+			pagecount = count / 5 + 1;
 		}
 		return pagecount;
 
@@ -248,7 +248,7 @@ public class ClientDAOImp implements ClientDAO {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				client.setClientId(rs.getInt("clientId"));
-				client.setClientname(rs.getString("clientname"));
+				client.setClientName(rs.getString("clientName"));
 				client.setClientIc(rs.getString("clientIc"));
 				client.setClientWorkPlace(rs.getString("clientWorkPlace"));
 				client.setClientPhoneNumber(rs.getString("clientPhoneNumber"));
@@ -273,14 +273,14 @@ public class ClientDAOImp implements ClientDAO {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
 		String currentDate = df.format(new Date());
 		try {
-			String sql = " update clientservice.userinfo set clientname=?,clientIc=?,clientWorkPlace=?,clientPhoneNumber=?," 
+			String sql = " update userinfo set clientName=?,clientIc=?,clientWorkPlace=?,clientPhoneNumber=?," 
 		               + " clientMobilePhone=?,clientContactAddress=?,clientPostcode=?,clientEmail=?,"
 					   + " operateDate = ?"
 					   + " where clientId=? ";
 			ps = conn.prepareStatement(sql);
 			
 			System.out.println("id:"+client.getClientId());
-			ps.setString(1, client.getClientname());
+			ps.setString(1, client.getClientName());
 			ps.setString(2, client.getClientIc());
 			ps.setString(3, client.getClientWorkPlace());
 			ps.setString(4, client.getClientPhoneNumber());

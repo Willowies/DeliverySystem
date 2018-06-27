@@ -166,99 +166,97 @@
 							<p>分站代号</p>
 						</div>
 						<div class="searchItem">
-							<button class="workButton" data-toggle="modal" data-target="#myModal">1</button>
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"style="display:none;">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-hearder" style="padding:30px 45px 10px 45px;">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-											<p class="title">详细信息</p>
-										</div>
-										<div class="modal-body bodyStyle" style="padding-top:0;">
-											<div class="infoBlock">
-												<p style="width:510px; font-weight:400; margin-left:33.75px;">任务信息</p>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>任务单号</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>任务类型</p>
-														<span class="infoBorder"></span>
-													</div>
+							<button class="workButton" onClick="showWorkOrder()">1</button>
+							<div id="showDivW" style="display:none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index:1050; overflow-y: auto !important;">
+								<div class="homeblock5" style="margin-left:auto; margin-right:auto;">
+									<div style="padding:30px 45px 10px 45px;">
+										<button type="button" class="close" onClick="closebuttonW()">×</button>
+										<p class="title">详细信息</p>
+									</div>
+									<div class="bodyStyle" style="padding-top:0;">
+										<div class="infoBlock">
+											<p style="width:510px; font-weight:400; margin-left:33.75px;">任务信息</p>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>任务单号</p>
+													<span class="infoBorder"></span>
 												</div>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>任务状态</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>要求完成日期</p>
-														<span class="infoBorder"></span>
-													</div>
-												</div>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>服务资金信息</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>备注</p>
-														<span class="infoBorder"></span>
-													</div>
+												<div class="infoRowColumn">
+													<p>任务类型</p>
+													<span class="infoBorder"></span>
 												</div>
 											</div>
-											<div class="infoBlock">
-												<p style="width:510px; font-weight:400; margin-left:33.75px;">服务员信息</p>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>分站代号</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>配送员代号</p>
-														<span class="infoBorder"></span>
-													</div>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>任务状态</p>
+													<span class="infoBorder"></span>
+												</div>
+												<div class="infoRowColumn">
+													<p>要求完成日期</p>
+													<span class="infoBorder"></span>
 												</div>
 											</div>
-											<div class="infoBlock">
-												<p style="width:510px; font-weight:400; margin-left:33.75px;">服务对象信息</p>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>姓名</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>电话</p>
-														<span class="infoBorder"></span>
-													</div>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>服务资金信息</p>
+													<span class="infoBorder"></span>
 												</div>
-												<div class="infoRowColumnlong">
-													<p>地址</p>
-													<span class="infoBorderlong"></span>
-												</div>
-											</div>
-											<div class="infoBlock">
-												<p style="width:510px; font-weight:400; margin-left:33.75px;">服务内容信息</p>
-												<div class="infoRow">
-													<div class="infoRowColumn">
-														<p>商品代码</p>
-														<span class="infoBorder"></span>
-													</div>
-													<div class="infoRowColumn">
-														<p>商品数量</p>
-														<span class="infoBorder"></span>
-													</div>
-												</div>
-												<div class="infoRowColumnlong">
-													<p>计量单位</p>
+												<div class="infoRowColumn">
+													<p>备注</p>
 													<span class="infoBorder"></span>
 												</div>
 											</div>
 										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal" style="width: 76px; margin-right:30px;">关闭</button>
+										<div class="infoBlock">
+											<p style="width:510px; font-weight:400; margin-left:33.75px;">服务员信息</p>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>分站代号</p>
+													<span class="infoBorder"></span>
+												</div>
+												<div class="infoRowColumn">
+													<p>配送员代号</p>
+													<span class="infoBorder"></span>
+												</div>
+											</div>
 										</div>
+										<div class="infoBlock">
+											<p style="width:510px; font-weight:400; margin-left:33.75px;">服务对象信息</p>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>姓名</p>
+													<span class="infoBorder"></span>
+												</div>
+												<div class="infoRowColumn">
+													<p>电话</p>
+													<span class="infoBorder"></span>
+												</div>
+											</div>
+											<div class="infoRowColumnlong">
+												<p>地址</p>
+												<span class="infoBorderlong"></span>
+											</div>
+										</div>
+										<div class="infoBlock">
+											<p style="width:510px; font-weight:400; margin-left:33.75px;">服务内容信息</p>
+											<div class="infoRow">
+												<div class="infoRowColumn">
+													<p>商品代码</p>
+													<span class="infoBorder"></span>
+												</div>
+												<div class="infoRowColumn">
+													<p>商品数量</p>
+													<span class="infoBorder"></span>
+												</div>
+											</div>
+											<div class="infoRowColumnlong">
+												<p>计量单位</p>
+												<span class="infoBorder"></span>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" onClick="closebuttonW()" style="width: 76px; margin-right:30px;">关闭</button>
 									</div>
 								</div>
 							</div>

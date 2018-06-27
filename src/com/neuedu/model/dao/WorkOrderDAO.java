@@ -19,4 +19,8 @@ public  interface WorkOrderDAO {
 	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum);
 	
 	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType);
+
+	List<WorkOrder> searchWorkOrderByPage(WorkOrder order, int pageSize, int page);
+
+	List<WorkOrder> searchWorkOrderWithProduct(int workId);
 }
