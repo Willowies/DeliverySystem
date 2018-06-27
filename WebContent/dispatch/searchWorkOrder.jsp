@@ -113,11 +113,13 @@
 						<div id="message"></div>
 						<p>任务单类型</p>
 						<select name="orderType">
+							<option value="0"></option>
 							<option value="1">新订</option>
 							<option value="2">退货</option>
 						</select>
 						<p>任务单状态</p>
 						<select name="orderStatus">
+							<option value="0"></option>
 							<option value="1">已调度</option>
 							<option value="2">可分配</option>
 							<option value="3">已分配</option>

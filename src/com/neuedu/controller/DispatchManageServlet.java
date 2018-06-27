@@ -126,7 +126,9 @@ public class DispatchManageServlet extends HttpServlet {
 		}
 		
 		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
-		
+		if (list.isEmpty()) {
+			pageNum = 1;
+		}
 		
 		request.getSession().setAttribute("modifyPageNum", pageNum);
 		request.setAttribute("page", 1);
@@ -156,10 +158,12 @@ public class DispatchManageServlet extends HttpServlet {
 		}
 		
 		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
-		
+		if (list.isEmpty()) {
+			pageNum = 1;
+		}
 		
 		request.getSession().setAttribute("modifyPageNum", pageNum);
-		request.setAttribute("page", 1);
+		request.setAttribute("page", page);
 		request.setAttribute("orderList", list);
 		
 		request.getRequestDispatcher("dispatch/modifyOrderStatusResult.jsp").forward(request, response);
@@ -249,7 +253,7 @@ public class DispatchManageServlet extends HttpServlet {
 			
 			request.getSession().setAttribute("type", 1);
 			request.getSession().setAttribute("pageNum", pageNum);
-			request.setAttribute("page", 1);
+			request.setAttribute("page", page);
 			request.setAttribute("orderList", list);
 			
 			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
@@ -270,7 +274,7 @@ public class DispatchManageServlet extends HttpServlet {
 			
 			request.getSession().setAttribute("type", 2);
 			request.getSession().setAttribute("dispatchPageNum", pageNum);
-			request.setAttribute("page", 1);
+			request.setAttribute("page", page);
 			request.setAttribute("orderList", list);
 			request.getSession().setAttribute("dispatchOrder", returnOrder);
 			

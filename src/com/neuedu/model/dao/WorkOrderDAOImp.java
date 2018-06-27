@@ -14,6 +14,7 @@ import com.neuedu.model.po.Product;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.utils.DBUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.swing.internal.plaf.metal.resources.metal_zh_TW;
 
 public class WorkOrderDAOImp implements WorkOrderDAO {
 
@@ -110,7 +111,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				System.out.println("exist");
 				WorkOrder o = new WorkOrder();
 				o.setWorkId(rs.getInt("workId"));
-				o.setWarehouseName(rs.getString("warehouseName"));
+				o.setWarehouseId(rs.getString("warehouseId"));
 				o.setClientName(rs.getString("clientName"));
 				o.setClientPhone(rs.getString("clientMobilephone"));
 				o.setWorkStatus(rs.getInt("workStatus"));
@@ -259,7 +260,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		return newOrders;
 	}
 
-	//�޸Ķ���״̬
+	//锟睫改讹拷锟斤拷状态
 	public void modifyLackStatus(int orderId, String operator) {
 		PreparedStatement ps = null;
 		try {
@@ -277,8 +278,122 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			DBUtil.closePS(ps);
 		}
 	}
-
+	//查询指定页码的数据
+	@Override
+	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;//固定
+		StringBuffer sbf = new StringBuffer("");//用“”开头
+		sbf.append(" select * from workorder where 1=1 ");
+		if(requireDate != null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus != 0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType != 0){
+			sbf.append(" and workType=? ");
+		}
+		
+		//查询，构建sql
+		try {
+			PreparedStatement ps = conn.prepareStatement(" select * from ( "
+					+ " select @rownum:=@rownum+1 as rownum, a.* "
+					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a) as c "
+					+ " where c.rownum <= "+ pageSize*pageNum +" and c.rownum >"+ pageSize*(pageNum-1)
+					);
+			int index = 1;
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+			//执行
+			ResultSet rs = ps.executeQuery();//执行查询，返回结果集
+			while(rs.next()){
+				WorkOrder workOrder = new WorkOrder();
+				workOrder.setWorkId(rs.getInt("workId"));
+				workOrder.setOrderId(rs.getInt("orderId"));
+				workOrder.setWarehouseName(rs.getString("warehouseName"));
+				workOrder.setWorkStatus(rs.getInt("workStatus"));
+				workOrder.setWorkType(rs.getInt("workType"));
+				workOrder.setClientName(rs.getString("clientName"));
+				workOrder.setClientPhone(rs.getString("clientPhone"));
+				workOrder.setCreateDate(rs.getDate("createDate"));//鍙栧嚭鏉ョ殑鏄痵ql鐨刣ate锛屼絾鏄粬鏄痷til鐨刣ate鐨勫瓙绫伙紝鎵�浠ヤ笉鐢ㄨ浆鍖�
+				workOrder.setRequireDate(rs.getDate("requireDate"));
+				workOrder.setProductName(rs.getString("productName"));
+				workOrder.setProductUnit(rs.getString("productUnit"));
+				workOrder.setProductQuantity(rs.getInt("productQuantity"));
+				workOrder.setProductCode(rs.getString("productCode"));
+				workOrder.setRemark(rs.getString("remark"));
+				list.add(workOrder);//添加查询到的数据
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;//返回list
+	}
 	
-	
+	//数据的页数
+	@Override
+	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;//鍥哄畾
+		int count = 0;
+		StringBuffer sbf = new StringBuffer("");//鐢ㄢ�溾�濆紑澶�
+		sbf.append(" select count(*) cc from workorder where 1=1 ");
+		if(requireDate != null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus != 0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType != 0){
+			sbf.append(" and workType=? ");
+		}
+		//鏋勫缓sql璇彞
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sbf.toString());
+			
+			int index = 1;
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+			//鎵ц璇彞
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){//璇存槑璧风爜鏈変竴涓�
+				count = rs.getInt("cc");//鑾峰緱鏁版嵁鎬绘暟
+			}
+			System.out.println("count::"+count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int pagecount = 0;
+		if(count % pageSize == 0){
+			pagecount = count / pageSize;
+		}else{
+			pagecount = count / pageSize + 1;
+		}
+		System.out.println("pagecount+++++:"+pagecount);
+		return pagecount;
+	}
 	
 }
