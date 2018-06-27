@@ -39,4 +39,14 @@
     <servlet-name>ClientSearchServlet</servlet-name>
     <url-pattern>/clientService/clientSearchServlet</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>SubstationServlet</display-name>
+    <servlet-name>SubstationServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.SubstationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubstationServlet</servlet-name>
+    <url-pattern>/substationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

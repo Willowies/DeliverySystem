@@ -22,3 +22,14 @@ function closebutton(){
 	$('#showDiv').hide();
 	$('#cover').css('display','none');
 }
+
+function showWorkOrder(){
+	$('#showDivW').show();
+	$('#cover').css('display','block');
+	$('#cover').css('height',document.body.clientHeight+'px');
+}
+
+function closebuttonW(){
+	$('#showDivW').hide();
+	$('#cover').css('display','none');
+}

@@ -24,6 +24,9 @@ public class Sign {
 	private String deliveryRequirement;//送货要求
 	private int deliverySubstation;//送货分站
 	private String substationPhone;//分站电话
+	private int status;
+	private String operator;
+	private Date operateDate;
 	
 	public int getSignId() {
 		return signId;
@@ -150,5 +153,23 @@ public class Sign {
 	}
 	public void setSubstationPhone(String substationPhone) {
 		this.substationPhone = substationPhone;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+	public Date getOperateDate() {
+		return operateDate;
+	}
+	public void setOperateDate(Date operateDate) {
+		this.operateDate = operateDate;
 	}
 }
