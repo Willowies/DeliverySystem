@@ -77,7 +77,7 @@
                                         <a href="clearSubstation.jsp">进行结算</a>
                                     </li>
                                     <li>
-                                        <a href="selectCenterOut.jsp">已结算订单查询</a>
+                                        <a href="selectClearedSub.jsp">已结算订单查询</a>
                                     </li>
                                </ul>   
 								<!-- /.nav-second-level -->
