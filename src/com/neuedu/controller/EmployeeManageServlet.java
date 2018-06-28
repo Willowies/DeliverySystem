@@ -49,25 +49,13 @@ public class EmployeeManageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-						
+		
 		//数据库查询结果
-		Employee e = EmployeeManageService.getInstance().login(account);
+		Employee e = EmployeeManageService.getInstance().login(account,password);
 		
 		if(e==null){
 			//账户不存在
-			request.setAttribute("message", "该账户不存在");
-			try {
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			} catch (ServletException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}else if(!e.getEmployeePassword().equals(password)){
-			//密码不正确
-			request.setAttribute("message", "密码错误");
+			request.setAttribute("message", "该账户不存在或密码错误");
 			try {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} catch (ServletException e1) {

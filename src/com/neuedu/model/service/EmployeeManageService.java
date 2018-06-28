@@ -17,10 +17,10 @@ public class EmployeeManageService {
 	}
 	
 	//查询账户信息
-	public Employee login(String account) {
+	public Employee login(String account,String password) {
 		Connection conn = DBUtil.getConn();
 		EmployeeDAO dao = new EmployeeDAOImp(conn);
-		Employee e = dao.login(account);
+		Employee e = dao.login(account,password);
 		return e;
 	}
 	

@@ -3,5 +3,5 @@ package com.neuedu.model.dao;
 import com.neuedu.model.po.Employee;
 
 public interface EmployeeDAO {
-	public Employee login(String account);
+	public Employee login(String account, String password);
 }
