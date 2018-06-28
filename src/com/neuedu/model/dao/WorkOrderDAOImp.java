@@ -660,12 +660,12 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 	
 	@Override
-	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
+	public List<WorkOrder> selectPageWork(int warehouseId, java.util.Date requireDate, int workStatus, int workType, int pageNum) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
 		int pageSize = 5;
 
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append(" select * from workorder where 1=1 ");
+		sbf.append(" select e.* from workorder as e, warehouse as f where 1=1 ");
 		if(requireDate != null){
 			sbf.append(" and requireDate=? ");
 		}
@@ -674,6 +674,9 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 		if(workType != 0){
 			sbf.append(" and workType=? ");
+		}
+		if(warehouseId != 0){
+			sbf.append(" and e.warehouseId=f.warehouseId and e.warehouseId=? ");
 		}
 		
 		//查询，构建sql
@@ -698,6 +701,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			}
 			if(workType != 0){
 				ps.setInt(index, workType);
+				index++;
+			}
+			if(warehouseId != 0){
+				ps.setInt(index, warehouseId);
 			}
 			//执行
 			ResultSet rs = ps.executeQuery();
@@ -732,20 +739,24 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 
 	@Override
-	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
+	public int selectPageCount(int warehouseId, java.util.Date requireDate, int workStatus, int workType) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
 		int pageSize = 5;
 		int count = 0;
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append(" select count(*) cc from workorder where 1=1 ");
+		sbf.append(" select count(*) cc from workorder as a, warehouse as b "
+				+ " where 1=1 ");
 		if(requireDate != null){
-			sbf.append(" and requireDate=? ");
+			sbf.append(" and a.requireDate=? ");
 		}
 		if(workStatus != 0){
-			sbf.append(" and workStatus=? ");
+			sbf.append(" and a.workStatus=? ");
 		}
 		if(workType != 0){
-			sbf.append(" and workType=? ");
+			sbf.append(" and a.workType=? ");
+		}
+		if(warehouseId != 0){
+			sbf.append(" and a.warehouseId=b.warehouseId and a.warehouseId=? ");
 		}
 
 		PreparedStatement ps = null;
@@ -764,6 +775,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			}
 			if(workType != 0){
 				ps.setInt(index, workType);
+				index++;
+			}
+			if(warehouseId != 0){
+				ps.setInt(index, warehouseId);
 			}
 
 			ResultSet rs = ps.executeQuery();
@@ -811,14 +826,14 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 
 	@Override
-	public List<WorkOrder> selectPageWork(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType,
+	public List<WorkOrder> selectPageWork(int warehouseId, int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType,
 			int pageNum) {
 
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
 		int pageSize = 5;
 
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append(" select * from workorder where 1=1 ");
+		sbf.append(" select e.* from workorder as e, warehouse as f where 1=1 ");
 		if(deliveryStaffId!=0){
 			sbf.append(" and deliveryStaffId=? ");
 		}
@@ -830,6 +845,9 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 		if(workType!=0){
 			sbf.append(" and workType=? ");
+		}
+		if(warehouseId != 0){
+			sbf.append(" and e.warehouseId=f.warehouseId and e.warehouseId=? ");
 		}
 
 		PreparedStatement ps = null;
@@ -858,8 +876,11 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			}
 			if(workType != 0){
 				ps.setInt(index, workType);
+				index++;
 			}
-			
+			if(warehouseId != 0){
+				ps.setInt(index, warehouseId);
+			}
 
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -896,12 +917,13 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 
 	@Override
-	public int selectPageCount(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType) {
+	public int selectPageCount(int warehouseId, int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		System.out.println("warehouseId"+warehouseId);
 		int pageSize = 5;
 		int count = 0;
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append(" select count(*) cc from workorder where 1=1 ");
+		sbf.append(" select count(*) cc from workorder as a, warehouse as b where 1=1 ");
 		if(deliveryStaffId != 0){
 			sbf.append(" and deliveryStaffId=? ");
 		}
@@ -913,6 +935,9 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 		if(workType != 0){
 			sbf.append(" and workType=? ");
+		}
+		if(warehouseId != 0){
+			sbf.append(" and a.warehouseId=b.warehouseId and a.warehouseId=? ");
 		}
 
 		PreparedStatement ps = null;
@@ -934,6 +959,9 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			}
 			if(workType != 0){
 				ps.setInt(index, workType);
+			}
+			if(warehouseId != 0){
+				ps.setInt(index, warehouseId);
 			}
 
 			ResultSet rs = ps.executeQuery();

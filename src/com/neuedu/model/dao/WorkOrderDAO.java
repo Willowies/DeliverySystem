@@ -17,13 +17,13 @@ public  interface WorkOrderDAO {
 	
 	public void modifyLackStatus(int orderId,String operator);
 	
-	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum);
+	public List<WorkOrder> selectPageWork(int warehouseId, java.util.Date requireDate, int workStatus, int workType, int pageNum);
 	
-	public List<WorkOrder> selectPageWork(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType, int pageNum);
+	public List<WorkOrder> selectPageWork(int warehouseId, int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType, int pageNum);
 	
-	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType);
+	public int selectPageCount(int warehouseId, java.util.Date requireDate, int workStatus, int workType);
 
-	public int selectPageCount(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType);
+	public int selectPageCount(int warehouseId, int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType);
 	
 	List<WorkOrder> searchWorkOrderByPage(WorkOrder order, int pageSize, int page);
 

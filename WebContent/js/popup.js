@@ -239,7 +239,7 @@ function printSign0(){
 		//打开到服务器的连接，post，url，同步false
 		req0.open("post","substationServlet?action=showSign",false);
 		//设置请求头信息
-		req0.setRequestHeader("Content-Type","text/plain; charset=UTF-8");
+		req0.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		//回调函数
 		req0.onreadystatechange = function(){
 			if(req0.readyState == 4){
@@ -256,7 +256,8 @@ function printSign0(){
 			}
 		};
 		//发送请求
-		req0.send("index=0");
+		var index = 0;
+		req0.send("index="+0);
 	}
 	
 	$('#showDiv0').show();
@@ -276,7 +277,7 @@ function printSign1(){
 		//打开到服务器的连接，post，url，同步false
 		req1.open("post","substationServlet?action=showSign",false);
 		//设置请求头信息
-		req1.setRequestHeader("Content-Type","text/plain; charset=UTF-8");
+		req1.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		//回调函数
 		req1.onreadystatechange = function(){
 			if(req1.readyState == 4){
@@ -292,7 +293,7 @@ function printSign1(){
 			}
 		};
 		//发送请求
-		req1.send("index=1");
+		req1.send("index="+1);
 	}
 	
 	$('#showDiv1').show();
@@ -313,7 +314,7 @@ function printSign2(){
 		//打开到服务器的连接，post，url，同步false
 		req2.open("post","substationServlet?action=showSign",false);
 		//设置请求头信息
-		req2.setRequestHeader("Content-Type","text/plain; charset=UTF-8");
+		req2.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		//回调函数
 		req2.onreadystatechange = function(){
 			if(req2.readyState == 4){
@@ -329,7 +330,7 @@ function printSign2(){
 			}
 		};
 		//发送请求
-		req2.send("index=2");
+		req2.send("index="+2);
 	}
 	
 	$('#showDiv2').show();
@@ -350,7 +351,7 @@ function printSign3(){
 		//打开到服务器的连接，post，url，同步false
 		req3.open("post","substationServlet?action=showSign",false);
 		//设置请求头信息
-		req3.setRequestHeader("Content-Type","text/plain; charset=UTF-8");
+		req3.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		//回调函数
 		req3.onreadystatechange = function(){
 			if(req3.readyState == 4){
@@ -366,7 +367,7 @@ function printSign3(){
 			}
 		};
 		//发送请求
-		req3.send("index=3");
+		req3.send("index="+3);
 	}
 	
 	$('#showDiv3').show();
@@ -387,7 +388,7 @@ function printSign4(){
 		//打开到服务器的连接，post，url，同步false
 		req4.open("post","substationServlet?action=showSign",false);
 		//设置请求头信息
-		req4.setRequestHeader("Content-Type","text/plain; charset=UTF-8");
+		req4.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		//回调函数
 		req4.onreadystatechange = function(){
 			if(req4.readyState == 4){
@@ -403,7 +404,7 @@ function printSign4(){
 			}
 		};
 		//发送请求
-		req4.send("index=4");
+		req4.send("index="+4);
 	}
 	
 	$('#showDiv4').show();

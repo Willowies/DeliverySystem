@@ -26,15 +26,41 @@ public class FeedbackDAOImp implements FeedbackDAO {
 		System.out.println("DAOImp,feedbackRecording,  workStatus:"+workId+"  customerFeedback:"+customerFeedback+"  remark:"+remark);
 		if(workId!=0 && customerFeedback!=0){
 			PreparedStatement ps = null;
+			PreparedStatement ps2 = null;
+			PreparedStatement ps3 = null;
+			PreparedStatement ps4 = null;
+			
 			try {
 				ps = conn.prepareStatement(" insert into feedback (workId, customerFeedback, remark, recordStatus ) "
 						+ " values (?, ?, ?, 1)");
-				
+				ps2 = conn.prepareStatement(" update workorder as a, neworder as b set a.workStatus=?, b.orderState=? "
+						+ " where a.orderId=b.newOrderId and b.workType=1");
+				ps3 = conn.prepareStatement(" update workorder as a, returnorder as b set a.workStatus=?, b.orderState=? "
+						+ " where a.orderId=b.returnOrder and a.workType=2 ");
+				ps4 = conn.prepareStatement(" select workType from workorder where workId=? ");
 				ps.setInt(1, workId);
 				ps.setInt(2, customerFeedback);
 				ps.setString(3, remark);
 				ps.executeUpdate();
-
+				
+				ps4.setInt(1, workId);
+				ResultSet rs = ps4.executeQuery();
+				while(rs.next()){
+					int workType = rs.getInt("workType");
+					if(workType==1){
+						ps2.setInt(1, 5);
+						ps2.setInt(2, 11);
+						ps2.executeUpdate();
+						break;
+					}
+					if(workType==2){
+						ps3.setInt(1, 5);
+						ps3.setInt(2, 11);
+						ps3.executeUpdate();
+						break;
+					}
+				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {

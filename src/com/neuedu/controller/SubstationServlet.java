@@ -14,11 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.Connection;
+import com.neuedu.model.dao.SubReturnRecordDAO;
+import com.neuedu.model.dao.SubReturnRecordDAOImp;
 import com.neuedu.model.po.DeliveryStaff;
+import com.neuedu.model.po.Employee;
 import com.neuedu.model.po.ProInfo;
 import com.neuedu.model.po.Sign;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.model.service.SubstationService;
+import com.neuedu.utils.DBUtil;
 import com.sun.security.auth.NTDomainPrincipal;
 
 /**
@@ -26,7 +31,8 @@ import com.sun.security.auth.NTDomainPrincipal;
  */
 public class SubstationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    public int warehouseId = 0;
+	public int employeeId = 0;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,7 +54,13 @@ public class SubstationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//解决中文乱码问题
 		request.setCharacterEncoding("utf-8");
-		
+		Employee e = (Employee)request.getSession().getAttribute("employee");
+		SubReturnRecordDAO dao = new SubReturnRecordDAOImp((Connection)DBUtil.getConn());
+		if(e!=null){
+			employeeId = e.getEmployeeId();
+			warehouseId = dao.getWarehouseId(e.getEmployeeId());
+		}
+//		warehouseId = 1;
 		String action = (String)request.getParameter("action");
 		System.out.println("action:"+action);
 		
@@ -82,7 +94,7 @@ public class SubstationServlet extends HttpServlet {
 	}
 	//三个参数的查询
 	private void workQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		System.out.println("sansansansan+warehouseId:"+warehouseId);
 		String pagenum = (String)request.getParameter("pageNum");//从结尾处
 		int pageNum = 1;
 		String requireDate="";
@@ -123,15 +135,16 @@ public class SubstationServlet extends HttpServlet {
 			System.out.println("workStatus:::"+workStatus);
 			newWorkStatus = Integer.parseInt(workStatus);
 		}
+		
 		//查询,注意要传转换之后的参数
-		List<WorkOrder> list = SubstationService.getInstance().selectPageWork(newRequireDate, newWorkStatus, newWorkType, pageNum);
+		List<WorkOrder> list = SubstationService.getInstance().selectPageWork(warehouseId, newRequireDate, newWorkStatus, newWorkType, pageNum);
 		for(WorkOrder workOrder:list){
 			System.out.println(workOrder.getClientName()+":"+workOrder.getClientPhone());
 			System.out.println(workOrder.getWorkStatus()+"::workStatus");
 			System.out.println(workOrder.getWorkId()+":::workId");
 		}
 		//获取页码
-		int pageCount = SubstationService.getInstance().selectPageCount(newRequireDate, newWorkStatus, newWorkType);
+		int pageCount = SubstationService.getInstance().selectPageCount(warehouseId, newRequireDate, newWorkStatus, newWorkType);
 		request.setAttribute("resultList", list);
 		request.setAttribute("pageCount", pageCount);
 		request.getSession().setAttribute("pageNum", pageNum);//默认第一次是第1页
@@ -199,14 +212,15 @@ public class SubstationServlet extends HttpServlet {
 			newWorkStatus = Integer.parseInt(workStatus);
 		}
 		//获取任务单
-		List<WorkOrder> list = SubstationService.getInstance().selectPageWork(newDeliveryStaffId, newRequireDate, newWorkStatus, newWorkType, pageNum);
+		System.out.println("warehouse---servlet:"+warehouseId);
+		List<WorkOrder> list = SubstationService.getInstance().selectPageWork(warehouseId, newDeliveryStaffId, newRequireDate, newWorkStatus, newWorkType, pageNum);
 		for(WorkOrder workOrder:list){
 			System.out.println(workOrder.getClientName()+":"+workOrder.getClientPhone());
 			System.out.println(workOrder.getWorkStatus()+"::workStatus");
 			System.out.println(workOrder.getWorkId()+":::workId");
 		}
 		//获取页码
-		int pageCount = SubstationService.getInstance().selectPageCount(newDeliveryStaffId, newRequireDate, newWorkStatus, newWorkType);
+		int pageCount = SubstationService.getInstance().selectPageCount(warehouseId, newDeliveryStaffId, newRequireDate, newWorkStatus, newWorkType);
 		request.getSession().setAttribute("resultList", list);//
 		request.setAttribute("pageCount", pageCount);
 		request.getSession().setAttribute("pageNum", pageNum);//默认第一次是第1页
@@ -229,9 +243,9 @@ public class SubstationServlet extends HttpServlet {
 	private void getDeliveryStaff(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("获取配送员信息");
 		
-		int employeeId = 5;//此处默认为5
 		//得到配送员的信息
 		List<DeliveryStaff> deList = SubstationService.getInstance().getDeliveryStaff(employeeId);
+//		List<DeliveryStaff> deList = SubstationService.getInstance().getDeliveryStaff(5);
 		
 		request.setAttribute("deliveryStaffList", deList);
 		
@@ -280,6 +294,7 @@ public class SubstationServlet extends HttpServlet {
 		System.out.println("显示签收单");
 		List<WorkOrder> list = (ArrayList<WorkOrder>)request.getSession().getAttribute("resultList");
 		String index = (String)request.getParameter("index");
+		System.out.println("index+"+index);
 		int newIndex = 0;
 		if(index!=null && !index.equals("")){
 			newIndex = Integer.parseInt(index);//一般必有index

@@ -411,7 +411,7 @@ public class SignDAOImp implements SignDAO {
 				num_q++;
 			}
 			if(num_q==2){
-				signResult = list.get(num_q-1);
+				signResult = list.get(0);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -35,17 +35,17 @@ public class SubstationService {
 	 * Service来完成业务逻辑和事务处理
 	 */
 	//1.查询每一页的数据
-	public List<WorkOrder> selectPageWork(Date requireDate, int workStatus, int workType, int pageNum){
+	public List<WorkOrder> selectPageWork(int warehouseId, Date requireDate, int workStatus, int workType, int pageNum){
 		Connection conn = (Connection) DBUtil.getConn();
 		WorkOrderDAO dao = new WorkOrderDAOImp(conn);
 		System.out.println("Service+++workStatus:"+workStatus+"  workType:"+workType);
-		return dao.selectPageWork(requireDate, workStatus, workType, pageNum);
+		return dao.selectPageWork(warehouseId, requireDate, workStatus, workType, pageNum);
 	}
 	//2.查询数据的页数
-	public int selectPageCount(Date requireDate, int workStatus, int workType){
+	public int selectPageCount(int warehouseId, Date requireDate, int workStatus, int workType){
 		Connection conn = (Connection)DBUtil.getConn();
 		WorkOrderDAO dao = new WorkOrderDAOImp(conn);
-		return dao.selectPageCount(requireDate, workStatus, workType);
+		return dao.selectPageCount(warehouseId, requireDate, workStatus, workType);
 	}
 	//3.分配任务，更新数据库信息
 	public void workAssign(int workId, int workStatus, int deliveryStaffId){
@@ -66,17 +66,17 @@ public class SubstationService {
 		}
 	}
 	//4.分页查询，加入了deliveryStaffId的参数
-	public List<WorkOrder> selectPageWork(int deliveryStaffId, Date requireDate, int workStatus, int workType, int pageNum){
+	public List<WorkOrder> selectPageWork(int warehouseId, int deliveryStaffId, Date requireDate, int workStatus, int workType, int pageNum){
 		Connection conn = (Connection)DBUtil.getConn();
 		WorkOrderDAO dao = new WorkOrderDAOImp(conn);
 		System.out.println("Service+++workStatus:"+workStatus+"  workType:"+workType);
-		return dao.selectPageWork(deliveryStaffId, requireDate, workStatus, workType, pageNum);
+		return dao.selectPageWork(warehouseId, deliveryStaffId, requireDate, workStatus, workType, pageNum);
 	}
 	//5.查询页数，五个元素
-	public int selectPageCount(int deliveryStaffId, Date requireDate, int workStatus, int workType){
+	public int selectPageCount(int warehouseId, int deliveryStaffId, Date requireDate, int workStatus, int workType){
 		Connection conn = (Connection)DBUtil.getConn();
 		WorkOrderDAO dao = new WorkOrderDAOImp(conn);
-		return dao.selectPageCount(deliveryStaffId, requireDate, workStatus, workType);
+		return dao.selectPageCount(warehouseId, deliveryStaffId, requireDate, workStatus, workType);
 	}
 	//6.回执录入
 	public void feedbackRecord(int workId, int customerFeedback, String remark){
