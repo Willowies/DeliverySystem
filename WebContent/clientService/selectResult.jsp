@@ -35,13 +35,10 @@
 		<!-- 省略较长的输出 -->
 		<style type="text/css">
         #omit {
-            overflow: hidden;
-            text-overflow:ellipsis; /* 用省略号代替 */
-            width:80px;
-        }
-        #tomit:hover { /* 鼠标滑过 */
-            overflow:visible;
-            width:auto;
+            overflow: hidden; /*自动隐藏文字*/
+            text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+            white-space: nowrap;/*强制不换行*/
+            width: 5em;/*不允许出现半汉字截断*/
         }
     </style>
 		
@@ -143,9 +140,9 @@
 					<!-- 搜索结果，隐藏 -->
 					<div class="searchResult" style = "width : 800px;" >
 						<div class="searchResultNav" style = "width : 750px;">
-						    <p>选择</p>
-							<p>姓名</p>
-							<p>身份证号</p>
+						    <p style="width:30px ;margin-left:0%">选择</p>
+							<p style="width:30px ;margin-left:0%">姓名</p>
+							<p style="width:60px ;margin-left:5%">身份证号</p>
 							<p>工作单位</p>
 							<p>座机号码</p>
 							<p>移动电话</p>
@@ -161,14 +158,14 @@
 							
 							<P class = "p60"><input type="checkbox"  value="${client.clientId}" name="chk"  ></P>
 							
-							<p class="p60" id = "omit">${client.clientName}</p>
-							<p class="p60">${client.clientIc}</p>
-							<p class="p60">${client.clientWorkPlace}</p>
-							<p class="p90">${client.clientPhoneNumber}</p>
-							<p class="p60">${client.clientMobilePhone}</p>
-							<p class="p60" >${client.clientContactAddress}</p>
-							<p class="p60">${client.clientPostcode}</p>
-							<p class="p60">${client.clientEmail}</p>
+							<p class="p60" id = "omit" title="${client.clientName}">${client.clientName}</p>
+							<p class="p60" id = "omit" title="${client.clientIc}">${client.clientIc}</p>
+							<p class="p60" id = "omit" title="${client.clientWorkPlace}">${client.clientWorkPlace}</p>
+							<p class="p90" id = "omit" title="${client.clientPhoneNumber}">${client.clientPhoneNumber}</p>
+							<p class="p60" id = "omit" title="${client.clientPhoneNumber}">${client.clientMobilePhone}</p>
+							<p class="p60" id = "omit" title="${client.clientPhoneNumber}">${client.clientContactAddress}</p>
+							<p class="p60" id = "omit" title="${client.clientPhoneNumber}">${client.clientPostcode}</p>
+							<p class="p60" id = "omit" title="${client.clientEmail}">${client.clientEmail}</p>
 							<p class="p60">
 							<a href="clientManageServlet?clientId=${client.clientId}&action=editClient" >编辑</a></p>
 
@@ -224,7 +221,7 @@
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
-		
+		</div>
 		
 </form>		
 		<!-- /#wrapper -->

@@ -31,6 +31,14 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
+	<style type="text/css">
+        #omit {
+            overflow: hidden; /*自动隐藏文字*/
+            text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+            white-space: nowrap;/*强制不换行*/
+            width: 3em;/*不允许出现半汉字截断*/
+        }
+    </style>
 	
 	</head>
 	<body>
@@ -118,7 +126,7 @@
 					<!-- 搜索结果，隐藏 -->
 					<div class="searchResult" style = "width : 800px;" >
 						<div class="searchResultNav" style = "width : 750px;">
-						    <p>选择</p>
+						    <p style="width:30px ;margin-left:0%">选择</p>
 							<p>名称</p>
 							<p>地址</p>
 							<p>联系人</p>
@@ -138,16 +146,16 @@
 							
 							<P class = "p60"><input type="checkbox"  value="${sup.supId}" name="chk"  ></P>
 							
-							<p class="p60">${sup.supName}</p>
-							<p class="p60">${sup.supAddress}</p>
-							<p class="p60">${sup.supLinkman}</p>
-							<p class="p90">${sup.supPhone}</p>
-							<p class="p60">${sup.supBankName}</p>
-							<p class="p60">${sup.supBankAccount}</p>
-							<p class="p60">${sup.supFax}</p>
-							<p class="p60">${sup.supPostcode}</p>
-							<p class="p60">${sup.supLegalPerson}</p>
-							<p class="p60">${sup.supRemark}</p>
+							<p class="p60" id = "omit" title="${sup.supName}">${sup.supName}</p>
+							<p class="p60" id = "omit" title="${sup.supAddress}">${sup.supAddress}</p>
+							<p class="p60" id = "omit" title="${sup.supLinkman}">${sup.supLinkman}</p>
+							<p class="p90" id = "omit" title="${sup.supPhone}">${sup.supPhone}</p>
+							<p class="p60" id = "omit" title="${sup.supBankName}">${sup.supBankName}</p>
+							<p class="p60" id = "omit" title="${sup.supBankAccount}">${sup.supBankAccount}</p>
+							<p class="p60" id = "omit" title="${sup.supFax}">${sup.supFax}</p>
+							<p class="p60" id = "omit" title="${sup.supPostcode}">${sup.supPostcode}</p>
+							<p class="p60" id = "omit" title="${sup.supLegalPerson}">${sup.supLegalPerson}</p>
+							<p class="p60" id = "omit" title="${sup.supRemark}">${sup.supRemark}</p>
 							<p class="p60"><a href="supManageServlet?supId=${sup.supId}&action=editSup" >编辑</a></p>
 							
 							
