@@ -146,13 +146,13 @@
 							
 							<P class = "p60"><input type="checkbox"  value="${sup.supId}" name="chk"  ></P>
 							
-							<p class="p60" id = "omit" title="${sup.supName}">${sup.supName}</p>
+							<p class="p60" id = "omit" title="${sup.supName}" >${sup.supName}</p>
 							<p class="p60" id = "omit" title="${sup.supAddress}">${sup.supAddress}</p>
 							<p class="p60" id = "omit" title="${sup.supLinkman}">${sup.supLinkman}</p>
-							<p class="p90" id = "omit" title="${sup.supPhone}">${sup.supPhone}</p>
-							<p class="p60" id = "omit" title="${sup.supBankName}">${sup.supBankName}</p>
-							<p class="p60" id = "omit" title="${sup.supBankAccount}">${sup.supBankAccount}</p>
-							<p class="p60" id = "omit" title="${sup.supFax}">${sup.supFax}</p>
+							<p class="p60" id = "omit" title="${sup.supPhone}">${sup.supPhone}</p>
+							<p class="p60" id = "omit" title="${sup.supBankName}" style="margin-left:5%">${sup.supBankName}</p>
+							<p class="p60" id = "omit" title="${sup.supBankAccount}" style="margin-left:0%">${sup.supBankAccount}</p>
+							<p class="p90" id = "omit" title="${sup.supFax}">${sup.supFax}</p>
 							<p class="p60" id = "omit" title="${sup.supPostcode}">${sup.supPostcode}</p>
 							<p class="p60" id = "omit" title="${sup.supLegalPerson}">${sup.supLegalPerson}</p>
 							<p class="p60" id = "omit" title="${sup.supRemark}">${sup.supRemark}</p>
