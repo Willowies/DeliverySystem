@@ -232,6 +232,7 @@ public class ClearMoneyServlet extends HttpServlet {
 		request.getSession().setAttribute("resultList2", null);
 		//request.getRequestDispatcher("clearSubstationResult.jsp").forward(request, response);
 		response.sendRedirect(request.getContextPath()+"/finance/clearSubstationResult.jsp");
+		//response.sendRedirect(request.getContextPath()+"/finance/clearSubstation.jsp");
 	}
 
 	//查询与供应商未结算的单据
@@ -262,7 +263,7 @@ public class ClearMoneyServlet extends HttpServlet {
 				//未查到符合条件的签收单
 				request.getSession().setAttribute("messageselectOrder", "未查到符合条件的签收单");
 				//request.getRequestDispatcher("clearSuppiler.jsp").forward(request, response);
-				response.sendRedirect(request.getContextPath()+"/finance/clearSuppiler.jsp");
+				response.sendRedirect(request.getContextPath()+"/finance/clearSupplier.jsp");
 			}
 		}else{
 			//查到符合条件的签收单

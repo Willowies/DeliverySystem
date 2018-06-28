@@ -132,14 +132,14 @@
 
 
 <%
-	Object message = request.getSession().getAttribute("messageCleared");
+	Object message = request.getSession().getAttribute("messageselectClearedSup");
 	if(message!=null&&!"".equals(message)){
 %>
 	<script type="text/javascript">
 	alert("<%=message%>");
 	</script>
 <%
-	request.getSession().setAttribute("messageCleared", null);
+	request.getSession().setAttribute("messageselectClearedSup", null);
 	}
 %>
 	</body>

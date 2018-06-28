@@ -170,7 +170,7 @@
 				</div>
 				<div style="margin:0 auto;">
 				<form action="../invoiceManageServlet?action=register" method="post">
-				<button type="submit" onclick="" class="buttonB" style=" margin:10px 0 0 40px; float:left">领用</button></form>
+				<button type="submit" onclick="" class="buttonB" style=" margin:10px 0 0 40px; float:left">登记</button></form>
 				</div>
 				</div>
 			</div>
