@@ -105,7 +105,7 @@
 					<div class="row">
 						<!--  第一列卡片  -->
 						<div class="col-md-3">
-							<form action="../Order/OrderServlet?action=locateClient" method="post" role="form">
+							<form action="../DeliverySystem/OrderServlet?action=locateClient" method="post" role="form">
 								<div class="generateblock1">
 									<p>客户信息搜索</p>
 									<div class="form-group">
@@ -138,7 +138,7 @@
 
 							<div class="row">
 								<div class="col-md-12 margin-top">
-									<form action="../Order/OrderServlet?action=selectNewOrderForReturn" method="post" role="form">
+									<form action="../DeliverySystem/OrderServlet?action=selectNewOrderForReturn" method="post" role="form">
 										<div class="generateblock1">
 											<p>订单信息搜索</p>
 											<div class="form-group">
@@ -215,7 +215,7 @@
 						</div>
 						<!--  第二列卡片  -->
 						<div class="col-md-2">
-							<form action="../Order/OrderServlet?action=creatReturnOrder" method="post" role="form">
+							<form action="../DeliverySystem/OrderServlet?action=creatReturnOrder" method="post" role="form">
 								<div class="cancelblock4">
 									<div class="form-group">
 									<div class="form-group">

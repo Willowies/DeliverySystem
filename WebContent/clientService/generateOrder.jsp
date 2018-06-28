@@ -93,7 +93,7 @@
 			<!--页面-->
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
 				<div class="container">
-					<form action="../Order/OrderServlet?action=locateClient" method="post" role = "form" class="col-md-4 col-lg-offset-3">
+					<form action="../DeliverySystem/OrderServlet?action=locateClient" method="post" role = "form" class="col-md-4 col-lg-offset-3">
 					<div class="page-navigation">生成订单/ generateOrder</div>
 					<div class="searchblock">
 						<p1>生成订单</p1>

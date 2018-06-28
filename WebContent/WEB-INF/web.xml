@@ -137,4 +137,34 @@
     <servlet-name>WarehouseManageServlet</servlet-name>
     <url-pattern>/warehouseManageServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>OrderServlet</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewOrderServlet</display-name>
+    <servlet-name>NewOrderServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.NewOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewOrderServlet</servlet-name>
+    <url-pattern>/NewOrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductSelectServlet</display-name>
+    <servlet-name>ProductSelectServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.ProductSelectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductSelectServlet</servlet-name>
+    <url-pattern>/ProductSelectServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

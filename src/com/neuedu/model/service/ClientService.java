@@ -62,7 +62,14 @@ public class ClientService {
 
 		}
 	}
-
+	// 查询
+	public Client selectClient(Client c){
+		Connection conn = DBUtil.getConn();
+		ClientDAO dao = new ClientDAOImp(conn);
+		Client client = dao.selectClient(c);
+		DBUtil.closeConn(conn);
+		return client;
+	}
 	// 组合查询
 	public List<Client> selectClient(String clientname, String clientIc, String clientMobilePhone) {
 		Connection conn = DBUtil.getConn();

@@ -107,7 +107,7 @@
 				<div class="row">
 					<!--  第一列卡片  -->
 					<div class="col-md-3">
-						<form action="../Order/OrderServlet?action=selectOrderByPage" method="post" role="form">
+						<form action="../DeliverySystem/OrderServlet?action=selectOrderByPage" method="post" role="form">
 							<div class="selectblock1">
 								<p>客户信息搜索</p>
 								<div class="form-group">
@@ -234,8 +234,7 @@
 									<li>${p}</li>
 								</c:if>
 								<c:if test="${p!=pageNum}">
-									<li><a
-										href="OrderServlet?action=selectNewPageByCount,pageNum=${p}">${p}</a></li>
+									<li><a>href="OrderServlet?action=selectNewPageByCount,pageNum=${p}">${p}</a></li>
 								</c:if>
 							</c:forEach>
 

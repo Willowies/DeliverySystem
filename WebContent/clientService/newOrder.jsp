@@ -103,7 +103,7 @@
 					<div class="row">
 						<!--  第一列卡片  -->
 						<div class="col-md-3">
-							<form action="../Order/OrderServlet?action=locateClient" method="post" role="form">
+							<form action="../DeliverySystem/OrderServlet?action=locateClient" method="post" role="form">
 								<div class="generateblock1">
 									<p>重新定位客户</p>
 									<div class="form-group">
@@ -149,7 +149,7 @@
 
 						<!--  第二列卡片  -->
 						<div class="col-md-4">
-							<form action="../Order/OrderServlet?action=newOrder" method="post" role="form">
+							<form action="../DeliverySystem/OrderServlet?action=newOrder" method="post" role="form">
 								<div class="generateblock3">
 									<p>订单信息</p>
 									<div class="form-group">
