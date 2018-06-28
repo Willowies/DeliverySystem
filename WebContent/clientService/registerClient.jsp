@@ -15,6 +15,7 @@
 				window.scrollTo(0, 1);
 			}
 		</script>
+
 		<!-- Bootstrap Core CSS -->
 		<link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
@@ -114,9 +115,9 @@
 								<div class="col-md-8">
 									<div class="input-group">
 									<!-- 判断Ic唯一 -->
-										 <input type="text" name="clientIc" class="form-control1" placeholder="必填" required="required"
+										 <input type="text" name="clientIc" class="form-control1" placeholder="必填/最长11位" required="required"
 										 style = "width:450px;margin-left:0%"
-										 id="clientIc"  onblur="validate()" >
+										 id="clientIc"  onblur="validate()" maxlength="11">
 										 <span id="res" style="color:red"  ></span>
 									</div>
 								</div>
@@ -134,8 +135,9 @@
 								<label class="col-md-2 control-label" style = "width:80px ;">座机号码</label>
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
-									<input type="text" name="clientPhoneNumber" class="form-control1" placeholder="可选"
-									style = "width:450px;margin-left:0%" required="required">
+									<input type="text" name="clientPhoneNumber" class="form-control1" placeholder="可选/最长8位"
+									style = "width:450px;margin-left:0%" required="required"
+									maxlength="8">
 									</div>
 								</div>
 							</div>
@@ -143,8 +145,9 @@
 								<label class="col-md-2 control-label" style = "width:80px ;">移动号码</label>
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
-										<input type="text" name="clientMobilePhone"class="form-control1" placeholder="必填"
-										style = "width:450px;margin-left:0%" required="required">
+										<input type="text" name="clientMobilePhone"class="form-control1" placeholder="必填/最长11位"
+										style = "width:450px;margin-left:0%" required="required"
+										maxlength="11">
 									</div>
 								</div>
 							</div>
@@ -162,8 +165,9 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 									
-										<input type="number" name="clientPostcode"class="form-control1" placeholder="可选"
-										style = "width:450px;margin-left:0%" required="required">
+										<input type="number" name="clientPostcode"class="form-control1" placeholder="可选/最长6位"
+										style = "width:450px;margin-left:0%" required="required"
+										maxlength="6">
 									</div>
 								</div>
 							</div>

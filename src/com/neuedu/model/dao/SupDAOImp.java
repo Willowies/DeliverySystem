@@ -90,13 +90,13 @@ public class SupDAOImp implements SupDAO {
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select *  from  supplierinfo where 1=1 and status = 1  ");
 		if (supName != null && !"".equals(supName)) {
-			sbf.append(" and supName=? ");
+			sbf.append(" and supName like ? ");
 		}
 		try {
 			PreparedStatement ps = conn.prepareStatement(sbf.toString());
 			int index = 1;
 			if (supName != null && !"".equals(supName)) {
-				ps.setString(index, supName);
+				ps.setString(index, "%" + supName+ "%");
 			}
 			// Ö´ÐÐ
 			ResultSet rs = ps.executeQuery();
@@ -137,7 +137,7 @@ public class SupDAOImp implements SupDAO {
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select * from  supplierinfo where 1=1  and status = 1");
 		if (supName != null && !"".equals(supName)) {
-			sbf.append(" and supName=? ");
+			sbf.append(" and supName like ? ");
 		}
 
 		try {
@@ -146,7 +146,7 @@ public class SupDAOImp implements SupDAO {
 			
 			int index = 1;
 			if (supName != null && !"".equals(supName)) {
-				ps.setString(index, supName);
+				ps.setString(index, "%" + supName +"%");
 			}
 
 			// Ö´ÐÐ

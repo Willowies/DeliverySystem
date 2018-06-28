@@ -134,7 +134,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 									<input type="text" name="supPhone" value="${editSup.supPhone}" class="form-control1" placeholder="可选"
-									style = "width:450px;margin-left:0%">
+									style = "width:450px;margin-left:0%" maxlength="11">
 									</div>
 								</div>
 							</div>
@@ -152,7 +152,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 										<input type="number" name="supBankAccount" value="${editSup.supBankAccount}" class="form-control1" placeholder="必填"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" maxlength="11">
 									</div>
 								</div>
 							</div>
@@ -161,7 +161,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 										<input type="number" name="supFax" value="${editSup.supFax}" class="form-control1" placeholder="必填"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" maxlength="11">
 									</div>
 								</div>
 							</div>
@@ -171,7 +171,7 @@
 									<div class="input-group input-icon right">
 									
 										<input type="number" name="supPostcode" value="${editSup.supPostcode}" class="form-control1" placeholder="可选"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" maxlength="6">
 									</div>
 								</div>
 							</div>

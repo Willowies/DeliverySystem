@@ -92,7 +92,7 @@ public class ClientDAOImp implements ClientDAO {
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select *  from  userinfo where 1=1 and status =1 ");
 		if (clientName != null && !"".equals(clientName)) {
-			sbf.append(" and clientName=? ");
+			sbf.append(" and clientName like ? ");
 		}
 		if (clientIc != null && !"".equals(clientIc)) {
 			sbf.append(" and clientIc=? ");
@@ -104,7 +104,7 @@ public class ClientDAOImp implements ClientDAO {
 			PreparedStatement ps = conn.prepareStatement(sbf.toString());
 			int index = 1;
 			if (clientName != null && !"".equals(clientName)) {
-				ps.setString(index, clientName);
+				ps.setString(index, "%" + clientName +"%");
 				index++;
 			}
 			if (clientIc != null && !"".equals(clientIc)) {
@@ -147,7 +147,7 @@ public class ClientDAOImp implements ClientDAO {
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("  select * from  userinfo where 1=1 and status =1 ");
 		if (clientName != null && !"".equals(clientName)) {
-			sbf.append(" and clientName=? ");
+			sbf.append(" and clientName like ? ");
 		}
 		if (clientIc != null && !"".equals(clientIc)) {
 			sbf.append(" and clientIc=? ");
@@ -161,7 +161,7 @@ public class ClientDAOImp implements ClientDAO {
 
 			int index = 1;
 			if (clientName != null && !"".equals(clientName)) {
-				ps.setString(index, clientName);
+				ps.setString(index, "%" +clientName + "%");
 				index++;
 			}
 			if (clientIc != null && !"".equals(clientIc)) {
