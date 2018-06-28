@@ -99,4 +99,24 @@
     <servlet-name>EmployeeManageServlet</servlet-name>
     <url-pattern>/employeeManageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InvoiceManageServlet</display-name>
+    <servlet-name>InvoiceManageServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.InvoiceManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InvoiceManageServlet</servlet-name>
+    <url-pattern>/invoiceManageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClearMoneyServlet</display-name>
+    <servlet-name>ClearMoneyServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.ClearMoneyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClearMoneyServlet</servlet-name>
+    <url-pattern>/clearMoneyServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
