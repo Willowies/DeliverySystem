@@ -27,12 +27,15 @@
 		<link href="css/style.css" rel='stylesheet' type='text/css' />
 		<link href="css/font-awesome.css" rel="stylesheet">
 		<link href="css/warehouse.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
 		<!-- jQuery -->
 		<script src="js/jquery.min.js"></script>
 		<!----webfonts--->
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/metisMenu.min.js"></script>
+		<script src="js/custom.js"></script>
 	</head>
 
 	<body>
@@ -182,10 +185,9 @@
 		
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
-		<link href="css/custom.css" rel="stylesheet">
+		
 		<!-- Metis Menu Plugin JavaScript -->
-		<script src="js/metisMenu.min.js"></script>
-		<script src="js/custom.js"></script>
+		
 			
 	</body>
 

@@ -23,6 +23,7 @@
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
+		<link href="css/custom.css" rel="stylesheet">
 		<link href="css/style.css" rel='stylesheet' type='text/css' />
 		<link href="css/font-awesome.css" rel="stylesheet">
 		<link href="css/warehouse.css" rel="stylesheet">
@@ -32,6 +33,8 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/metisMenu.min.js"></script>
+		<script src="js/custom.js"></script>
 	</head>
 
 	<body>
@@ -135,7 +138,10 @@
 						</form>
 					</div>
 			</div>
-			<%
+			
+			<!-- /#page-wrapper -->
+		</div>
+		<%
 	                Object message = request.getAttribute("message");
 	                if(message!=null&&!"".equals(message)){
                 %>
@@ -145,15 +151,11 @@
                 <%
 	                }
                 %>
-			<!-- /#page-wrapper -->
-		</div>
-		
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
-		<link href="css/custom.css" rel="stylesheet">
+		
 		<!-- Metis Menu Plugin JavaScript -->
-		<script src="js/metisMenu.min.js"></script>
-		<script src="js/custom.js"></script>
+		
 			
 	</body>
 

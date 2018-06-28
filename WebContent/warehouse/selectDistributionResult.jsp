@@ -32,6 +32,7 @@
 		<link href="css/font-awesome.css" rel="stylesheet">
 		<link href="css/left-right.css" rel="stylesheet">
 		<link href="css/bootstrap-select.min.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
 		<!-- jQuery -->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap-select.min.js"></script>
@@ -39,6 +40,8 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/metisMenu.min.js"></script>
+		<script src="js/custom.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -226,9 +229,8 @@
 %>
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
-		<link href="css/custom.css" rel="stylesheet">
+		
 		<!-- Metis Menu Plugin JavaScript -->
-		<script src="js/metisMenu.min.js"></script>
-		<script src="js/custom.js"></script>
+		
 	</body>
 </html>
