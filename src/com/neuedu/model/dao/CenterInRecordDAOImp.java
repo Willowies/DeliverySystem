@@ -45,7 +45,7 @@ public class CenterInRecordDAOImp implements CenterInRecordDAO {
 				//ÐÞ¸Ä¿â´æÁ¿
 				String st = " update warehouseproduct set productQuantity=productQuantity+?,allocatableQuantity=allocatableQuantity+?,"
 						+ "operator=?,operateDate=? "
-						+ " where productId=?";
+						+ " where productId=? and warehouseId=1";
 				ps = conn.prepareStatement(st);
 				ps.setInt(1, cInRecord.getActuralQuantity());
 				ps.setInt(2, cInRecord.getActuralQuantity());
