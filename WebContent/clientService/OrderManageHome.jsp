@@ -68,10 +68,10 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li >
+							<li class="highlight-item">
 								<a href="<%=basePath%>/clientService/OrderManageHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
-							<li class="highlight-item">
+							<li >
 								<a href="<%=basePath%>/clientService/generateOrder.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
 								<!-- /.nav-second-level -->
 							</li>

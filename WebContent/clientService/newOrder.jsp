@@ -66,6 +66,7 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
+							
 							<li >
 								<a href="<%=basePath%>/clientService/OrderManageHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>

@@ -66,6 +66,7 @@
 						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
 					</li>
 				</ul>
+				
 				<!--左侧导航栏-->
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">

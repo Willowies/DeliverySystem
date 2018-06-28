@@ -15,6 +15,7 @@
 			function hideURLbar() {
 				window.scrollTo(0, 1);
 			}
+			
 		</script>
 		<!-- Bootstrap Core CSS -->
 		<link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
