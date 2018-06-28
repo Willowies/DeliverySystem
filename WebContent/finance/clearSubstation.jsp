@@ -64,7 +64,7 @@
 								<a href="#"><i class="fa fa-download nav_icon"></i>与供货商结算<span class="fa arrow"></span></a>
 								 <ul class="nav nav-second-level">
 							    	<li>
-                                        <a href="clearSuppllier.jsp">进行结算</a>
+                                        <a href="clearSupplier.jsp">进行结算</a>
                                     </li>
                                     <li>
                                         <a href="selectClearedSup.jsp">已结算订单查询</a>
