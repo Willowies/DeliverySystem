@@ -69,11 +69,11 @@
 								<a href="warehouse/centerIn.jsp"><i class="fa fa-download nav_icon"></i>中心库房购货入库</a>
 								<!-- /.nav-second-level -->
 							</li>
-							<li>
+							<li class="active">
 								<a href="#"><i class="fa fa-upload nav_icon"></i>中心库房调拨出库<span class="fa arrow"></span>
 								</a>
 							    <ul class="nav nav-second-level">
-							    	<li class="highlight-item">
+							    	<li class="highlight-item active">
                                         <a href="warehouse/centerOut.jsp">调拨出库</a>
                                     </li>
                                     <li>

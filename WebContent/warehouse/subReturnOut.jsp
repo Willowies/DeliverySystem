@@ -128,7 +128,7 @@ function checkform(){
 								</a>
 							    <ul class="nav nav-second-level">
 							    	<li>
-                                        <a href="transferCenterOut.jsp">调拨出库</a>
+                                        <a href="centerOut.jsp">调拨出库</a>
                                     </li>
                                     <li>
                                         <a href="selectCenterOut.jsp">查询出库信息</a>
