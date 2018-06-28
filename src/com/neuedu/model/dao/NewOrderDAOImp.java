@@ -11,9 +11,8 @@ import java.util.List;
 import com.neuedu.model.po.Client;
 import com.neuedu.model.po.NewOrder;
 import com.neuedu.model.po.Product;
+import com.neuedu.model.po.Supplier;
 import com.neuedu.utils.DBUtil;
-
-
 
 public class NewOrderDAOImp implements NewOrderDAO {
 	private Connection conn;
@@ -22,6 +21,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 	}
 	public void creatNewOrder(NewOrder newOrder) {
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 		try {
 			/*测试用代码,运行后将会往数据库neworder表里插一条数据
 			Date d = new Date(02,11,2018);
@@ -48,7 +48,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			System.out.println(ps);
 			ps.executeUpdate();
 			*/
-			ps = conn.prepareStatement(" insert into newOrder values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps = conn.prepareStatement(" insert into newOrder values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,null);");
 			ps.setInt(1, newOrder.getClient().getClientId());
 			ps.setInt(2, newOrder.getProduct().getProductId());
 			ps.setInt(3, newOrder.getProductQuantity());
@@ -67,8 +67,12 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			ps.setInt(16, newOrder.getStatus());
 			ps.setString(17, newOrder.getOperator());
 			ps.setDate(18, new java.sql.Date(newOrder.getOperateDate().getTime()));
-			ps.setDate(19, new java.sql.Date(newOrder.getFinishDate().getTime()));
 			ps.executeUpdate();
+			//更新库存可用量
+			ps2 = conn.prepareStatement(" update warehouseProduct set allocatableQuantity = (allocatableQuantity-?) where productId = ?;");
+			ps2.setInt(1, newOrder.getProductQuantity());
+			ps2.setInt(2, newOrder.getProduct().getProductId());
+			ps2.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -88,8 +92,183 @@ public class NewOrderDAOImp implements NewOrderDAO {
 		}
 	}
 	@Override
-	public void upDateNewOrder(NewOrder newOrder) {
+	public void updateNewOrder(NewOrder n) {
+		//待测试
+		StringBuffer sbf = new StringBuffer("update neworder set  ");
+		int orderId = n.getOrderId();
+		int clienitId = n.getClient().getClientId();
+		int productId = n.getProduct().getProductId();
+		int productQuantity = n.getProductQuantity();
+		String receiverName = n.getReceiverName();
+		String receiverPhone= n.getReceiverPhone();
+		String receiverAddress=n.getReceiverAddress();
+		int receiverPostCode=n.getReceiverPostCode();
+		float total=n.getTotal();
+		int orderState=n.getOrderState();
+		int employeeId=n.getEmployeeId();
+		int whetherInvoice=n.getWhetherInvoice();
+		Date requireDate=n.getRequireDate();
+		Date finishDate=n.getFinishDate();
+		Date generateDate=n.getGenerateDate();
+		String newOrderRemark=n.getNewOrderRemark();
+		String deliverRequest=n.getDeliverRequest();
+		int status = n.getStatus();
+		String operator=n.getOperator();
+		Date operateDate = n.getOperateDate();
 		
+		if(clienitId != 0){
+			sbf.append(" clienitId=?");
+		}
+		if(productId != 0){
+			sbf.append(" ,productId=?");
+		}
+		if(productQuantity != 0){
+			sbf.append(" ,productQuantity=?");
+		}
+		if(receiverName != null && !"".equals(receiverName)){
+			sbf.append(" ,receiverName=?");
+		}
+		if(receiverPhone != null && !"".equals(receiverPhone)){
+			sbf.append(" ,receiverPhone=?");
+		}
+		if(receiverAddress != null && !"".equals(receiverAddress)){
+			sbf.append(" ,receiverAddress=?");
+		}
+		if(receiverPostCode != 0){
+			sbf.append(" ,receiverPostCode=?");
+		}
+		if(total != 0){
+			sbf.append(" ,total=?");
+		}
+		if(orderState != 0){
+			sbf.append(" ,orderState=?");
+		}
+		if(employeeId != 0){
+			sbf.append(" ,employeeId=?");
+		}
+		if(whetherInvoice != 0){
+			sbf.append(" ,whetherInvoice=?");
+		}
+		if (requireDate != null) {
+			sbf.append(" ,requireDate = ? ");
+		}
+		if (finishDate != null) {
+			sbf.append(" ,FinishDate = ? ");
+		}
+		if (generateDate != null) {
+			sbf.append(" ,GenerateDate = ? ");
+		}
+		if(newOrderRemark != null && !"".equals(newOrderRemark)){
+			sbf.append(" ,newOrderRemark=?");
+		}
+		if(deliverRequest != null && !"".equals(deliverRequest)){
+			sbf.append(" ,deliverRequest=?");
+		}
+		if(status != 0){
+			sbf.append(" ,orderId=?");
+		}
+		if(operator != null && !"".equals(operator)){
+			sbf.append(" ,operator=?");
+		}
+		if (n.getOperateDate() != null) {
+			sbf.append(" ,operateDate = ? ");
+		}
+		if(orderId != 0){
+			sbf.append(" where neworderid = ?");
+		}
+		sbf.append(";");
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sbf.toString());
+			int index=1;
+			if(clienitId != 0){
+				ps.setInt(index, clienitId);
+				index++;
+			}
+			if(productId != 0){
+				ps.setInt(index, productId);
+				index++;
+			}
+			if(productQuantity != 0){
+				ps.setInt(index, productQuantity);
+				index++;
+			}
+			if(receiverName != null && !"".equals(receiverName)){
+				ps.setString(index, receiverName);
+				index++;
+			}
+			if(receiverPhone != null && !"".equals(receiverPhone)){
+				ps.setString(index, receiverPhone);
+				index++;
+			}
+			if(receiverAddress != null && !"".equals(receiverAddress)){
+				ps.setString(index, receiverAddress);
+				index++;
+			}
+			if(receiverPostCode != 0){
+				ps.setInt(index, receiverPostCode);
+				index++;
+			}
+			if(total != 0){
+				ps.setFloat(index, total);
+				index++;
+			}
+			if(orderState != 0){
+				ps.setInt(index, orderState);
+				index++;
+			}
+			if(employeeId != 0){
+				ps.setInt(index, employeeId);
+				index++;
+			}
+			if(whetherInvoice != 0){
+				ps.setInt(index, whetherInvoice);
+				index++;
+			}
+			if (requireDate != null) {
+				ps.setDate(index, new java.sql.Date(requireDate.getTime()));
+				index++;
+			}
+			if (finishDate != null) {
+				ps.setDate(index, new java.sql.Date(finishDate.getTime()));
+				index++;
+			}
+			if (generateDate != null) {
+				ps.setDate(index, new java.sql.Date(generateDate.getTime()));
+				index++;
+			}
+			if(newOrderRemark != null && !"".equals(newOrderRemark)){
+				ps.setString(index, newOrderRemark);
+				index++;
+			}
+			if(deliverRequest != null && !"".equals(deliverRequest)){
+				ps.setString(index, deliverRequest);
+				index++;
+			}
+			if(status != 0){
+				ps.setInt(index, status);
+				index++;
+			}
+			if(operator != null && !"".equals(operator)){
+				ps.setString(index, operator);
+				index++;
+			}
+			if (n.getOperateDate() != null) {
+				ps.setDate(index, new java.sql.Date(operateDate.getTime()));
+				index++;
+			}
+			if(orderId != 0){
+				ps.setInt(index, orderId);
+				index++;
+			}
+			System.out.println(ps);
+			//执行
+			
+			ps.executeUpdate();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -121,7 +300,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			sbf.append(" and neworderId=?");
 		}
 		if(clienitId != 0){
-			sbf.append(" and clienitId=?");
+			sbf.append(" and clientId=?");
 		}
 		if(productId != 0){
 			sbf.append(" and productId=?");
@@ -263,7 +442,7 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				ps.setDate(index, new java.sql.Date(operateDate.getTime()));
 				index++;
 			}
-			//System.out.println(ps);
+			System.out.println(ps);
 			//执行
 			//统计获得数据数
 			ResultSet rs = ps.executeQuery();
@@ -285,11 +464,28 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				
 				Product p = new Product();
 				p.setProductId(rs.getInt("productId"));
+				p.setProductCode(rs.getString("productCode"));
 				p.setProductName(rs.getString("productName"));
 				p.setFirstClassId(rs.getInt("firstClassId"));
 				p.setSecondClassId(rs.getInt("secondclassid"));
+				p.setProductUnit(rs.getString("productunit"));
 				p.setProductPrice(rs.getFloat("productprice"));
-				p.setProductDiscount(rs.getFloat("productdiscount"));
+				p.setProductDiscount(rs.getFloat("productDiscount"));
+				p.setProductCost(rs.getFloat("productCost"));
+				
+				//supplier类待完善
+				Supplier supplier = new Supplier();
+				supplier.setSupId(rs.getInt("supId"));
+				p.setSupplier(supplier);
+				
+				
+				p.setManufacturer(rs.getString("manufacturer"));
+				p.setExpirationDate(rs.getDate("expirationDate"));
+				p.setReturnAble(rs.getInt("returnAble"));
+				p.setRemark(rs.getString("remark"));
+				p.setStatus(rs.getInt("status"));
+				p.setOperator(rs.getString("operator"));
+				p.setOperateDate(rs.getDate("operateDate"));
 				newOrder.setProduct(p);
 				
 				newOrder.setProductQuantity(rs.getInt("productQuantity"));
@@ -518,12 +714,31 @@ public class NewOrderDAOImp implements NewOrderDAO {
 				newOrder.setClient(c1);
 				
 				Product p = new Product();
-				p.setProductId(rs.getInt("productId"));
-				p.setProductName(rs.getString("productName"));
-				p.setFirstClassId(rs.getInt("firstClassId"));
-				p.setSecondClassId(rs.getInt("secondclassid"));
-				p.setProductPrice(rs.getFloat("productprice"));
-				p.setProductDiscount(rs.getFloat("productdiscount"));
+				Product product = new Product();
+				product.setProductId(rs.getInt("productId"));
+				product.setProductCode(rs.getString("productCode"));
+				product.setProductName(rs.getString("productName"));
+				product.setFirstClassId(rs.getInt("firstClassId"));
+				product.setSecondClassId(rs.getInt("secondclassid"));
+				product.setProductUnit(rs.getString("productunit"));
+				product.setProductPrice(rs.getFloat("productprice"));
+				product.setProductDiscount(rs.getFloat("productDiscount"));
+				product.setProductCost(rs.getFloat("productCost"));
+				
+				//supplier类待完善
+				Supplier supplier = new Supplier();
+				supplier.setSupId(rs.getInt("supId"));
+				product.setSupplier(supplier);
+				
+				
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setExpirationDate(rs.getDate("expirationDate"));
+				product.setReturnAble(rs.getInt("returnAble"));
+				product.setRemark(rs.getString("remark"));
+				product.setStatus(rs.getInt("status"));
+				product.setOperator(rs.getString("operator"));
+				product.setOperateDate(rs.getDate("operateDate"));
+				product.setAllocatableQuantity(rs.getInt("allocatableQuantity"));
 				newOrder.setProduct(p);
 				
 				newOrder.setProductQuantity(rs.getInt("productQuantity"));
@@ -745,11 +960,12 @@ public class NewOrderDAOImp implements NewOrderDAO {
 	@Override
 	public void setNewOrderState(int newOrderId, int orderState, String operator, Date operatorDate) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("update neworder set orderstate =?,operator=?,operatorDate=? where neworderid = ?");
+			PreparedStatement ps = conn.prepareStatement("update neworder set orderstate =?,operator=?,operateDate=? where neworderid = ?");
 			ps.setInt(1, orderState);
 			ps.setString(2, operator);
 			ps.setDate(3, new java.sql.Date(operatorDate.getTime()));
 			ps.setInt(4, newOrderId);
+			System.out.println(ps);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

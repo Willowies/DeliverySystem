@@ -13,29 +13,38 @@ import com.neuedu.model.po.NewOrder;
 import com.neuedu.model.service.NewOrderService;
 import com.neuedu.utils.DBUtil;
 
-
 public class CancelOrderDAOImp implements CancelOrderDAO{
 	private Connection conn;
 	public  CancelOrderDAOImp(Connection conn) {
 		this.conn = conn;
 	}
+	
 	@Override
 	public void creatCancelOrder(CancelOrder cancelOrder) {
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 		try {
 			ps = conn.prepareStatement(" insert into cancelorder values (null,?,?,?,?)");
 			ps.setInt(1,cancelOrder.getNewOrder().getOrderId());
-			ps.setInt(2,cancelOrder.getNewOrder().getEmployeeId());
+			ps.setInt(2,cancelOrder.getEmployeeId());
 			ps.setString(3,cancelOrder.getCancelReason());
 			ps.setDate(4, new java.sql.Date(cancelOrder.getCancelDate().getTime()));
+			//更新库存可用量
+			//恢复可用量
+			NewOrder newOrder = NewOrderService.getInstance().selectNewOrder(cancelOrder.getNewOrder()).get(0);
+			ps2 = conn.prepareStatement(" update warehouseProduct set allocatableQuantity = (allocatableQuantity+?) where productId = ?;");
+			ps2.setInt(1, newOrder.getProductQuantity());
+			ps2.setInt(2, newOrder.getProduct().getProductId());
+			ps2.executeUpdate();
+			System.out.println(ps);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			DBUtil.closePS(ps);
+			DBUtil.closePS(ps2);
 		}
 	}
-
 	@Override
 	public List<CancelOrder> selectCancelOrder(CancelOrder c) {
 		List<CancelOrder> cancelOrders = new ArrayList<CancelOrder>();
