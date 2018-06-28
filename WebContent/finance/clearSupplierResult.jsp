@@ -145,7 +145,7 @@
 					</div>
 				<!--/# 搜索 -->
 					<!-- 搜索结果，隐藏 -->
-				<form method="post">
+				<form method="post" name="condition">
 					<div class="searchResult">
 						<div class="searchResultNav">
 							<p class="p20"></p>

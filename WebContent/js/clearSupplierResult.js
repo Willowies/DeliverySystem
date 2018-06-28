@@ -10,8 +10,8 @@ function clearSupplier(){
 	if(flag){
 		//提交请求
 		alert("选择了订单进行结算");
-		document.forms[2].action="../clearMoneyServlet?action=clearSupplier";
-		document.forms[2].submit();
+		document.forms["condition"].action="../clearMoneyServlet?action=clearSupplier";
+		document.forms["condition"].submit();
 	}else{
 		//提示
 		alert("请至少选择一个订单进行结算");

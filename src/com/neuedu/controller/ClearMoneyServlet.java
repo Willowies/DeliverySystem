@@ -197,7 +197,7 @@ public class ClearMoneyServlet extends HttpServlet {
 
 	//结算购货入库单和中心退货单
 	private void clearSupplier(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("进到servlet的结算方法了！");
+		System.out.println("进到servlet的结算供应商方法了！");
 		//截取购货单、退货单id
 		String[] ids = request.getParameterValues("chk");
 		int[] ids1 = new int[ids.length];//购货入库单。
@@ -331,13 +331,13 @@ public class ClearMoneyServlet extends HttpServlet {
 
 	//结算签收单
 	private void clearSubstation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("进到了签收Servlet");
+		//System.out.println("进到了签收Servlet");
 		
 		String[] ids = request.getParameterValues("chk");
 		int[] idss = new int[ids.length];
 		for(int i = 0;i<ids.length;i++){
 			idss[i] = Integer.parseInt(ids[i]);
-			System.out.println(idss[i]);
+			//System.out.println(idss[i]);
 		}
 		//Employee e = (Employee)request.getSession().getAttribute("employee");
 		//ClearMoneyService.getInstance().clearSubstation(ids, e.getEmployeeName());
