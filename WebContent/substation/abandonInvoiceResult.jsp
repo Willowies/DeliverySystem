@@ -122,7 +122,8 @@
 						
 					</div>
 				<!--/# 搜索 -->
-					<!-- 搜索结果，隐藏 -->		
+					<!-- 搜索结果，隐藏 -->	
+					<div style="margin:0 auto;">	
 					<div class="searchResult">
 						<div class="searchResultNav">
 							<p class="p70">任务单号</p>
@@ -143,8 +144,11 @@
 							<p class="p70">${workorderAfromS.createDate}</p>
 						</div>
 					</div>
+					</div>
+					<div style="margin:0 auto;">
 				<form action="../invoiceManageServlet?action=abandonInvoicefromS" method="post">
 				<button type="submit" onclick="" class="buttonB" style=" margin:10px 0 0 40px; float:left">废弃</button></form>
+				</div>
 				</div>
 			</div>
 			<!-- /#page-wrapper -->

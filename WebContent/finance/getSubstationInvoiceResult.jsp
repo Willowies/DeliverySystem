@@ -129,6 +129,7 @@
 					</div>
 				<!--/# 搜索 -->
 					<!-- 搜索结果，隐藏 -->
+				<div style="margin:0 auto;">
 				<form method="post">
 					<div class="searchResult">
 						<div class="searchResultNav">
@@ -147,6 +148,7 @@
 						</div>
 					</div>
 				</form>
+				</div>
 				<div class="homeblock3" style="margin-left:auto; margin-right:auto;">
 						<form action="../invoiceManageServlet?action=getSubstationInvoice" method="post" role="form">
 							

@@ -29,6 +29,10 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 	</head>
 
 	<body>
@@ -125,6 +129,7 @@
 					</div>
 				<!--/# 搜索 -->
 					<!-- 搜索结果，隐藏 -->
+				<div style="margin:0 auto;">
 				<form method="post">
 					<div class="searchResult">
 						<div class="searchResultNav">
@@ -151,10 +156,6 @@
 		</div>
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
-		<link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
-		<!-- Metis Menu Plugin JavaScript -->
-		<script src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 	</body>
 
 </html>

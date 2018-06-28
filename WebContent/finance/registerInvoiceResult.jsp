@@ -129,6 +129,7 @@
 					</div>
 				<!--/# 搜索 -->
 					<!-- 搜索结果，隐藏 -->
+				<div style="margin:0 auto;">
 				<form method="post">
 					<div class="searchResult">
 						<div class="searchResultNav">
@@ -166,8 +167,11 @@
 						</div>
 					</div>
 				</form>
+				</div>
+				<div style="margin:0 auto;">
 				<form action="../invoiceManageServlet?action=register" method="post">
 				<button type="submit" onclick="" class="buttonB" style=" margin:10px 0 0 40px; float:left">领用</button></form>
+				</div>
 				</div>
 			</div>
 			<!-- /#page-wrapper -->

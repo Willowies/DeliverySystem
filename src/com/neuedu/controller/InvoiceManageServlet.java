@@ -313,55 +313,55 @@ public class InvoiceManageServlet extends HttpServlet {
 		}
 		}
 		
-		private void selectInvoicefromS(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
-			String invoiceId = request.getParameter("invoiceId");
-			
-			Invoice invoice = InvoiceService.getInstance().selectInvoice(invoiceId);
-			
-			if(invoice==null){
-				//未查到该发票
-				request.getSession().setAttribute("messageSIfromS", "未查到该数据");
-				response.sendRedirect(request.getContextPath()+"/substation/selectInvoice.jsp");
-				//request.getRequestDispatcher("finance/selectInvoice.jsp").forward(request, response);
-			}else{
-				//查询成功
-				int state = invoice.getState();
-				switch(state){
-					case 1:
-						//发票正常
-						if(invoice.getStatus()==0){
-							invoice.setStateInfo("废弃/丢失");
-						}else{
-							invoice.setStateInfo("正常");
-						}
-						invoice.setReceivedPerson("未被领用");
-						invoice.setReceiveDate(null);
-						invoice.setSubstationName("未被分站领用");
-					break;
-					case 2:
-						//发票被分站领用
-						if(invoice.getStatus()==0){
-							invoice.setStateInfo("废弃/丢失");
-						}else{
-							invoice.setStateInfo("被分站领用");
-						}
-						invoice.setReceivedPerson("未被领用");
-						invoice.setReceiveDate(null);
-					break;
-					case 3:
-						//发票被客户领用
-						if(invoice.getStatus()==0){
-							invoice.setStateInfo("废弃/丢失");
-						}else{
-							invoice.setStateInfo("被客户领用");
-						}
-					break;
-				}
-				request.getSession().setAttribute("invoicefromS", invoice);
-				//request.getRequestDispatcher("finance/selectInvoiceResult.jsp").forward(request, response);
-				response.sendRedirect(request.getContextPath()+"/substation/selectInvoiceResult.jsp");
+	private void selectInvoicefromS(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String invoiceId = request.getParameter("invoiceId");
+		
+		Invoice invoice = InvoiceService.getInstance().selectInvoice(invoiceId);
+		
+		if(invoice==null){
+			//未查到该发票
+			request.getSession().setAttribute("messageSIfromS", "未查到该数据");
+			response.sendRedirect(request.getContextPath()+"/substation/selectInvoice.jsp");
+			//request.getRequestDispatcher("finance/selectInvoice.jsp").forward(request, response);
+		}else{
+			//查询成功
+			int state = invoice.getState();
+			switch(state){
+				case 1:
+					//发票正常
+					if(invoice.getStatus()==0){
+						invoice.setStateInfo("废弃/丢失");
+					}else{
+						invoice.setStateInfo("正常");
+					}
+					invoice.setReceivedPerson("未被领用");
+					invoice.setReceiveDate(null);
+					invoice.setSubstationName("未被分站领用");
+				break;
+				case 2:
+					//发票被分站领用
+					if(invoice.getStatus()==0){
+						invoice.setStateInfo("废弃/丢失");
+					}else{
+						invoice.setStateInfo("被分站领用");
+					}
+					invoice.setReceivedPerson("未被领用");
+					invoice.setReceiveDate(null);
+				break;
+				case 3:
+					//发票被客户领用
+					if(invoice.getStatus()==0){
+						invoice.setStateInfo("废弃/丢失");
+					}else{
+						invoice.setStateInfo("被客户领用");
+					}
+				break;
 			}
+			request.getSession().setAttribute("invoicefromS", invoice);
+			//request.getRequestDispatcher("finance/selectInvoiceResult.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/substation/selectInvoiceResult.jsp");
+		}
 	}
 
 }

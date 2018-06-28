@@ -123,6 +123,7 @@
 					</div>
 				<!--/# 搜索 -->
 					<!-- 搜索结果，隐藏 -->
+				<div style="margin:0 auto;">
 				<form method="post">
 					<div class="searchResult">
 						<div class="searchResultNav">
@@ -143,6 +144,7 @@
 							</div>
 					</div>
 				</form>
+				</div>
 				</div>
 			</div>
 		

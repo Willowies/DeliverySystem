@@ -484,7 +484,7 @@
 .buttonjiesuan{
 	width: 87px;
 	height: 34px;
-	margin:0;
+	margin:0 auto;
 	margin-left:15px;
 	background: #aaddee;
 	color: #31708f;
@@ -522,7 +522,7 @@
 	background-color:#fff;
 	border: 3px solid #CDCDCD;
 	border-radius: 10px;
-	margin: 0px 30px 20px 164px;
+	margin: 0px 30px 20px 40px;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
