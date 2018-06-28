@@ -18,6 +18,14 @@
   <servlet-mapping>
     <servlet-name>DispatchManageServlet</servlet-name>
     <url-pattern>/dispatchManageServlet</url-pattern>
+    <url-pattern>/exit</url-pattern>
+    <url-pattern>/dispatch/exit</url-pattern>
+    <url-pattern>/warehouse/exit</url-pattern>
+    <url-pattern>/finance/exit</url-pattern>
+    <url-pattern>/substation/exit</url-pattern>
+    <url-pattern>/delivery/exit</url-pattern>
+    <url-pattern>/productService/exit</url-pattern>
+    <url-pattern>/supService/exit</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

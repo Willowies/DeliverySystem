@@ -118,7 +118,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 6:
 					//财务中心
 					try {
-						response.sendRedirect(request.getContextPath()+"/.jsp");
+						response.sendRedirect(request.getContextPath()+"/finance/financeHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

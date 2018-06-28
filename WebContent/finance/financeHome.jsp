@@ -110,7 +110,7 @@
 					<div class="homeblock1">
 						<div style="display: flex;margin: 40px 10px;">
 							<img src="../images/profile.png" />
-							<p style="margin: 30px 0 0 10px;">姓名：张三</p>
+							<p style="margin: 30px 0 0 10px;">姓名：${employee.employeeName}</p>
 						</div>
 						<hr style="border-top: 2px solid #999; width: 220px;" />
 						<p style="margin: 40px 0 0 20px;">职位：财务中心管理员</p>

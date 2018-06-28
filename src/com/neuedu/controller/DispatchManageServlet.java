@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,6 +68,22 @@ public class DispatchManageServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		System.out.println("进入dispatch servlet");
+		
+		String uri = request.getRequestURI();
+		System.out.println("uri"+uri);
+		if (uri.contains("exit")) {
+			request.getSession().removeAttribute("employee");
+			request.getSession().invalidate();//清除 session 中的所有信息
+			//退出登录的时候清空cookie信息,cookie需要通过HttpServletRequest，HttpServletResponse获取
+			Cookie[] cookie=request.getCookies();
+			for(Cookie c:cookie){
+				if("autoLogin".equals(c.getName())){
+					c.setMaxAge(0);
+					response.addCookie(c);
+				}
+			}
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
+		}
 
 		String action = request.getParameter("action");
 		if ("searchOrder".equals(action)) {
@@ -92,6 +109,7 @@ public class DispatchManageServlet extends HttpServlet {
 		} else if ("searchWorkOrderByPage".equals(action)) {
 			searchWorkOrderByPage(request, response);
 		}
+		
 	}
 	
 	//改变订单状态
