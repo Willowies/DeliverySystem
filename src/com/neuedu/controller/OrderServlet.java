@@ -110,6 +110,7 @@ public class OrderServlet extends HttpServlet {
 		//这里phonenumber会接受到控制与mobilephone 不同，待调试
 		c.setClientPhoneNumber(clientPhoneNumber);
 		Client client = ClientService.getInstance().selectClient(c);
+		if(client==null) client = new Client();
 		
 		req.getSession().setAttribute("Client", client);
 		/*请求转发*/

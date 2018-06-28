@@ -3,14 +3,14 @@ package com.neuedu.model.po;
 import java.util.Date;
 
 public class Product {
-	private int productId = 0;
+	private int productId;
 	private String productCode;
 	private String productName;
-	private int firstClassId =0;
-	private int secondClassId=0;
+	private int firstClassId;
+	private int secondClassId;
 	private String productUnit;
-	private float productPrice = 1;
-	private float productDiscount = 1;
+	private float productPrice;
+	private float productDiscount;
 	private float productCost;
 	private String productModel;
 	private Supplier supplier = new Supplier();

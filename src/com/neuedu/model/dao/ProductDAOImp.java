@@ -175,7 +175,7 @@ public class ProductDAOImp implements ProductDAO {
 				ps.setDate(index, new java.sql.Date(operateDate.getTime()));
 				index++;
 			}
-			//System.out.println(ps);
+			System.out.println(ps);
 			//执行
 			ResultSet rs = ps.executeQuery();
 			//封装获取的数据
