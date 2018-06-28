@@ -1,7 +1,7 @@
 package com.neuedu.controller;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.neuedu.model.po.Employee;
 import com.neuedu.model.po.Supplier;
+import com.neuedu.model.service.ClientService;
 import com.neuedu.model.service.SupService;
 
 
@@ -60,10 +61,22 @@ public class SupManageServlet extends HttpServlet {
 			doUpdateSup(request, response);
 		}else if ("editSup".equals(action)) {
 			doEditSup(request, response);
+		}else if("validateSupName".equals(action)) {
+			System.out.print("clientIc");
+			doValidateSupName(request, response);
 		}
 
 	}
 
+	private void doValidateSupName(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String supName = request.getParameter("supName");
+		System.out.print(supName);
+		boolean flag = SupService.getInstance().validateSupName(supName);
+		response.setContentType("text/html");
+		PrintWriter pw =  response.getWriter();
+		pw.print(flag);
+		pw.close();
+	}
 	private void doRegisterSup(HttpServletRequest request, HttpServletResponse response) {
 		// response.setContentType("text/html");
 

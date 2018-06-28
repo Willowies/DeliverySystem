@@ -106,5 +106,18 @@ public class SupService {
 			DBUtil.closeConn(conn);
 		}
 	}
+	
+	// 判断供应商名是否重复
+		public boolean validateSupName(String name) {
+			Connection conn = DBUtil.getConn();
+			SupDAO dao = new SupDAOImp(conn);
+			Supplier sup = dao.validateSupName(name);
+			DBUtil.closeConn(conn);
+			if (sup == null) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 
 }

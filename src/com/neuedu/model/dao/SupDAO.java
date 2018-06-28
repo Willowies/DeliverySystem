@@ -29,6 +29,9 @@ public interface SupDAO {
 	void updateSup(Supplier sup, Employee e);
 
 
+	Supplier validateSupName(String name);
+
+
 
 
 

@@ -310,14 +310,14 @@ public class ClientDAOImp implements ClientDAO {
 
 	@Override
 	public Client validateClientIc(String ic) {
-		Client c = null;
+		Client client = null;
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement("  select *  from userinfo  where clientIc=? ");
 			ps.setString(1, ic);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				Client client = new Client();
+				client = new Client();
 
 				System.out.println(rs.getInt("clientId"));
 				client.setClientId(rs.getInt("clientId"));
@@ -336,6 +336,6 @@ public class ClientDAOImp implements ClientDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return c;
+		return client;
 	}
 }

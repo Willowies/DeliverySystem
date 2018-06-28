@@ -109,7 +109,7 @@ public class ClientService {
 		}
 	}
 
-	// 判断用户名是否重复
+	// 判断用户IC是否重复
 	public boolean validateClientIc(String ic) {
 		Connection conn = DBUtil.getConn();
 		ClientDAO dao = new ClientDAOImp(conn);

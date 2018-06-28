@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.neuedu.model.po.Client;
 import com.neuedu.model.po.Employee;
 import com.neuedu.model.po.Supplier;
 import com.neuedu.utils.DBUtil;
@@ -286,6 +287,41 @@ public class SupDAOImp implements SupDAO {
 		}finally{
 			DBUtil.closePS(ps);
 		}
+	}
+	
+	@Override
+	public Supplier validateSupName(String name) {
+		Supplier sup = null;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("  select *  from supplierinfo  where supName=? ");
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				sup = new Supplier();
+				System.out.println(rs.getInt("supId"));
+				sup.setSupId(rs.getInt("supId"));
+				sup.setSupName(rs.getString("supName"));
+				sup.setSupAddress(rs.getString("supAddress"));
+				sup.setSupLinkman(rs.getString("supLinkman"));
+				sup.setSupPhone(rs.getString("supPhone"));
+				sup.setSupBankName(rs.getString("supBankName"));
+				
+				sup.setSupBankAccount(rs.getInt("supBankAccount"));
+				sup.setSupFax(rs.getInt("supFax"));
+				sup.setSupPostcode(rs.getInt("supPostcode"));
+				
+				sup.setSupLegalPerson(rs.getString("supLegalPerson"));
+				sup.setSupRemark(rs.getString("supRemark"));
+				
+				sup.setStatus(rs.getInt("status"));
+				sup.setOperate(rs.getString("operate"));
+				sup.setOperateDate(rs.getString("operateDate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sup;
 	}
 
 }

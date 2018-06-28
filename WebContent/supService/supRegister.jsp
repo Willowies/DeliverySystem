@@ -29,6 +29,8 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/validateSupName.js" ></script>
+		
 	</head>
 	<body>
 		<div id="wrapper">
@@ -102,7 +104,9 @@
 								<div class="col-md-8">
 									<div class="input-group">
 									<input type="text" name="supName" class="form-control1" placeholder="必填" required="required"
-									style = "width:450px;margin-left:0%">
+									style = "width:450px;margin-left:0%"
+									id="supName"  onblur="validate()" >
+									<span id="res" style="color:red"  ></span>
 									</div>
 								</div>
 							</div>
