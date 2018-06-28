@@ -44,7 +44,7 @@
 		                   <span class="icon-bar"></span>
 		                   <span class="icon-bar"></span>
 	                </button>
-					<a class="navbar-brand" href="">库房管理</a>
+					<a class="navbar-brand" href="">客户服务中心</a>
 				</div>
 				<!-- /.navbar-header -->
 				<ul class="nav navbar-nav navbar-right">
@@ -59,22 +59,25 @@
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
 							<li >
-								<a href=".jsp"><i class="fa fa-home nav_icon"></i>主页</a>
+								<a href="substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
 							<li class="highlight-item">
-								<a href="proRegister.jsp"><i class="fa fa-user nav_icon"></i>新增商品
-								</a>
+								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
 								<!-- /.nav-second-level -->
 							</li>
-								<li>
+							<li>
 								<a href="">
-									<i class="fa fa-tasks nav_icon"></i>商品管理<span class="fa arrow"></span>
+									<i class="fa fa-tasks nav_icon"></i>客户管理<span class="fa arrow"></span>
 								</a>
 								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
-								    <li><a href="proSelectResult.jsp">查询商品信息</a></li>
+								    <li><a href="registerClient.jsp">新增客户</a></li>
+								    <li><a href="selectResult.jsp">查询客户信息</a></li>
 								</ul>
+								
 								<!-- /.nav-second-level -->
 							</li>
+							
+
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->

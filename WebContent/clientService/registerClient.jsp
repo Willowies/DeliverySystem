@@ -62,8 +62,11 @@
 							<li >
 								<a href="substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
-						
-								<li>
+							<li class="highlight-item">
+								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
 								<a href="">
 									<i class="fa fa-tasks nav_icon"></i>客户管理<span class="fa arrow"></span>
 								</a>
@@ -74,6 +77,8 @@
 								
 								<!-- /.nav-second-level -->
 							</li>
+							
+
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->

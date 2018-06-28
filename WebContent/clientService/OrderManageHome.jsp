@@ -47,14 +47,14 @@
 		<div id="wrapper">
 			<!-- Navigation -->
 			<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-				<div class="navbar-header">
+				<div class="navbar-header" style="padding-top:1px;">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-					<a class="navbar-brand" href="">客户中心</a>
+		                   <span class="sr-only">Toggle navigation</span>
+		                   <span class="icon-bar"></span>
+		                   <span class="icon-bar"></span>
+		                   <span class="icon-bar"></span>
+	                </button>
+					<a class="navbar-brand" href="">客户服务中心</a>
 				</div>
 				<!-- /.navbar-header -->
 				<ul class="nav navbar-nav navbar-right">
@@ -68,28 +68,26 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li>
-								<a href="dispatchHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
-							</li>
-							<li>
-								<a href="dispatchGoods.jsp"><i class="fa fa-exchange nav_icon"></i>订单管理</a>
-								<!-- /.nav-second-level -->
+							<li >
+								<a href="substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
 							<li class="highlight-item">
-								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</span>
-								</a>
+								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="searchWorkOrder.jsp"><i class="fa fa-search nav_icon"></i>查询订单</span>
+								<a href="">
+									<i class="fa fa-tasks nav_icon"></i>客户管理<span class="fa arrow"></span>
 								</a>
+								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
+								    <li><a href="registerClient.jsp">新增客户</a></li>
+								    <li><a href="selectResult.jsp">查询客户信息</a></li>
+								</ul>
+								
 								<!-- /.nav-second-level -->
 							</li>
-							<li>
-								<a href="searchWorkOrder.jsp"><i class="fa fa-search nav_icon"></i>查询工作量</span>
-								</a>
-								<!-- /.nav-second-level -->
-							</li>
+							
+
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->
