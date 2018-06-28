@@ -3,30 +3,38 @@ package com.neuedu.model.po;
 import java.util.Date;
 
 public class Sign {
-	private int signId;//签收单号
-	private int workId;//任务单号
-	private Date deliveryDate;//送货日期
-	private int receiptNeedOrNot;//是否要发票
-	private int clearingStatus;//结算状态
-	private String remark;//备注
-	private int customerFeedback;//客户反馈
-	private String customerSignature;//客户签名
-	private int orderId;//订单号
-	private int workType;//任务类型
-	private String productName;//商品名称
-	private float productPrice;//单价
-	private int productQuantity;//商品数量
-	private float total;//商品总价
-	private String customerName;//客户姓名
-	private String customerPhone;//客户联系电话
-	private int postCode;//邮编
-	private String deliveryAddress;//送货地址
-	private String deliveryRequirement;//送货要求
-	private int deliverySubstation;//送货分站
-	private String substationPhone;//分站电话
+	private int signId;//绛炬敹鍗曞彿
+	private int workId;//浠诲姟鍗曞彿
+	private Date deliveryDate;//閫佽揣鏃ユ湡
+	private int receiptNeedOrNot;//鏄惁瑕佸彂绁�
+	private int clearingStatus;//缁撶畻鐘舵��
+	private String remark;//澶囨敞
+	private int customerFeedback;//瀹㈡埛鍙嶉
+	private String customerSignature;//瀹㈡埛绛惧悕
+	private int orderId;//璁㈠崟鍙�
+	private int workType;//浠诲姟绫诲瀷
+	private String productName;//鍟嗗搧鍚嶇О
+	private float productPrice;//鍗曚环
+	private int productQuantity;//鍟嗗搧鏁伴噺
+	private float total;//鍟嗗搧鎬讳环
+	private String customerName;//瀹㈡埛濮撳悕
+	private String customerPhone;//瀹㈡埛鑱旂郴鐢佃瘽
+	private int postCode;//閭紪
+	private String deliveryAddress;//閫佽揣鍦板潃
+	private String deliveryRequirement;//閫佽揣瑕佹眰
+	private int deliverySubstation;//閫佽揣鍒嗙珯
+	private String substationPhone;//鍒嗙珯鐢佃瘽
 	private int status;
 	private String operator;
 	private Date operateDate;
+	private String substation;
+	
+	public String getSubstation() {
+		return substation;
+	}
+	public void setSubstation(String substation) {
+		this.substation = substation;
+	}
 	
 	public int getSignId() {
 		return signId;
