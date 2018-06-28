@@ -33,7 +33,7 @@ public interface ClientDAO {
 	Client validateClientIc(String ic);
 
 
-
+	Client selectClient(Client c);
 
 
 	
