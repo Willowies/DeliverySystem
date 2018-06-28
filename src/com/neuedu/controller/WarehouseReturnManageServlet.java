@@ -51,13 +51,12 @@ public class WarehouseReturnManageServlet extends HttpServlet {
 
 		System.out.println("进入warehouse return servlet");
 		
-//		Employee e = (Employee) request.getSession().getAttribute("employee");
-//		if (e==null) {
-//			response.sendRedirect(request.getContextPath()+"login/.jsp");
-//			return;
-//		}
-//		warehouseId = WarehouseReturnService.getInstance().getWarehouseId(e.getEmployeeId());
-//		operator = e.getEmployeeName();
+		Employee e = (Employee) request.getSession().getAttribute("employee");
+		if (e==null) {
+			response.sendRedirect(request.getContextPath()+"login/.jsp");
+			return;
+		}
+		operator = e.getEmployeeName();
 
 		String action = request.getParameter("action");
 		if ("searchWorkOrder".equals(action)) {
@@ -68,12 +67,15 @@ public class WarehouseReturnManageServlet extends HttpServlet {
 			returnRecord(request, response);
 		} else if("searchReturnProduct".equals(action)){
 			//搜索退货商品
+			warehouseId = WarehouseReturnService.getInstance().getWarehouseId(e.getEmployeeId());
 			searchReturnProduct(request, response);
 		} else if("searchReturnProductByPage".equals(action)){
 			//搜索退货商品
+			warehouseId = WarehouseReturnService.getInstance().getWarehouseId(e.getEmployeeId());
 			searchReturnProductByPage(request, response);
 		} else if ("subReturnOut".equals(action)) {
 			//分站退货
+			warehouseId = WarehouseReturnService.getInstance().getWarehouseId(e.getEmployeeId());
 			subReturnOut(request, response);
 		} else if ("searchSubReturnOrder".equals(action)) {
 			//搜索分站退货单

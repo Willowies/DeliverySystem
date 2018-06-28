@@ -20,6 +20,8 @@ public interface SubReturnRecordDAO {
 	List<SubReturnRecord> searchCenterReturnProduct(int id);
 
 	void centerReturnOut(int productId, int productQuantity, int orderId);
+
+	int getWarehouseId(int employeeId);
 	
 	
 	

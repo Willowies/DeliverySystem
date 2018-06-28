@@ -116,6 +116,14 @@ public class WarehouseReturnService {
 		}
 		
 	}
+
+	public int getWarehouseId(int employeeId) {
+		Connection conn = DBUtil.getConn();
+		SubReturnRecordDAO dao = new SubReturnRecordDAOImp(conn);
+		int l =  dao.getWarehouseId(employeeId);
+		DBUtil.closeConn(conn);
+		return l;
+	}
 	
 	
 	

@@ -284,6 +284,27 @@ public class SubReturnRecordDAOImp implements SubReturnRecordDAO {
 		
 		
 	}
+
+	@Override
+	public int getWarehouseId(int employeeId) {
+		int warehouseId = 0;
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("select * from warehousemanager where employeeId = ? ;");
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				warehouseId = rs.getInt("warehouseId");
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return warehouseId;
+	}
 	
 	
 }
