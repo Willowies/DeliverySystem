@@ -130,6 +130,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageSWR",null);
 	}
 %>
 		</div>

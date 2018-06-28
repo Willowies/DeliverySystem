@@ -174,6 +174,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageGSIR", null);
 	}
 %>
 	</body>

@@ -14,4 +14,5 @@ public interface InvoiceDAO {
 	public void getClientInvoice(int invoiceId, String employeeName);
 	public void abandonInvoice(int workId, String employeeName);
 	public Invoice selectInvoiceByWorkId(int workId);
+	public void abandonByNewOrderId(int newOrderId);
 }

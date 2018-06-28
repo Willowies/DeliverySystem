@@ -126,13 +126,14 @@
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
 <%
-	Object message = request.getAttribute("messageAI");
+	Object message = request.getSession().getAttribute("messageAI");
 	if(message!=null&&!"".equals(message)){
 %>
 	<script type="text/javascript">
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageAI", null);
 	}
 %>
 	</body>

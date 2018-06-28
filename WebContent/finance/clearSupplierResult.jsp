@@ -122,7 +122,7 @@
 							<div class="form-group">
 								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">供应商</p>
 								<div style="margin: 0 0 0 15px; width:254px;">
-									<input type="text" name="substation" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
+									<input type="text" name="supplier" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
 								</div>
 							</div>
 							<div class="form-group">
@@ -194,6 +194,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageclearSupplier", null);
 	}
 %>
 			<!-- /#page-wrapper -->

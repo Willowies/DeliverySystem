@@ -139,6 +139,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageCSUB", null);
 	}
 %>
 	</body>

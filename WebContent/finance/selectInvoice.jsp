@@ -129,6 +129,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageSI", null);
 	}
 %>
 		</div>

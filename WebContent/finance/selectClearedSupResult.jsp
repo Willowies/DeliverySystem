@@ -107,14 +107,14 @@
 			</nav>
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;  min-height: 299px;">
 				<div class="page-navigation">
-					<strong>>查询订单 / search page</strong>
+					<strong>查询订单 / search page</strong>
 				</div>
 				<!-- 搜索 -->
 				<div style="display: flex;flex-direction: row;align-items:flex-start;">
 					<div class="homeblock3" style="margin-left:auto; margin-right:auto;">
 						<p style="margin: 15px;font-size: 18px;font-family: '微软雅黑';">查询单据</p>
 						
-						<form action="../clearMoneyServlet?action=selectClearedSub" method="post" role="form">
+						<form action="../clearMoneyServlet?action=selectClearedSup" method="post" role="form">
 							<div class="form-group">
 								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">供应商</p>
 								<div style="margin: 0 0 0 15px; width:254px;">

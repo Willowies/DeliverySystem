@@ -110,7 +110,7 @@
 			<!--页面-->
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
 				<form action="../clearMoneyServlet?action=selectClearedSub" method="post">
-					<div class="page-navigation">查询订单 / search page</div>
+					<div class="page-navigation">查询签收单 / search page</div>
 					<div class="searchblock">
 						<p1>查询签收单</p1>
 						<p>分站</p>
@@ -139,6 +139,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageCleared", null);
 	}
 %>
 	</body>

@@ -226,6 +226,7 @@ public class ClearMoneyServlet extends HttpServlet {
 		//ClearMoneyService.getInstance().clearSubstation(ids, e.getEmployeeName());
 		//进行结算
 		ClearMoneyService.getInstance().clearSuppiler(ids1, ids2, "test");
+		
 		request.getSession().setAttribute("messageclearSupplier", "结算成功");
 		request.getSession().setAttribute("resultList1", null);
 		request.getSession().setAttribute("resultList2", null);
@@ -342,7 +343,7 @@ public class ClearMoneyServlet extends HttpServlet {
 		//Employee e = (Employee)request.getSession().getAttribute("employee");
 		//ClearMoneyService.getInstance().clearSubstation(ids, e.getEmployeeName());
 		ClearMoneyService.getInstance().clearSubstation(idss, "test");
-		request.getSession().setAttribute("messageC", "结算成功");
+		request.getSession().setAttribute("messageClear", "结算成功");
 		
 		request.getSession().setAttribute("resultListselectSign", null);
 		//request.getRequestDispatcher("clearSubstationResult.jsp").forward(request, response);	

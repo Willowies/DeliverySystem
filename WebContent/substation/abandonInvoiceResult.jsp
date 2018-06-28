@@ -161,6 +161,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageAfromS", null);
 	}
 %>
 		<!-- /#wrapper -->

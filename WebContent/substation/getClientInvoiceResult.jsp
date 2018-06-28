@@ -114,7 +114,7 @@
 							
 								<p style="float:left; margin: 17px 20px 5px 80px;width= 20px;font-size: 15px;">任务单号</p>
 								<div style="float:left;margin: 11px 20px 0 40px; width:254px;">
-									<input type="text" name="invoiceId" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
+									<input type="text" name="workId" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
 								</div>
 								<button type="submit" onclick="" class="buttonB" style=" margin:10px 0 0 40px; float:left">搜索</button>
 							
@@ -172,6 +172,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageGCI", null);
 	}
 %>
 	</body>

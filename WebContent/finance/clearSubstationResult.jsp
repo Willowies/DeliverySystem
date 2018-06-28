@@ -204,6 +204,17 @@
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
+<%
+	Object message = request.getSession().getAttribute("messageClear");
+	if(message!=null&&!"".equals(message)){
+%>
+	<script type="text/javascript">
+	alert("<%=message%>");
+	</script>
+<%
+	request.getSession().setAttribute("messageClear", null);
+	}
+%>
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
 	</body>

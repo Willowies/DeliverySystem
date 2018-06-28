@@ -184,6 +184,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageRR", null);
 	}
 %>
 		<!-- /#wrapper -->

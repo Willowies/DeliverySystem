@@ -140,6 +140,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageselectOrder", null);
 	}
 %>
 	</body>

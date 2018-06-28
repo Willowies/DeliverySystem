@@ -167,6 +167,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageAID", null);
 	}
 %>
 		<!-- /#wrapper -->

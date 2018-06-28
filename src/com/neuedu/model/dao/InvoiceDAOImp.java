@@ -298,5 +298,23 @@ public class InvoiceDAOImp implements InvoiceDAO {
 		return invoice;
 	}
 
-	//
+	//退货时自动废弃
+	public void abandonByNewOrderId(int newOrderId){
+		PreparedStatement ps = null;
+		int workId = -1;
+		try {
+			ps = conn.prepareStatement("select workId from workorder where workType = 1 and orderId = "+newOrderId);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				workId = rs.getInt("workId");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(workId!=-1){
+			abandonInvoice(workId,"test");
+		}
+	}
 }

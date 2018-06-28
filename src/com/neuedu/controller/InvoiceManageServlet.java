@@ -238,8 +238,8 @@ public class InvoiceManageServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/finance/getSubstationInvoice.jsp");
 		}else if(invoice.getState()!=1 || invoice.getStatus()==0){
 			//发票已领用或作废
-			//request.getSession().setAttribute("messageGSI", "发票已领用或作废");
-			request.getRequestDispatcher("getSubstationInvoice.jsp").forward(request, response);
+			request.getSession().setAttribute("messageGSI", "发票已领用或作废");
+			//request.getRequestDispatcher("getSubstationInvoice.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/finance/getSubstationInvoice.jsp");
 		}else{
 			invoice.setStateInfo("正常");

@@ -90,7 +90,7 @@
 									<i class="fa fa-tag nav_icon"></i>发票管理<span class="fa arrow"></span>
 								</a>
 								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
-									<li  class="highlight-item"><a href=".jsp">发票领用</a></li>
+									<li  class="highlight-item"><a href="getClientInvoice.jsp">发票领用</a></li>
 									<li><a href="abandonInvoice.jsp">发票作废</a></li>
 									<li><a href="selectInvoice.jsp">发票查询</a></li>
 								</ul>
@@ -128,6 +128,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageSWOC", null);
 	}
 %>
 	</body>

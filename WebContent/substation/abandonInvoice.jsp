@@ -126,6 +126,7 @@
 	alert("<%=message%>");
 	</script>
 <%
+	request.getSession().setAttribute("messageAIfromS", null);
 	}
 %>
 		<!-- /#wrapper -->
