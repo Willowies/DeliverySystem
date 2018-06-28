@@ -59,23 +59,79 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li >
-								<a href=".jsp"><i class="fa fa-home nav_icon"></i>主页</a>
+						
+						
+							<li  class="highlight-item">
+								<a href="../delivery/deliveryHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
-							<li class="highlight-item">
-								<a href="supRegister.jsp"><i class="fa fa-user nav_icon"></i>新增供应商
+							<li>
+								<a href=""><i class="fa fa-download nav_icon"></i>商品管理<span class="fa arrow"></span></a>
+								 <ul class="nav nav-second-level">
+							    	
+                                    <li>
+                                        <a href="../firstclass/firstClassHome.jsp">商品一级分类管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="../secondclass/secondClassHome.jsp">商品二级分类管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="../clientService/productRegister.jsp">商品管理</a>
+                                    </li>
+                                </ul>  
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-upload nav_icon"></i>库房管理<span class="fa arrow"></span></a>
+							   <ul class="nav nav-second-level">
+							   	
+							    	<li>
+                                        <a href="../warehouse1/setWarehouse.jsp">库房设置</a>
+                                    </li>
+                                    <li>
+                                        <a href="../delivery/warehouseProductSetting.jsp">库房储备设置</a>
+                                    </li>
+                                    <li>
+                                        <a href="../delivery/warehouseValue.jsp">库房量查询</a>
+                                    </li>
+                                    <li>
+                                        <a href="../delivery/warehouseOrderSearch.jsp">出入单查询</a>
+                                    </li>
+                                </ul>    	
+
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href=""><i class="fa fa-download nav_icon"></i>供应商管理<span class="fa arrow"></span>
+								</a>
+								<ul class="nav nav-second-level">
+							   	
+							    	<li>
+                                        <a href="supRegister.jsp">注册供应商</a>
+                                    </li>
+							    	<li>
+                                        <a href="supSelectResult.jsp">查询供应商</a>
+                                    </li>
+                                    
+                                </ul>    	
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="../delivery/stockManage.jsp"><i class="fa fa-briefcase nav_icon"></i>进货管理
+								</a>
+
+								<!-- /.nav-second-level -->
+							</li>
+							<li>
+								<a href="../delivery/returnManage.jsp"><i class="fa fa-sign-out nav_icon"></i>退货管理</span>
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
-								<li>
-								<a href="">
-									<i class="fa fa-tasks nav_icon"></i>供应商管理<span class="fa arrow"></span>
+							<li>
+								<a href="../delivery/statistics.jsp"><i class="fa fa-sign-out nav_icon"></i>统计</span>
 								</a>
-								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
-								    <li><a href="supSelectResult.jsp">查询供应商信息</a></li>
-								</ul>
 								<!-- /.nav-second-level -->
 							</li>
+							
+							
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->
