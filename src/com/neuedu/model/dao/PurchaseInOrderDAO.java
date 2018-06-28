@@ -13,5 +13,6 @@ public interface PurchaseInOrderDAO {
 	public void clearSuppiler(int[] ids,String employeeName);
 
 	public List<PurchaseInOrder> selectClearedSuppiler(String supplier, Date date, String product);
+	
 
 }

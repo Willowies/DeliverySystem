@@ -349,7 +349,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		return newOrders;
 	}
 
-	//淇敼璁㈠崟鐘舵��
+	//娣囶喗鏁肩拋銏犲礋閻樿埖锟斤拷
 	public void modifyLackStatus(int orderId, String operator) {
 		PreparedStatement ps = null;
 		try {
@@ -604,12 +604,12 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 
 	
-	//鏌ヨ鎸囧畾椤电爜鐨勬暟鎹�
+	//閺屻儴顕楅幐鍥х暰妞ょ數鐖滈惃鍕殶閹癸拷
 	@Override
 	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//鍥哄畾
-		StringBuffer sbf = new StringBuffer("");//鐢ㄢ�溾�濆紑澶�
+		int pageSize = 5;//閸ュ搫鐣�
+		StringBuffer sbf = new StringBuffer("");//閻€劉锟芥壕锟芥繂绱戞径锟�
 		sbf.append(" select * from workorder where 1=1 ");
 		if(requireDate != null){
 			sbf.append(" and requireDate=? ");
@@ -621,7 +621,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			sbf.append(" and workType=? ");
 		}
 		
-		//鏌ヨ锛屾瀯寤簊ql
+		//閺屻儴顕楅敍灞剧�绨妐l
 		try {
 			PreparedStatement ps = conn.prepareStatement(" select * from ( "
 					+ " select @rownum:=@rownum+1 as rownum, a.*, b.total, b.receiverName, b.receiverPhone, b.receiverAddress, b.productQuantity, d.productCode, d.productUnit "
@@ -643,8 +643,8 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			if(workType != 0){
 				ps.setInt(index, workType);
 			}
-			//鎵ц
-			ResultSet rs = ps.executeQuery();//鎵ц鏌ヨ锛岃繑鍥炵粨鏋滈泦
+			//閹笛嗩攽
+			ResultSet rs = ps.executeQuery();//閹笛嗩攽閺屻儴顕楅敍宀冪箲閸ョ偟绮ㄩ弸婊堟肠
 			while(rs.next()){
 				WorkOrder workOrder = new WorkOrder();
 				
@@ -652,35 +652,35 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				workOrder.setWorkType(rs.getInt("workType"));
 				workOrder.setWorkStatus(rs.getInt("workStatus"));
 				workOrder.setRequireDate(rs.getDate("requireDate"));
-				workOrder.setTotalAmount(rs.getFloat("total"));//璁㈠崟鐨則otal
+				workOrder.setTotalAmount(rs.getFloat("total"));//鐠併垹宕熼惃鍓噊tal
 				workOrder.setRemark(rs.getString("remark"));
 				
 				workOrder.setWarehouseId(rs.getInt("warehouseId"));
-				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder鍘熸湰灏辨湁鐨�
+				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder閸樼喐婀扮亸杈ㄦ箒閻拷
 				
 				workOrder.setClientName(rs.getString("receiverName"));
 				workOrder.setClientPhone(rs.getString("receiverPhone"));
-				workOrder.setClientAddress(rs.getString("receiverAddress"));//璁㈠崟鐨剅eceiverAddress
+				workOrder.setClientAddress(rs.getString("receiverAddress"));//鐠併垹宕熼惃鍓卐ceiverAddress
 				
 				workOrder.setProductUnit(rs.getString("productUnit"));
 				workOrder.setProductQuantity(rs.getInt("productQuantity"));
 				workOrder.setProductCode(rs.getString("productCode"));
 				
-				list.add(workOrder);//娣诲姞鏌ヨ鍒扮殑鏁版嵁
+				list.add(workOrder);//濞ｈ濮為弻銉嚄閸掓壆娈戦弫鐗堝祦
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return list;//杩斿洖list
+		return list;//鏉╂柨娲杔ist
 	}
 
-	//鏁版嵁鐨勯〉鏁�
+	//閺佺増宓侀惃鍕�夐弫锟�
 	@Override
 	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//鍥哄畾
+		int pageSize = 5;//閸ュ搫鐣�
 		int count = 0;
-		StringBuffer sbf = new StringBuffer("");//鐢ㄢ�溾�濆紑澶�
+		StringBuffer sbf = new StringBuffer("");//閻€劉锟芥壕锟芥繂绱戞径锟�
 		sbf.append(" select count(*) cc from workorder where 1=1 ");
 		if(requireDate != null){
 			sbf.append(" and requireDate=? ");
@@ -691,7 +691,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		if(workType != 0){
 			sbf.append(" and workType=? ");
 		}
-		//鏋勫缓sql璇彞
+		//閺嬪嫬缂搒ql鐠囶厼褰�
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sbf.toString());
@@ -709,10 +709,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			if(workType != 0){
 				ps.setInt(index, workType);
 			}
-			//鎵ц璇彞
+			//閹笛嗩攽鐠囶厼褰�
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//璇存槑璧风爜鏈変竴涓�
-				count = rs.getInt("cc");//鑾峰緱鏁版嵁鎬绘暟
+			if(rs.next()){//鐠囧瓨妲戠挧椋庣垳閺堝绔存稉锟�
+				count = rs.getInt("cc");//閼惧嘲绶遍弫鐗堝祦閹粯鏆�
 			}
 			System.out.println("count::"+count);
 		} catch (SQLException e) {
@@ -754,6 +754,25 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 		
 		return orders;
+	}
+	
+	public boolean selectWorkOrder(int workId) {
+		boolean isExist = false;
+		String str = " select * from workorder where workId=?";
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(str);
+			ps.setInt(1, workId);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				isExist = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBUtil.closePS(ps);
+		}
+		return isExist;
 	}
 
 }

@@ -21,29 +21,27 @@ public class PurchaseInOrderDAOImp implements PurchaseInOrderDAO {
 	public PurchaseInOrder selectPurchaseInOrder(int purchaseId) {
 		PurchaseInOrder purOrder = new PurchaseInOrder();
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append("  select * from purchaseinorder where purchaseId=? ");
+		sbf.append("  select  pu.*,pr.productName from purchaseinorder pu, product pr where purchaseInId=? "
+				+ "and pu.productId=pr.productId");
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sbf.toString());
-			int index = 1;
-			if(purchaseId != 0){
-				ps.setInt(index, purchaseId);
-				index++;
-			}
+            ps.setInt(1, purchaseId);
+							
 			//÷¥––≤È—Ø
 			ResultSet rs = ps.executeQuery();			
-			while(rs.next()){
-				purOrder.setPurchaseId(rs.getInt("purchaseId"));
+			if(rs.next()){
+				purOrder.setPurchaseId(rs.getInt("purchaseInId"));
 				purOrder.setProductId(rs.getInt("productId"));
 				purOrder.setProductName(rs.getString("productName"));
 				purOrder.setProductQuantity(rs.getInt("productQuantity"));
 				purOrder.setProductAmount(rs.getInt("productAmount"));
 				
-				break;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			DBUtil.closePS(ps);
 		}
 			
 		return purOrder;

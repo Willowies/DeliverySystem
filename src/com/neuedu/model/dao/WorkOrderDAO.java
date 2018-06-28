@@ -26,4 +26,6 @@ public  interface WorkOrderDAO {
 	List<WorkOrder> searchWorkOrderWithProduct(int workId);
 
 	public List<WarehouseNameInfo> getWarehosueInfo();
+	
+	public boolean selectWorkOrder(int workId);
 }
