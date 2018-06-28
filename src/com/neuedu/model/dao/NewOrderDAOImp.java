@@ -48,6 +48,16 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			System.out.println(ps);
 			ps.executeUpdate();
 			*/
+			int orderState =1 ;
+			if(newOrder.getProduct().getAllocatableQuantity()>=newOrder.getProductQuantity()){
+				ps2 = conn.prepareStatement(" update warehouseProduct set allocatableQuantity = (allocatableQuantity-?) where productId = ?;");
+				ps2.setInt(1, newOrder.getProductQuantity());
+				ps2.setInt(2, newOrder.getProduct().getProductId());
+			}else{
+				orderState = 3;
+			}
+			ps2.executeUpdate();
+			
 			ps = conn.prepareStatement(" insert into newOrder values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,null);");
 			ps.setInt(1, newOrder.getClient().getClientId());
 			ps.setInt(2, newOrder.getProduct().getProductId());
@@ -63,16 +73,13 @@ public class NewOrderDAOImp implements NewOrderDAO {
 			ps.setString(12, newOrder.getNewOrderRemark());
 			ps.setFloat(13, newOrder.getTotal());
 			ps.setInt(14, newOrder.getEmployeeId());
-			ps.setInt(15, newOrder.getOrderState());
+			ps.setInt(15, orderState);
 			ps.setInt(16, newOrder.getStatus());
 			ps.setString(17, newOrder.getOperator());
 			ps.setDate(18, new java.sql.Date(newOrder.getOperateDate().getTime()));
 			ps.executeUpdate();
 			//更新库存可用量
-			ps2 = conn.prepareStatement(" update warehouseProduct set allocatableQuantity = (allocatableQuantity-?) where productId = ?;");
-			ps2.setInt(1, newOrder.getProductQuantity());
-			ps2.setInt(2, newOrder.getProduct().getProductId());
-			ps2.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
