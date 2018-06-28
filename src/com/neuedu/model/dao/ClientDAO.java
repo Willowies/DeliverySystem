@@ -30,6 +30,9 @@ public interface ClientDAO {
 	void updateClient(Client client, Employee e);
 
 
+	Client validateClientIc(String ic);
+
+
 
 
 

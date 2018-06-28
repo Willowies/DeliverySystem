@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.neuedu.model.dao.ClientDAO;
 import com.neuedu.model.dao.ClientDAOImp;
+
 import com.neuedu.model.po.Client;
 import com.neuedu.model.po.Employee;
 
@@ -43,14 +44,14 @@ public class ClientService {
 	}
 
 	// 批量删除
-	public void deleteUsers(int[] ids,Employee e) {
+	public void deleteUsers(int[] ids, Employee e) {
 		// 获取与数据库的连接
 		Connection conn = DBUtil.getConn();
 		// 开启事务
 		DBUtil.beginTransaction(conn);
 		try {
 			ClientDAO dao = new ClientDAOImp(conn);
-			dao.deleteUsers(ids,e);
+			dao.deleteUsers(ids, e);
 			// 提交
 			DBUtil.commit(conn);
 		} catch (Exception e1) {
@@ -70,7 +71,7 @@ public class ClientService {
 	}
 
 	// 分页查询
-	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone,int pageNum) {
+	public List<Client> selectClient(String clientName, String clientIc, String clientMobilePhone, int pageNum) {
 		Connection conn = DBUtil.getConn();
 		ClientDAO dao = new ClientDAOImp(conn);
 		return dao.selectClient(clientName, clientIc, clientMobilePhone, pageNum);
@@ -97,7 +98,7 @@ public class ClientService {
 		DBUtil.beginTransaction(conn);
 		try {
 			ClientDAO dao = new ClientDAOImp(conn);
-			dao.updateClient(client,e);
+			dao.updateClient(client, e);
 			// 提交
 			DBUtil.commit(conn);
 		} catch (Exception e1) {
@@ -105,6 +106,19 @@ public class ClientService {
 			DBUtil.rollback(conn);
 		} finally {
 			DBUtil.closeConn(conn);
+		}
+	}
+
+	// 判断用户名是否重复
+	public boolean validateClientIc(String ic) {
+		Connection conn = DBUtil.getConn();
+		ClientDAO dao = new ClientDAOImp(conn);
+		Client c = dao.validateClientIc(ic);
+		DBUtil.closeConn(conn);
+		if (c == null) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

@@ -29,6 +29,7 @@
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/validateClientIc.js" ></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -103,7 +104,7 @@
 								<div class="col-md-8">
 									<div class="input-group">
 									<input type="text" name="clientname" class="form-control1" placeholder="必填"
-									style = "width:450px;margin-left:0%">
+									style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -112,8 +113,11 @@
 								<label class="col-md-2 control-label" style = "width:80px ;">身份证号</label>
 								<div class="col-md-8">
 									<div class="input-group">
+									<!-- 判断Ic唯一 -->
 										 <input type="text" name="clientIc" class="form-control1" placeholder="必填" required="required"
-										 style = "width:450px;margin-left:0%">
+										 style = "width:450px;margin-left:0%"
+										 id="clientIc"  onblur="validate()" >
+										 <span id="res" style="color:red"  ></span>
 									</div>
 								</div>
 							</div>
@@ -122,7 +126,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 									<input type="text" name="clientWorkPlace" class="form-control1" placeholder="可选"
-									style = "width:450px;margin-left:0%">
+									style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -131,7 +135,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 									<input type="text" name="clientPhoneNumber" class="form-control1" placeholder="可选"
-									style = "width:450px;margin-left:0%">
+									style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -140,7 +144,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 										<input type="text" name="clientMobilePhone"class="form-control1" placeholder="必填"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -149,7 +153,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 										<input type="text" name="clientContactAddress" class="form-control1" placeholder="必填"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -159,7 +163,7 @@
 									<div class="input-group input-icon right">
 									
 										<input type="number" name="clientPostcode"class="form-control1" placeholder="可选"
-										style = "width:450px;margin-left:0%"%">
+										style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
@@ -168,7 +172,7 @@
 								<div class="col-md-8">
 									<div class="input-group input-icon right">
 										<input type="email" name="clientEmail" class="form-control1" placeholder="可选"
-										style = "width:450px;margin-left:0%">
+										style = "width:450px;margin-left:0%" required="required">
 									</div>
 								</div>
 							</div>
