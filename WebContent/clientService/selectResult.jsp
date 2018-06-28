@@ -77,18 +77,18 @@
 							<li >
 								<a href="substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
-							<li class="highlight-item">
-								<a href="registerClient.jsp"><i class="fa fa-user nav_icon"></i>新增客户
-								</a>
-								<!-- /.nav-second-level -->
-							</li>
+						
 								<li>
 								<a href="">
 									<i class="fa fa-tasks nav_icon"></i>客户管理<span class="fa arrow"></span>
 								</a>
 								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
+								    <li><a href="registerClient.jsp">新增客户</a></li>
 								    <li><a href="selectResult.jsp">查询客户信息</a></li>
+								    
+
 								</ul>
+								
 								<!-- /.nav-second-level -->
 							</li>
 						</ul>
