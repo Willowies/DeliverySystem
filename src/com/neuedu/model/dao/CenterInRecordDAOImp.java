@@ -22,7 +22,7 @@ public class CenterInRecordDAOImp implements CenterInRecordDAO {
 		if(!testInto(cInRecord.getPurchaseId())){ //判断该购货单是否入库过
 			try {
 				//插入一条中心库房入库记录
-				String sql = " insert into centerinrecord(productId,expectedQuantity,acturalQuantity,centerInDate,"
+				String sql = " insert into centerinrecord(productId,expectedQuantity,actualQuantity,centerInDate,"
 						+ "remark) values(?,?,?,?,?)";
 				ps = conn.prepareStatement(sql);			
 				ps.setInt(1, cInRecord.getProductId());
