@@ -167,4 +167,14 @@
     <servlet-name>ProductSelectServlet</servlet-name>
     <url-pattern>/ProductSelectServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>WarehouseServlet</display-name>
+    <servlet-name>WarehouseServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.WarehouseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WarehouseServlet</servlet-name>
+    <url-pattern>/warehouseServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

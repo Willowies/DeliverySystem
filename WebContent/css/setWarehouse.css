@@ -1,0 +1,269 @@
+.highlight-item {
+	background: #FFFFFF;
+	border-right-color: #000000;
+	border-right: solid;
+	border-width: 1px;
+}
+
+.increaseWarehouse {
+	height: 600px;
+	width: 700px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 0 auto;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 25px;
+}
+
+.increaseWarehouse p1 {
+	font-size: 16px;
+	font-family: "微软雅黑";
+}
+
+.increaseWarehouse p {
+	margin: 25px 0 10px 10px;
+}
+
+.increaseWarehouse input {
+	margin: 0 0  0px 10px;
+	width: 420px;
+}
+
+.increaseWarehouse select {
+	margin: 0 0 10px 10px;
+	width: 420px;
+	height: 40px;
+}
+
+.increaseWarehouse .buttonblock {
+	width: 600px;
+	margin: 40px;
+}
+
+.increaseWarehouse button {
+	width: 100px;
+	height: 40px;
+	background: #169BD5;
+	margin: 5px 45px;
+	color: #FFFFFF;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+}
+
+.increaseWarehouse2 {
+	height: 400px;
+	width: 400px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 0 30px 0 40px;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 20px;
+	
+}
+
+.increaseWarehouse2 p1 {
+	font-size: 20px;
+	font-family: "微软雅黑";
+}
+
+.increaseWarehouse2 p {
+	font-size: 16px;
+	margin: 70px 0 0px 5px;
+}
+
+.increaseWarehouse2 input {
+	font-size: 12px;
+	margin: 20px 0 5px 5px;
+	width: 300px;
+	height: 40px;
+}
+
+
+.increaseWarehouse2 .buttonblock {
+	width: 400px;
+	margin: 20px 0;
+}
+
+.increaseWarehouse2 button {
+	width: 90px;
+	height: 30px;
+	background: #169BD5;
+	margin:20px 25px;
+	color: #FFFFFF;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.selectResult{
+	height: 550px;
+	width: 1000px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 95px 50px 0 50px;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 20px;
+	
+}
+
+.selectResult{
+	display: flex;
+	flex-direction: column;
+}
+
+.selectResult .title{
+	margin: 10px 0 10px 10px;
+}
+
+.selectResult .title p3{
+	float: left;
+	margin: 0 25px;
+}
+
+.result-content{
+	flex: 1;
+}
+
+.result-item{
+	height: 40px;
+	margin: 20px 10px;
+	padding: 8px 0 10px 0px;
+}
+.result-item p3{
+	float: left;
+	margin: 0;
+}
+
+.result-foot{
+	display: flex;
+}
+
+.result-foot .page-turner{
+	display: flex;
+	width:850px;
+	align-items: center; 
+    justify-content: center; 
+}
+
+.result-foot .operate-button{
+	float: right;
+	margin-top:30px;
+	margin-right: 20px;
+	
+}
+.result-foot .b{
+	width: 150px;
+	height: 40px;
+	background: #169BD5;
+	margin: ;
+	color: #FFFFFF;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#jumpout-block{
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	background: rgba(0,0,0,0.4);
+}
+
+#jump-actual-block{
+	height: 450px;
+	width: 400px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 100px 0 0 27%;
+	padding: 25px;
+}
+
+#jump-actual-block p{
+	margin: 10px;
+}
+
+#jump-actual-block input {
+	margin: 0 0 5px 10px;
+	width: 300px;
+	height: 30px;
+}
+
+#jump-actual-block select {
+	margin: 0 0 10px 10px;
+	width: 300px;
+	height: 30px;
+}
+
+#jump-actual-block .buttonblock {
+	width: 150px;
+	margin: 20px auto;
+}
+
+#jump-actual-block button {
+	width: 150px;
+	height: 40px;
+	background: #169BD5;
+	margin: ;
+	color: #FFFFFF;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+
+.homeblock2{
+	height: 180px;
+	width: 300px;
+	background: #FFFFFF;
+	border: solid;
+	border-color: #CDCDCD;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin: 0 30px 20px 40px;
+	box-shadow: 5px 5px 5px #e2dfdf;
+	padding: 5px;
+}
+
+.homeblock2 .buttonblock {
+	width: 120px;
+	margin: 30px 20px 0 0;
+	float: right;
+}
+
+.homeblock2 button {
+	width: 120px;
+	height: 30px;
+	background: #aaddee;
+	margin: ;
+	color: #31708f;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	box-shadow: none;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}

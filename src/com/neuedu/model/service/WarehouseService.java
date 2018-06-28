@@ -109,5 +109,58 @@ public class WarehouseService {
 		DistributionOrderDAO disOrderDao = new DistributionOrderDAOImp(conn);
 		return disOrderDao.selectDistribution(outDate,warehouseName);
 	}
+	//增加库房
+	public void addWarehouse(Warehouse warehouse) {
+		//获取与数据库的连接
+		Connection conn=DBUtil.getConn();
+		//开启事务
+		DBUtil.beginTransaction(conn);
+		try {
+			WarehouseDAO dao=new WarehouseDAOImp(conn);
+			dao.addWarehouse(warehouse);
+			//提交事务
+			DBUtil.commit(conn);			
+		}catch(Exception e) {
+			//回滚
+			DBUtil.rollback(conn);
+		}finally {
+			//关闭连接
+			DBUtil.closeConn(conn);
+		}
+	}
+	
+	
+	//组合查询
+	public List<Warehouse> selectWarehouse(String warehouseName){
+		//获取与数据库的连接
+		Connection conn=DBUtil.getConn();
+		WarehouseDAO dao=new WarehouseDAOImp(conn);
+		return dao.selectWarehouse(warehouseName);
+	}
+	
+	
+		
+	
+	//更改库房
+	public void updateWarehouse(Warehouse warehouse) {
+		//获取与数据库的连接
+		Connection conn=DBUtil.getConn();
+		WarehouseDAO dao=new WarehouseDAOImp(conn);
+		dao.updateWarehouse(warehouse);
+	}
+	
+	
+	
+	//删除库房
+	public void deleteWarehouse(String warehouseId) {
+		Connection conn = DBUtil.getConn();
+		WarehouseDAO dao=new WarehouseDAOImp(conn);
+		dao.deleteWarehouse(warehouseId);
+	}
 
+	public Warehouse getWarehouseById(int warehouseId) {
+		Connection conn=DBUtil.getConn();
+		WarehouseDAO dao=new WarehouseDAOImp(conn);
+		return dao.getWarehouseById(warehouseId);
+	}
 }
