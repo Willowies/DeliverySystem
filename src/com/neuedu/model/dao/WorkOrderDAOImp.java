@@ -361,6 +361,16 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			
 			ps.executeUpdate();
 			
+			ps = conn.prepareStatement("update warehouseproduct a,neworder b"
+					+ " set a.allocatableQuantity = a.allocatableQuantity-b.productQuantity"
+					+ " where b.newOrderId=? and warehouseId in"
+					+ " (select warehouseId from warehouse where warehouseRank=1)"
+					+ " and a.productId in (select productId from neworder where newOrderId=? ) ;");
+			ps.setInt(1, orderId);
+			ps.setInt(2, orderId);
+			
+			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
