@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.neuedu.model.po.Employee;
 import com.neuedu.model.po.Invoice;
 import com.neuedu.model.po.NewOrder;
+import com.neuedu.model.po.ReturnOrder;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.model.service.InvoiceService;
 
@@ -179,7 +180,7 @@ public class InvoiceManageServlet extends HttpServlet {
 	}
 
 	//登记前查询任务单及订单信息
-	private void selectWorkOrderR(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*	private void selectWorkOrderR(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String workId = request.getParameter("workId");
 		WorkOrder workorder = InvoiceService.getInstance().selectWorkOrder(workId);
@@ -204,7 +205,46 @@ public class InvoiceManageServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/finance/registerInvoiceResult.jsp");
 			//request.getRequestDispatcher("registerInvoiceResult.jsp").forward(request, response);
 		}
-	}
+	}*/
+	
+	//登记前查询任务单及订单信息
+		private void selectWorkOrderR(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			// TODO Auto-generated method stub
+			String workId = request.getParameter("workId");
+			WorkOrder workorder = InvoiceService.getInstance().selectWorkOrder(workId);
+			if(workorder==null){
+				//未查到该任务单
+				request.getSession().setAttribute("messageSWR", "未查到该数据");
+				response.sendRedirect(request.getContextPath()+"/finance/registerInvoice.jsp");
+			}else{
+				Invoice invoice = null;
+				//查找到该任务单
+				if(workorder.getWorkType()==1){
+				NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+				invoice = new Invoice();
+				invoice.setWorkId(Integer.parseInt(workId));
+				invoice.setOrderId(workorder.getOrderId());
+				invoice.setInvoiceAmount(neworder.getTotal());
+				request.getSession().setAttribute("neworder", neworder);
+				}
+				else {
+					ReturnOrder returnorder= InvoiceService.getInstance().selectReturnOrder(workorder.getOrderId());
+					invoice = new Invoice();
+					invoice.setWorkId(Integer.parseInt(workId));
+					invoice.setOrderId(workorder.getOrderId());
+					invoice.setInvoiceAmount(returnorder.getReturnTotal());
+					request.getSession().setAttribute("neworder", returnorder);
+				}
+				//到数据库中记录该发票信息
+				//Employee e = (Employee)request.getSession().getAttribute("employee");
+				//InvoiceService.getInstance().getSubstationInvoice(invoice.getInvoiceId(),e.getEmployeeName());
+				invoice = InvoiceService.getInstance().recordInvoice(invoice,"test");
+				request.getSession().setAttribute("workorder", workorder);
+				request.getSession().setAttribute("recinvoice", invoice);
+				response.sendRedirect(request.getContextPath()+"/finance/registerInvoiceResult.jsp");
+				//request.getRequestDispatcher("registerInvoiceResult.jsp").forward(request, response);
+			}
+		}
 	
 	//分站领用发票
 	private void getSubstationInvoice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

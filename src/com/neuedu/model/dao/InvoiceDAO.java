@@ -2,6 +2,7 @@ package com.neuedu.model.dao;
 
 import com.neuedu.model.po.Invoice;
 import com.neuedu.model.po.NewOrder;
+import com.neuedu.model.po.ReturnOrder;
 import com.neuedu.model.po.WorkOrder;
 
 public interface InvoiceDAO {
@@ -15,4 +16,5 @@ public interface InvoiceDAO {
 	public void abandonInvoice(int workId, String employeeName);
 	public Invoice selectInvoiceByWorkId(int workId);
 	public void abandonByNewOrderId(int newOrderId);
+	public ReturnOrder selectReturnOrder(int orderId);
 }

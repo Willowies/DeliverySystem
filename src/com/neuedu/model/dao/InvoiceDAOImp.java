@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import com.neuedu.model.po.Invoice;
 import com.neuedu.model.po.NewOrder;
 import com.neuedu.model.po.Product;
+import com.neuedu.model.po.ReturnOrder;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.utils.DBUtil;
 
@@ -102,6 +103,49 @@ public class InvoiceDAOImp implements InvoiceDAO {
 			DBUtil.closePS(ps);
 		}
 	}
+	
+	//查询退货订单信息
+			public ReturnOrder selectReturnOrder(int orderId) {
+				// TODO Auto-generated method stub
+				PreparedStatement ps = null;
+				ReturnOrder returnorder = null;
+				int productId = -1;
+				try {
+					//查询订单
+					ps = conn.prepareStatement("select * from returnorder where returnOrderId="+orderId);
+					ResultSet rs = ps.executeQuery();
+					if(rs.next()){
+						returnorder = new ReturnOrder();
+						returnorder.setReturnOrderId(orderId);
+						returnorder.setReturnQuantity(rs.getInt("returnQuantity"));
+						returnorder.setReturnTotal(rs.getFloat("returnTotal"));
+						productId = rs.getInt("productId");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					DBUtil.closePS(ps);
+				}
+				//从其他表中查询数据。
+				//查询订单对应的商品
+				if(returnorder!=null){
+					try {
+						ps = conn.prepareStatement("select * from product where productId="+productId);
+						ResultSet rs = ps.executeQuery();
+						if(rs.next()){
+							returnorder.setProductName(rs.getString("productName"));
+							returnorder.setProductUnit(rs.getString("productUnit"));
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally{
+						DBUtil.closePS(ps);
+					}
+				}
+				return returnorder;
+			}
 
 	//查询订单信息
 	public NewOrder selectNewOrder(int orderId) {

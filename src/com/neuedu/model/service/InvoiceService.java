@@ -10,6 +10,7 @@ import com.neuedu.model.dao.WorkOrderDAO;
 import com.neuedu.model.dao.WorkOrderDAOImp;
 import com.neuedu.model.po.Invoice;
 import com.neuedu.model.po.NewOrder;
+import com.neuedu.model.po.ReturnOrder;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.utils.DBUtil;
 
@@ -68,6 +69,13 @@ public class InvoiceService {
 			Connection conn = DBUtil.getConn();
 			InvoiceDAO dao = new InvoiceDAOImp(conn);
 			return dao.selectNewOrder(orderId);
+		}
+		
+		//通过订单号查询订单
+		public static ReturnOrder selectReturnOrder(int orderId){
+			Connection conn = DBUtil.getConn();
+			InvoiceDAO dao = new InvoiceDAOImp(conn);
+			return dao.selectReturnOrder(orderId);
 		}
 		
 		//记录发票

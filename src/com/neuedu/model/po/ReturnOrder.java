@@ -16,6 +16,21 @@ public class ReturnOrder {
 	private String operator;
 	private Date operateDate;
 	private Date generateDate;
+	private String productName;
+	private String productUnit;
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductUnit() {
+		return productUnit;
+	}
+	public void setProductUnit(String productUnit) {
+		this.productUnit = productUnit;
+	}
 	
 	public int getReturnOrderId() {
 		return returnOrderId;
