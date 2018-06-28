@@ -262,14 +262,14 @@ public class ClearMoneyServlet extends HttpServlet {
 			if(list2.size()==0||null == list2){
 				//未查到符合条件的签收单
 				request.getSession().setAttribute("messageselectOrder", "未查到符合条件的签收单");
-				//request.getRequestDispatcher("clearSuppiler.jsp").forward(request, response);
+				//request.getRequestDispatcher("finance/clearSupplier.jsp").forward(request, response);
 				response.sendRedirect(request.getContextPath()+"/finance/clearSupplier.jsp");
 			}
 		}else{
 			//查到符合条件的签收单
 			request.getSession().setAttribute("resultList1", list1);
 			request.getSession().setAttribute("resultList2", list2);
-			//request.getRequestDispatcher("clearSupplierResult.jsp").forward(request, response);
+			//request.getRequestDispatcher("finance/clearSupplierResult.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/finance/clearSupplierResult.jsp");
 		}
 	}
