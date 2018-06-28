@@ -11,6 +11,9 @@ import java.util.List;
 
 import com.neuedu.model.po.Sign;
 import com.neuedu.utils.DBUtil;
+import com.neuedu.model.po.WorkOrder;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import java.text.SimpleDateFormat;
 
 public class SignDAOImp implements SignDAO {
 	
@@ -20,11 +23,11 @@ public class SignDAOImp implements SignDAO {
 		this.conn = conn;
 	}
 
-	//²éÑ¯Î´½áËãÇ©ÊÕµ¥
+	//ï¿½ï¿½Ñ¯Î´ï¿½ï¿½ï¿½ï¿½Ç©ï¿½Õµï¿½
 	public List<Sign> selectSign(String substation, Date date, String product) {
 		List<Sign> list = new ArrayList<Sign>();
-		//sqlÓï¾ä
-		//²éÑ¯Î´½áËãÆÕÍ¨ËÍ»õµ¥¾İ
+		//sqlï¿½ï¿½ï¿½
+		//ï¿½ï¿½Ñ¯Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("select a.*,b.orderId,b.workType,d.productQuantity,d.total,e.productName,e.productPrice "
 				+"from sign a,workorder b,warehouse c,neworder d,product e "
@@ -60,7 +63,7 @@ public class SignDAOImp implements SignDAO {
 				ps.setString(index, product);
 			}
 			
-			//Ö´ĞĞ
+			//Ö´ï¿½ï¿½
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Sign s = new Sign();
@@ -85,7 +88,7 @@ public class SignDAOImp implements SignDAO {
 			e.printStackTrace();
 		}
 		
-		//²éÑ¯ÍË»õµ¥
+		//ï¿½ï¿½Ñ¯ï¿½Ë»ï¿½ï¿½ï¿½
 		sbf = new StringBuffer("");
 		sbf.append("select a.*,b.orderId,b.workType,e.returnQuantity,e.returnTotal,f.productName,f.productPrice "
 				+"from sign a,workorder b,warehouse c,neworder d,returnorder e,product f "
@@ -122,7 +125,7 @@ public class SignDAOImp implements SignDAO {
 				ps.setString(index, product);
 			}
 			
-			//Ö´ĞĞ
+			//Ö´ï¿½ï¿½
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Sign s = new Sign();
@@ -149,7 +152,7 @@ public class SignDAOImp implements SignDAO {
 		return list;
 	}
 	
-	//½áËãÇ©ÊÕµ¥
+	//ï¿½ï¿½ï¿½ï¿½Ç©ï¿½Õµï¿½
 	public void clearSubstation(int[] ids,String employeeName){
 		String id = Arrays.toString(ids).replace('[','(').replace(']', ')');
 		PreparedStatement ps = null;
@@ -167,11 +170,11 @@ public class SignDAOImp implements SignDAO {
 		
 	}
 
-	//²éÑ¯ÒÑ½áËã¶©µ¥
+	//ï¿½ï¿½Ñ¯ï¿½Ñ½ï¿½ï¿½ã¶©ï¿½ï¿½
 	public List<Sign> selectClearedSub(String substation, Date date, String product) {
 		List<Sign> list = new ArrayList<Sign>();
-		//sqlÓï¾ä
-		//²éÑ¯Î´½áËãÆÕÍ¨ËÍ»õµ¥¾İ
+		//sqlï¿½ï¿½ï¿½
+		//ï¿½ï¿½Ñ¯Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 		StringBuffer sbf = new StringBuffer("");
 		sbf.append("select a.*,b.orderId,b.workType,d.productQuantity,d.total,e.productName,e.productPrice "
 				+"from sign a,workorder b,warehouse c,neworder d,product e "
@@ -207,7 +210,7 @@ public class SignDAOImp implements SignDAO {
 				ps.setString(index, product);
 			}
 			
-			//Ö´ĞĞ
+			//Ö´ï¿½ï¿½
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Sign s = new Sign();
@@ -232,7 +235,7 @@ public class SignDAOImp implements SignDAO {
 			e.printStackTrace();
 		}
 		
-		//²éÑ¯ÍË»õµ¥
+		//ï¿½ï¿½Ñ¯ï¿½Ë»ï¿½ï¿½ï¿½
 		sbf = new StringBuffer("");
 		sbf.append("select a.*,b.orderId,b.workType,e.returnQuantity,e.returnTotal,f.productName,f.productPrice "
 				+"from sign a,workorder b,warehouse c,neworder d,returnorder e,product f "
@@ -269,7 +272,7 @@ public class SignDAOImp implements SignDAO {
 				ps.setString(index, product);
 			}
 			
-			//Ö´ĞĞ
+			//Ö´ï¿½ï¿½
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Sign s = new Sign();
@@ -295,4 +298,129 @@ public class SignDAOImp implements SignDAO {
 		}
 		return list;
 	}
+	
+	@Override
+	public Sign getSign(WorkOrder workOrder) {
+		Sign signResult = null;
+		List<Sign> list = new ArrayList<Sign>();
+		int deliveryStaffId = workOrder.getDeliveryStaffId();
+		java.util.Date requireDate = workOrder.getRequireDate();
+		int workStatus = workOrder.getWorkStatus();
+		int workType = workOrder.getWorkType();
+		
+		//æ„å»ºsqlè¯­å¥
+		StringBuffer sbf = new StringBuffer("");//ç”¨â€œâ€å¼€å¤´
+		sbf.append(" select * from workorder where 1=1 ");
+		if(deliveryStaffId!=0){
+			sbf.append(" and deliveryStaffId=? ");
+		}
+		if(requireDate!=null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus!=0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType!=0){
+			sbf.append(" and workType=? ");
+		}
+		//æ„å»ºsqlè¯­å¥
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		PreparedStatement ps3 = null;
+		try {
+			ps = conn.prepareStatement(" select a.*, "
+					+ " b.newOrderId, b.total, b.receiverPostcode, b.receiverAddress, b.deliverRequest, b.productQuantity, b.whetherInvoice, "
+					+ " p.productPrice, p.productName, "
+					+ " u.clientName, u.clientMobilephone, w.warehouseAddress "
+					+ " from ( " + sbf.toString()+ " ) as a, neworder as b, product as p, userinfo as u, warehouse as w "
+					+ " where a.orderId=b.newOrderId and b.productId=p.productId and b.clientId=u.clientId and a.warehouseId=w.warehouseId "
+					);
+			ps2 = conn.prepareStatement(" insert into sign (workId, deliveryDate, receiptNeedOrNot, clearingStatus, "
+					+ " customerFeedback, customerSignature, status, operator, operateDate) values "
+					+ " (?,?,?,?,?,?,?,?,?) ");
+			ps3 = conn.prepareStatement(" select signId from sign where 1=1 ");
+			
+			int index = 1;
+			if(deliveryStaffId != 0){
+				ps.setInt(index, deliveryStaffId);
+				index++;
+			}
+			if(requireDate != null){
+				java.sql.Date newRequireDate = new java.sql.Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+			
+			//æ‰§è¡Œ
+			ResultSet rs = ps.executeQuery();//æ‰§è¡ŒæŸ¥è¯¢ï¼Œè¿”å›ç»“æœé›†
+			int num_q = 1;
+			while(rs.next()){//åº”è¯¥åªæœ‰ä¸€æ¬¡
+				Sign sign = new Sign();
+				//ç­¾æ”¶å•
+				sign.setWorkId(rs.getInt("workId"));
+				
+				java.util.Date date = new java.util.Date();
+				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+				System.out.println(dateFormat.format(date));
+				sign.setDeliveryDate(date);//å®æ—¶è·å–
+				
+				sign.setReceiptNeedOrNot(rs.getInt("whetherInvoice"));
+				sign.setClearingStatus(0);//é»˜è®¤clearingStatus 0
+				sign.setOrderId(rs.getInt("orderId"));
+				sign.setTotal(rs.getFloat("total"));
+				sign.setWorkType(rs.getInt("workType"));
+				sign.setProductName(rs.getString("productName"));
+				sign.setProductPrice(rs.getFloat("productPrice"));
+				sign.setProductQuantity(rs.getInt("productQuantity"));
+				sign.setCustomerName(rs.getString("clientName"));
+				sign.setCustomerPhone(rs.getString("clientMobilephone"));
+				sign.setPostCode(rs.getInt("receiverPostcode"));
+				sign.setDeliveryAddress(rs.getString("receiverAddress"));
+				sign.setDeliveryRequirement(rs.getString("deliverRequest"));
+				sign.setDeliverySubstation(rs.getInt("warehouseId"));
+				sign.setSubstationAddress(rs.getString("warehouseAddress"));
+				
+				//å¢åŠ signè¡¨çš„æ¡ç›®
+				ps2.setInt(1, sign.getWorkId());
+				ps2.setDate(2, new java.sql.Date(sign.getDeliveryDate().getTime()));
+				ps2.setInt(3, sign.getReceiptNeedOrNot());
+				ps2.setInt(4, sign.getClearingStatus());
+				ps2.setInt(5, 0);
+				ps2.setString(6, "");
+				ps2.setInt(7, 1);
+				ps2.setString(8, "");
+				ps2.setDate(9, new java.sql.Date(date.getTime()));
+				ps2.executeUpdate();//åœ¨signä¸­æ·»åŠ ä¸€æ¡æ–°æ¡ç›®
+				
+				ResultSet rsResultSet = ps3.executeQuery();
+				int num = 1;
+				while(rsResultSet.next()){//åº”è¯¥åªæœ‰ä¸€æ¬¡
+					sign.setSignId(rsResultSet.getInt("signId"));
+					list.add(sign);
+					System.out.println("è·å–signIdï¼Œnum = "+num);
+					num++;
+				}
+				System.out.println("è·å–ç­¾æ”¶å•è¦æ˜¾ç¤ºçš„æ‰€æœ‰ä¿¡æ¯ï¼Œnum_q = "+num_q);
+				num_q++;
+			}
+			if(num_q==2){
+				signResult = list.get(num_q-1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closePS(ps);
+		}
+		
+		return signResult;
+	}
+
+	
 }

@@ -603,132 +603,6 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		return orders;
 	}
 
-	
-	//閺屻儴顕楅幐鍥х暰妞ょ數鐖滈惃鍕殶閹癸拷
-	@Override
-	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
-		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//閸ュ搫鐣�
-		StringBuffer sbf = new StringBuffer("");//閻€劉锟芥壕锟芥繂绱戞径锟�
-		sbf.append(" select * from workorder where 1=1 ");
-		if(requireDate != null){
-			sbf.append(" and requireDate=? ");
-		}
-		if(workStatus != 0){
-			sbf.append(" and workStatus=? ");
-		}
-		if(workType != 0){
-			sbf.append(" and workType=? ");
-		}
-		
-		//閺屻儴顕楅敍灞剧�绨妐l
-		try {
-			PreparedStatement ps = conn.prepareStatement(" select * from ( "
-					+ " select @rownum:=@rownum+1 as rownum, a.*, b.total, b.receiverName, b.receiverPhone, b.receiverAddress, b.productQuantity, d.productCode, d.productUnit "
-					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a, neworder as b, product as d "
-					+ " where a.orderId=b.newOrderId and b.productId=d.productId "
-					+ " ) as c "
-					+ " where c.rownum <= "+ pageSize*pageNum +" and c.rownum >"+ pageSize*(pageNum-1)
-					);
-			int index = 1;
-			if(requireDate != null){
-				Date newRequireDate = new Date(requireDate.getTime());
-				ps.setDate(index, newRequireDate);
-				index++;
-			}
-			if(workStatus != 0){
-				ps.setInt(index, workStatus);
-				index++;
-			}
-			if(workType != 0){
-				ps.setInt(index, workType);
-			}
-			//閹笛嗩攽
-			ResultSet rs = ps.executeQuery();//閹笛嗩攽閺屻儴顕楅敍宀冪箲閸ョ偟绮ㄩ弸婊堟肠
-			while(rs.next()){
-				WorkOrder workOrder = new WorkOrder();
-				
-				workOrder.setWorkId(rs.getInt("workId"));
-				workOrder.setWorkType(rs.getInt("workType"));
-				workOrder.setWorkStatus(rs.getInt("workStatus"));
-				workOrder.setRequireDate(rs.getDate("requireDate"));
-				workOrder.setTotalAmount(rs.getFloat("total"));//鐠併垹宕熼惃鍓噊tal
-				workOrder.setRemark(rs.getString("remark"));
-				
-				workOrder.setWarehouseId(rs.getInt("warehouseId"));
-				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder閸樼喐婀扮亸杈ㄦ箒閻拷
-				
-				workOrder.setClientName(rs.getString("receiverName"));
-				workOrder.setClientPhone(rs.getString("receiverPhone"));
-				workOrder.setClientAddress(rs.getString("receiverAddress"));//鐠併垹宕熼惃鍓卐ceiverAddress
-				
-				workOrder.setProductUnit(rs.getString("productUnit"));
-				workOrder.setProductQuantity(rs.getInt("productQuantity"));
-				workOrder.setProductCode(rs.getString("productCode"));
-				
-				list.add(workOrder);//濞ｈ濮為弻銉嚄閸掓壆娈戦弫鐗堝祦
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;//鏉╂柨娲杔ist
-	}
-
-	//閺佺増宓侀惃鍕�夐弫锟�
-	@Override
-	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
-		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//閸ュ搫鐣�
-		int count = 0;
-		StringBuffer sbf = new StringBuffer("");//閻€劉锟芥壕锟芥繂绱戞径锟�
-		sbf.append(" select count(*) cc from workorder where 1=1 ");
-		if(requireDate != null){
-			sbf.append(" and requireDate=? ");
-		}
-		if(workStatus != 0){
-			sbf.append(" and workStatus=? ");
-		}
-		if(workType != 0){
-			sbf.append(" and workType=? ");
-		}
-		//閺嬪嫬缂搒ql鐠囶厼褰�
-		PreparedStatement ps = null;
-		try {
-			ps = conn.prepareStatement(sbf.toString());
-			
-			int index = 1;
-			if(requireDate != null){
-				Date newRequireDate = new Date(requireDate.getTime());
-				ps.setDate(index, newRequireDate);
-				index++;
-			}
-			if(workStatus != 0){
-				ps.setInt(index, workStatus);
-				index++;
-			}
-			if(workType != 0){
-				ps.setInt(index, workType);
-			}
-			//閹笛嗩攽鐠囶厼褰�
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//鐠囧瓨妲戠挧椋庣垳閺堝绔存稉锟�
-				count = rs.getInt("cc");//閼惧嘲绶遍弫鐗堝祦閹粯鏆�
-			}
-			System.out.println("count::"+count);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		int pagecount = 0;
-		if(count % pageSize == 0){
-			pagecount = count / pageSize;
-		}else{
-			pagecount = count / pageSize + 1;
-		}
-		System.out.println("pagecount+++++:"+pagecount);
-		return pagecount;
-	}
-
 	@Override
 	public List<WarehouseNameInfo> getWarehosueInfo() {
 		List<WarehouseNameInfo> orders = new ArrayList<WarehouseNameInfo>();
@@ -773,6 +647,302 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			DBUtil.closePS(ps);
 		}
 		return isExist;
+	}
+	
+	@Override
+	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;
+
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append(" select * from workorder where 1=1 ");
+		if(requireDate != null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus != 0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType != 0){
+			sbf.append(" and workType=? ");
+		}
+		
+		//查询，构建sql
+		try {
+			PreparedStatement ps = conn.prepareStatement(" select * from ( "
+					+ " select @rownum:=@rownum+1 as rownum, a.*, "
+					+ " b.total, b.productQuantity, d.productCode, d.productUnit,  u.clientName, u.clientMobilephone, u.clientContactAddress "
+					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a, neworder as b, product as d, userinfo as u "
+					+ " where a.orderId=b.newOrderId and b.productId=d.productId and b.clientId=u.clientId "
+					+ " ) as k "
+					+ " where k.rownum <= "+ pageSize*pageNum +" and k.rownum >"+ pageSize*(pageNum-1)
+					);
+			int index = 1;
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+			//执行
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				WorkOrder workOrder = new WorkOrder();
+				
+				workOrder.setWorkId(rs.getInt("workId"));
+				workOrder.setWorkType(rs.getInt("workType"));
+				workOrder.setWorkStatus(rs.getInt("workStatus"));
+				System.out.println("rsrsrs:"+rs.getInt("workStatus"));
+				workOrder.setRequireDate(rs.getDate("requireDate"));
+				workOrder.setTotalAmount(rs.getFloat("total"));
+				workOrder.setRemark(rs.getString("remark"));
+				
+				workOrder.setWarehouseId(rs.getInt("warehouseId"));
+				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));
+				
+				workOrder.setClientName(rs.getString("clientName"));
+				workOrder.setClientPhone(rs.getString("clientMobilephone"));
+				workOrder.setClientAddress(rs.getString("clientContactAddress"));
+				
+				workOrder.setProductUnit(rs.getString("productUnit"));
+				workOrder.setProductQuantity(rs.getInt("productQuantity"));
+				workOrder.setProductCode(rs.getString("productCode"));
+				
+				list.add(workOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;
+		int count = 0;
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append(" select count(*) cc from workorder where 1=1 ");
+		if(requireDate != null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus != 0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType != 0){
+			sbf.append(" and workType=? ");
+		}
+
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sbf.toString());
+			
+			int index = 1;
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("cc");
+			}
+			System.out.println("count::"+count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int pagecount = 0;
+		if(count % pageSize == 0){
+			pagecount = count / pageSize;
+		}else{
+			pagecount = count / pageSize + 1;
+		}
+		System.out.println("pagecount+++++:"+pagecount);
+		return pagecount;
+	}
+
+	@Override
+	public void workAssign(int workId, int workStatus, int deliveryStaffId) {
+		
+		System.out.println("DAOImp,assignworking,  workId:"+workId+"  workStatus:"+workStatus+"  deliveryStaffId:"+deliveryStaffId);
+		if(workId!=0 && workStatus!=0 && deliveryStaffId!=0){
+			if(workStatus==2){
+				PreparedStatement ps = null;
+				try {
+					ps = conn.prepareStatement(" update workorder as a, neworder as b set a.deliveryStaffId = ?, "
+							+ " a.workStatus = 3, b.orderState = 9 "
+							+ " where a.workId = ? and a.orderId = b.newOrderId "
+							);
+					ps.setInt(1, deliveryStaffId);
+					ps.setInt(2, workId);
+					ps.executeUpdate();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					DBUtil.closePS(ps);
+				}
+			}
+		}
+	}
+
+	@Override
+	public List<WorkOrder> selectPageWork(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType,
+			int pageNum) {
+
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;
+
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append(" select * from workorder where 1=1 ");
+		if(deliveryStaffId!=0){
+			sbf.append(" and deliveryStaffId=? ");
+		}
+		if(requireDate!=null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus!=0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType!=0){
+			sbf.append(" and workType=? ");
+		}
+
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(" select * from ( "
+					+ " select @rownum:=@rownum+1 as rownum, a.*, "
+					+ " b.total, b.productQuantity, d.productCode, d.productUnit,  u.clientName, u.clientMobilephone, u.clientContactAddress "
+					+ " from (select @rownum:=0) t, ( "+ sbf.toString() +" ) as a, neworder as b, product as d, userinfo as u "
+					+ " where a.orderId=b.newOrderId and b.productId=d.productId and b.clientId=u.clientId "
+					+ " ) as k "
+					+ " where k.rownum <= "+ pageSize*pageNum +" and k.rownum >"+ pageSize*(pageNum-1)
+					);
+			int index = 1;
+			if(deliveryStaffId != 0){
+				ps.setInt(index, deliveryStaffId);
+				index++;
+			}
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+			
+
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+
+				WorkOrder workOrder = new WorkOrder();
+				
+				workOrder.setWorkId(rs.getInt("workId"));
+				workOrder.setWorkType(rs.getInt("workType"));
+				workOrder.setWorkStatus(rs.getInt("workStatus"));
+				System.out.println("rsrsrs:"+rs.getInt("workStatus"));
+				workOrder.setRequireDate(rs.getDate("requireDate"));
+				workOrder.setTotalAmount(rs.getFloat("total"));
+				workOrder.setRemark(rs.getString("remark"));
+				
+				workOrder.setWarehouseId(rs.getInt("warehouseId"));
+				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));
+				
+				workOrder.setClientName(rs.getString("clientName"));
+				workOrder.setClientPhone(rs.getString("clientMobilephone"));
+				workOrder.setClientAddress(rs.getString("clientContactAddress"));
+				
+				workOrder.setProductUnit(rs.getString("productUnit"));
+				workOrder.setProductQuantity(rs.getInt("productQuantity"));
+				workOrder.setProductCode(rs.getString("productCode"));
+				
+				list.add(workOrder);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int selectPageCount(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType) {
+		List<WorkOrder> list = new ArrayList<WorkOrder>();
+		int pageSize = 5;
+		int count = 0;
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append(" select count(*) cc from workorder where 1=1 ");
+		if(deliveryStaffId != 0){
+			sbf.append(" and deliveryStaffId=? ");
+		}
+		if(requireDate != null){
+			sbf.append(" and requireDate=? ");
+		}
+		if(workStatus != 0){
+			sbf.append(" and workStatus=? ");
+		}
+		if(workType != 0){
+			sbf.append(" and workType=? ");
+		}
+
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sbf.toString());
+			
+			int index = 1;
+			if(deliveryStaffId != 0){
+				ps.setInt(index, deliveryStaffId);
+			}
+			if(requireDate != null){
+				Date newRequireDate = new Date(requireDate.getTime());
+				ps.setDate(index, newRequireDate);
+				index++;
+			}
+			if(workStatus != 0){
+				ps.setInt(index, workStatus);
+				index++;
+			}
+			if(workType != 0){
+				ps.setInt(index, workType);
+			}
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("cc");
+			}
+			System.out.println("count::"+count);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int pagecount = 0;
+		if(count % pageSize == 0){
+			pagecount = count / pageSize;
+		}else{
+			pagecount = count / pageSize + 1;
+		}
+		System.out.println("pagecount+++++:"+pagecount);
+		return pagecount;
 	}
 
 }
