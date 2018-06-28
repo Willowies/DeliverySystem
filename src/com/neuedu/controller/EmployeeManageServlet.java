@@ -82,7 +82,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 2:
 					//调度中心
 					try {
-						response.sendRedirect(request.getContextPath()+"/.jsp");
+						response.sendRedirect(request.getContextPath()+"/dispatch/dispatchHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

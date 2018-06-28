@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.neuedu.model.po.Client;
+import com.neuedu.model.po.DeliveryStockProduct;
 import com.neuedu.model.po.NewOrder;
 import com.neuedu.model.po.Product;
+import com.neuedu.model.po.WarehouseNameInfo;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.utils.DBUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
@@ -347,7 +349,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		return newOrders;
 	}
 
-	//修改订单状态
+	//淇敼璁㈠崟鐘舵��
 	public void modifyLackStatus(int orderId, String operator) {
 		PreparedStatement ps = null;
 		try {
@@ -602,12 +604,12 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	}
 
 	
-	//查询指定页码的数据
+	//鏌ヨ鎸囧畾椤电爜鐨勬暟鎹�
 	@Override
 	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//固定
-		StringBuffer sbf = new StringBuffer("");//用“”开头
+		int pageSize = 5;//鍥哄畾
+		StringBuffer sbf = new StringBuffer("");//鐢ㄢ�溾�濆紑澶�
 		sbf.append(" select * from workorder where 1=1 ");
 		if(requireDate != null){
 			sbf.append(" and requireDate=? ");
@@ -619,7 +621,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			sbf.append(" and workType=? ");
 		}
 		
-		//查询，构建sql
+		//鏌ヨ锛屾瀯寤簊ql
 		try {
 			PreparedStatement ps = conn.prepareStatement(" select * from ( "
 					+ " select @rownum:=@rownum+1 as rownum, a.*, b.total, b.receiverName, b.receiverPhone, b.receiverAddress, b.productQuantity, d.productCode, d.productUnit "
@@ -641,8 +643,8 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			if(workType != 0){
 				ps.setInt(index, workType);
 			}
-			//执行
-			ResultSet rs = ps.executeQuery();//执行查询，返回结果集
+			//鎵ц
+			ResultSet rs = ps.executeQuery();//鎵ц鏌ヨ锛岃繑鍥炵粨鏋滈泦
 			while(rs.next()){
 				WorkOrder workOrder = new WorkOrder();
 				
@@ -650,35 +652,35 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				workOrder.setWorkType(rs.getInt("workType"));
 				workOrder.setWorkStatus(rs.getInt("workStatus"));
 				workOrder.setRequireDate(rs.getDate("requireDate"));
-				workOrder.setTotalAmount(rs.getFloat("total"));//订单的total
+				workOrder.setTotalAmount(rs.getFloat("total"));//璁㈠崟鐨則otal
 				workOrder.setRemark(rs.getString("remark"));
 				
 				workOrder.setWarehouseId(rs.getInt("warehouseId"));
-				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder原本就有的
+				workOrder.setDeliveryStaffId(rs.getInt("deliveryStaffId"));//workorder鍘熸湰灏辨湁鐨�
 				
 				workOrder.setClientName(rs.getString("receiverName"));
 				workOrder.setClientPhone(rs.getString("receiverPhone"));
-				workOrder.setClientAddress(rs.getString("receiverAddress"));//订单的receiverAddress
+				workOrder.setClientAddress(rs.getString("receiverAddress"));//璁㈠崟鐨剅eceiverAddress
 				
 				workOrder.setProductUnit(rs.getString("productUnit"));
 				workOrder.setProductQuantity(rs.getInt("productQuantity"));
 				workOrder.setProductCode(rs.getString("productCode"));
 				
-				list.add(workOrder);//添加查询到的数据
+				list.add(workOrder);//娣诲姞鏌ヨ鍒扮殑鏁版嵁
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return list;//返回list
+		return list;//杩斿洖list
 	}
 
-	//数据的页数
+	//鏁版嵁鐨勯〉鏁�
 	@Override
 	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType) {
 		List<WorkOrder> list = new ArrayList<WorkOrder>();
-		int pageSize = 5;//固定
+		int pageSize = 5;//鍥哄畾
 		int count = 0;
-		StringBuffer sbf = new StringBuffer("");//用“”开头
+		StringBuffer sbf = new StringBuffer("");//鐢ㄢ�溾�濆紑澶�
 		sbf.append(" select count(*) cc from workorder where 1=1 ");
 		if(requireDate != null){
 			sbf.append(" and requireDate=? ");
@@ -689,7 +691,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		if(workType != 0){
 			sbf.append(" and workType=? ");
 		}
-		//构建sql语句
+		//鏋勫缓sql璇彞
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sbf.toString());
@@ -707,10 +709,10 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			if(workType != 0){
 				ps.setInt(index, workType);
 			}
-			//执行语句
+			//鎵ц璇彞
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//说明起码有一个
-				count = rs.getInt("cc");//获得数据总数
+			if(rs.next()){//璇存槑璧风爜鏈変竴涓�
+				count = rs.getInt("cc");//鑾峰緱鏁版嵁鎬绘暟
 			}
 			System.out.println("count::"+count);
 		} catch (SQLException e) {
@@ -725,6 +727,33 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 		}
 		System.out.println("pagecount+++++:"+pagecount);
 		return pagecount;
+	}
+
+	@Override
+	public List<WarehouseNameInfo> getWarehosueInfo() {
+		List<WarehouseNameInfo> orders = new ArrayList<WarehouseNameInfo>();
+		PreparedStatement ps = null;
+		StringBuffer sbf = new StringBuffer("");
+		sbf.append("select * from warehouse where warehouseRank=0 ");
+		
+		System.out.println("sql: "+sbf);
+		try {
+			ps = conn.prepareStatement(sbf.toString());
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				WarehouseNameInfo o = new WarehouseNameInfo();
+				o.setWarehouseName(rs.getString("warehouseName"));
+				
+				orders.add(o);
+				
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return orders;
 	}
 
 }

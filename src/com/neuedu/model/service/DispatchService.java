@@ -85,4 +85,11 @@ public class DispatchService {
 				DBUtil.closeConn(conn);
 			}
 		}
+		public List<WarehouseNameInfo> warehouseNameInfo() {
+			Connection conn = DBUtil.getConn();
+			WorkOrderDAO dao = new WorkOrderDAOImp(conn);
+			List<WarehouseNameInfo> l =  dao.getWarehosueInfo();
+			DBUtil.closeConn(conn);
+			return l;
+		}
 }

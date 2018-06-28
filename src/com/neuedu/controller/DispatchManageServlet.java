@@ -18,6 +18,7 @@ import com.neuedu.model.po.Client;
 import com.neuedu.model.po.NewOrder;
 import com.neuedu.model.po.Product;
 import com.neuedu.model.po.ReturnOrder;
+import com.neuedu.model.po.WarehouseNameInfo;
 import com.neuedu.model.po.WorkOrder;
 import com.neuedu.model.service.DispatchService;
 
@@ -189,10 +190,13 @@ public class DispatchManageServlet extends HttpServlet {
 			
 			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
 			
+			List<WarehouseNameInfo> list2 = DispatchService.getInstance().warehouseNameInfo();
+			
 			request.getSession().setAttribute("type", 1);
 			request.getSession().setAttribute("dispatchPageNum", pageNum);
 			request.setAttribute("page", 1);
 			request.setAttribute("orderList", list);
+			request.setAttribute("names", list2);
 			request.getSession().setAttribute("dispatchOrder", order);
 			
 			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);

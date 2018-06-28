@@ -41,7 +41,7 @@
 		<script src="./js/autocomplete.js"></script>
 		<link href="./css/autocomplete.css" rel='stylesheet' type='text/css' />
 		<script type="text/javascript">
-			var proposals = ['at', 'boat', 'bear', 'chief', 'dog', 'drink', 'elephant', 'fruit', 'grave', 'hotel', 'illness', 'London', 'motorbike', 'xw素材网官网', 'xw素材网之家', 'xw素材网下载'];
+			var proposals = [''<c:forEach items="${names}" var="order">,'${order.warehouseName}'</c:forEach>];
 			$(document).ready(function() {
 				$('#search-form').autocomplete({
 					hints: proposals,

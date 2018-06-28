@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.neuedu.model.po.NewOrder;
+import com.neuedu.model.po.WarehouseNameInfo;
 import com.neuedu.model.po.WorkOrder;
 
 public  interface WorkOrderDAO {
@@ -23,4 +24,6 @@ public  interface WorkOrderDAO {
 	List<WorkOrder> searchWorkOrderByPage(WorkOrder order, int pageSize, int page);
 
 	List<WorkOrder> searchWorkOrderWithProduct(int workId);
+
+	public List<WarehouseNameInfo> getWarehosueInfo();
 }
