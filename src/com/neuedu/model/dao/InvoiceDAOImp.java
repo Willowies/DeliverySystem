@@ -28,6 +28,8 @@ public class InvoiceDAOImp implements InvoiceDAO {
 		Invoice invoice = null;
 		int warehouseId = -1;
 		int clientId = -1;
+		int workType = -1;
+		int orderId = -1;
 		
 		//从发票表中获取数据
 		try {
@@ -54,11 +56,12 @@ public class InvoiceDAOImp implements InvoiceDAO {
 		if(invoice!=null){
 			try {
 				//取得发票订单号
-				ps = conn.prepareStatement(" select orderId,warehouseId from workorder where workId="+invoice.getWorkId());
+				ps = conn.prepareStatement(" select orderId,warehouseId,workType from workorder where workId="+invoice.getWorkId());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()){
 					invoice.setOrderId(rs.getInt("orderId"));
 					warehouseId = rs.getInt("warehouseId");
+					workType = rs.getInt("workType");
 				}
 				//取得发票分站名称
 				ps = conn.prepareStatement("select warehouseName from warehouse where warehouseId ="+warehouseId);
@@ -67,16 +70,30 @@ public class InvoiceDAOImp implements InvoiceDAO {
 					invoice.setSubstationName(rs.getString("warehouseName"));
 				}
 				//取得领用人和发票金额
-				ps = conn.prepareStatement("select clientId,total from neworder where newOrderId ="+invoice.getOrderId());
-				rs = ps.executeQuery();
-				if(rs.next()){
-					clientId = rs.getInt("clientId");
-					invoice.setInvoiceAmount(rs.getFloat("total"));
-				}
-				ps = conn.prepareStatement("select clientName from userinfo where clientId ="+clientId);
-				rs = ps.executeQuery();
-				if(rs.next()){
-					invoice.setReceivedPerson(rs.getString("clientName"));
+				if(workType==1){
+					ps = conn.prepareStatement("select clientId,total from neworder where newOrderId ="+invoice.getOrderId());
+					rs = ps.executeQuery();
+					if(rs.next()){
+						clientId = rs.getInt("clientId");
+						invoice.setInvoiceAmount(rs.getFloat("total"));
+					}
+				}else{
+					ps = conn.prepareStatement("select newOrderId,returnTotal from returnorder where returnOrderId = "+invoice.getOrderId());
+					rs = ps.executeQuery();
+					if(rs.next()){
+						orderId = rs.getInt("newOrderId");
+						invoice.setInvoiceAmount(rs.getFloat("returnTotal"));
+						ps = conn.prepareStatement("select clientId from neworder where newOrderId ="+orderId);
+						rs = ps.executeQuery();
+							if(rs.next()){
+								clientId = rs.getInt("clientId");
+								ps = conn.prepareStatement("select clientName from userinfo where clientId ="+clientId);
+								rs = ps.executeQuery();
+								if(rs.next()){
+									invoice.setReceivedPerson(rs.getString("clientName"));
+								}
+							}
+					}
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -105,7 +122,7 @@ public class InvoiceDAOImp implements InvoiceDAO {
 	}
 	
 	//查询退货订单信息
-			public ReturnOrder selectReturnOrder(int orderId) {
+	public ReturnOrder selectReturnOrder(int orderId) {
 				// TODO Auto-generated method stub
 				PreparedStatement ps = null;
 				ReturnOrder returnorder = null;
@@ -119,7 +136,15 @@ public class InvoiceDAOImp implements InvoiceDAO {
 						returnorder.setReturnOrderId(orderId);
 						returnorder.setReturnQuantity(rs.getInt("returnQuantity"));
 						returnorder.setReturnTotal(rs.getFloat("returnTotal"));
-						productId = rs.getInt("productId");
+						returnorder.setProductQuantity(rs.getInt("returnQuantity"));
+						returnorder.setTotal(rs.getFloat("returnTotal"));
+						returnorder.setNewOrderId(rs.getInt("newOrderId"));
+						ps = conn.prepareStatement("select * from neworder where newOrderId="+returnorder.getNewOrderId());
+						rs = ps.executeQuery();
+						if(rs.next()){
+							productId = rs.getInt("productId");
+						}
+		
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -245,6 +270,7 @@ public class InvoiceDAOImp implements InvoiceDAO {
 				workorder.setWorkId(Integer.parseInt(workId));
 				workorder.setOrderId(rs.getInt("orderId"));
 				workorder.setCreateDate(rs.getDate("createDate"));
+				workorder.setWorkType(rs.getInt("workType"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

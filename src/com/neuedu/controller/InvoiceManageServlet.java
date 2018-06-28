@@ -104,7 +104,10 @@ public class InvoiceManageServlet extends HttpServlet {
 	//废弃前查询订单及任务单信息
 	private void selectWorkOrderA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String workId = request.getParameter("workId");
+		//System.out.println(workId);
 		WorkOrder workorder = InvoiceService.getInstance().selectWorkOrder(workId);
+		//System.out.println(workorder.getOrderId());
+		//System.out.println(workorder.getWorkType());
 		if(workorder==null){
 			//未查到该任务单
 			request.getSession().setAttribute("messageAI", "未查到该数据");
@@ -112,9 +115,18 @@ public class InvoiceManageServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/finance/abandonInvoice.jsp");
 		}else{
 			//查找到该任务单
-			NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+			//System.out.println("查找到任务单了。");
+			if(workorder.getWorkType()==1){
+				NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+				request.getSession().setAttribute("neworderA", neworder);
+			}else{
+			//	System.out.println("进到退货单的部分了。");
+				ReturnOrder returnorder= InvoiceService.getInstance().selectReturnOrder(workorder.getOrderId());
+				System.out.println(returnorder.getProductQuantity());
+				System.out.println(returnorder.getTotal());
+				request.getSession().setAttribute("neworderA", returnorder);
+			}
 			request.getSession().setAttribute("workorderA", workorder);
-			request.getSession().setAttribute("neworderA", neworder);
 			//request.getRequestDispatcher("abandonInvoiceResult.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/finance/abandonInvoiceResult.jsp");
 		}
@@ -131,9 +143,19 @@ public class InvoiceManageServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/substation/abandonInvoice.jsp");
 		}else{
 			//查找到该任务单
+			if(workorder.getWorkType()==1){
+				NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+				request.getSession().setAttribute("neworderAfromS", neworder);
+			}else{
+			//	System.out.println("进到退货单的部分了。");
+				ReturnOrder returnorder= InvoiceService.getInstance().selectReturnOrder(workorder.getOrderId());
+				//System.out.println(returnorder.getProductQuantity());
+				//System.out.println(returnorder.getTotal());
+				request.getSession().setAttribute("neworderAfromS", returnorder);
+			}
 			NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
 			request.getSession().setAttribute("workorderAfromS", workorder);
-			request.getSession().setAttribute("neworderAfromS", neworder);
+			//request.getSession().setAttribute("neworderAfromS", neworder);
 			//request.getRequestDispatcher("abandonInvoiceResult.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/substation/abandonInvoiceResult.jsp");
 		}
@@ -142,6 +164,7 @@ public class InvoiceManageServlet extends HttpServlet {
 
 	//客户领用前查询任务单及订单信息
 	private void selectWorkOrderC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("爸爸爸爸");
 		String workId = request.getParameter("workId");
 		WorkOrder workorder = InvoiceService.getInstance().selectWorkOrder(workId);
 		if(workorder==null){
@@ -151,9 +174,19 @@ public class InvoiceManageServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/substation/getClientInvoice.jsp");
 		}else{
 			//查找到该任务单
-			NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+			if(workorder.getWorkType()==1){
+				NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
+				request.getSession().setAttribute("neworderC", neworder);
+			}else{
+				//System.out.println("进到退货单的部分了。");
+				ReturnOrder returnorder= InvoiceService.getInstance().selectReturnOrder(workorder.getOrderId());
+				//System.out.println(returnorder.getProductQuantity());
+				//System.out.println(returnorder.getTotal());
+				request.getSession().setAttribute("neworderC", returnorder);
+			}
+			//NewOrder neworder = InvoiceService.getInstance().selectNewOrder(workorder.getOrderId());
 			request.getSession().setAttribute("workorderC", workorder);
-			request.getSession().setAttribute("neworderC", neworder);
+			//request.getSession().setAttribute("neworderC", neworder);
 			//request.getRequestDispatcher("substation/getClientInvoiceResult.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/substation/getClientInvoiceResult.jsp");
 		}
@@ -229,6 +262,8 @@ public class InvoiceManageServlet extends HttpServlet {
 				}
 				else {
 					ReturnOrder returnorder= InvoiceService.getInstance().selectReturnOrder(workorder.getOrderId());
+					returnorder.setProductQuantity(returnorder.getReturnQuantity());
+					returnorder.setTotal(returnorder.getReturnTotal());
 					invoice = new Invoice();
 					invoice.setWorkId(Integer.parseInt(workId));
 					invoice.setOrderId(workorder.getOrderId());

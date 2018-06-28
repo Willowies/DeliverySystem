@@ -18,7 +18,28 @@ public class ReturnOrder {
 	private Date generateDate;
 	private String productName;
 	private String productUnit;
+	private int productQuantity;
+	private float total;
+	private int newOrderId;
 	
+	public int getNewOrderId() {
+		return newOrderId;
+	}
+	public void setNewOrderId(int newOrderId) {
+		this.newOrderId = newOrderId;
+	}
+	public float getTotal() {
+		return total;
+	}
+	public void setTotal(float total) {
+		this.total = total;
+	}
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
 	public String getProductName() {
 		return productName;
 	}
