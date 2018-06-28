@@ -20,7 +20,7 @@
 		<!-- Custom CSS -->
 		<link href="../css/style.css" rel='stylesheet' type='text/css' />
 		<link href="../css/font-awesome.css" rel="stylesheet">
-		<link href="../css/client-supplier-center.css" rel="stylesheet">
+		<link href="../css/product-center.css" rel="stylesheet">
 		<link href="../css/bootstrap-select.min.css" rel="stylesheet">
 		<!-- jQuery -->
 		<script src="../js/jquery.min.js"></script>
