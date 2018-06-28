@@ -46,21 +46,21 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			sbf.append(" and requireDate = ? ");
 		}
 		if (order.getWarehouseName() != null) {
-			sbf.append(" and d.warehouseName = ? ");
+			sbf.append(" and d.warehouseName like ? ");
 		}
 		if (order.getWorkStatus() != 0) {
 			sbf.append(" and a.workStatus = ? ");
 		}
 		if (order.getClientName() != null) {
 			flag = 1;
-			sbf.append(" and orderId in ( select newOrderId from neworder where clientId in (select clientId from userinfo where clientName = ? ");
+			sbf.append(" and orderId in ( select newOrderId from neworder where clientId in (select clientId from userinfo where clientName like ? ");
 		}
 		if (order.getClientPhone() != null) {
 			if (flag == 0) {
-				sbf.append(" and orderId in ( select newOrderId from neworder where clientId in (select clientId from userinfo where clientMobilephone = ? ");
+				sbf.append(" and orderId in ( select newOrderId from neworder where clientId in (select clientId from userinfo where clientMobilephone like ? ");
 				flag = 1;
 			}else if (flag == 1) {
-				sbf.append(" and clientMobilephone = ? ");
+				sbf.append(" and clientMobilephone like ? ");
 			}
 		}
 		if (flag==1) {
@@ -85,7 +85,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				index++;
 			}
 			if (order.getWarehouseName() != null) {
-				ps.setString(index, order.getWarehouseName());
+				ps.setString(index, "%"+order.getWarehouseName()+"%");
 				index++;
 			}
 			if (order.getWorkStatus() != 0) {
@@ -93,11 +93,11 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 				index++;
 			}
 			if (order.getClientName() != null) {
-				ps.setString(index, order.getClientName());
+				ps.setString(index, "%"+order.getClientName()+"%");
 				index++;
 			}
 			if (order.getClientPhone() != null) {
-				ps.setString(index, order.getClientPhone());
+				ps.setString(index, "%"+order.getClientPhone()+"%");
 				index++;
 			}
 			
