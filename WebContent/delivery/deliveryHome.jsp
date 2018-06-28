@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"   %>
- <%@ page import="java.util.List"%>
-   <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -28,17 +26,17 @@
 			}
 		</script>
 		<!-- Bootstrap Core CSS -->
-		<link href="./css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+		<link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
-		<link href="./css/style.css" rel='stylesheet' type='text/css' />
-		<link href="./css/font-awesome.css" rel="stylesheet">
-		<link href="./css/delivery-center-stock-return.css" rel="stylesheet">
+		<link href="../css/style.css" rel='stylesheet' type='text/css' />
+		<link href="../css/font-awesome.css" rel="stylesheet">
+		<link href="../css/delivery-center-stock-return.css" rel="stylesheet">
 		<!-- jQuery -->
-		<script src="./js/jquery.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
 		<!----webfonts--->
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
-		<script src="./js/bootstrap.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			function date(){
             var myDate = new Date();  //获取当前时间对象，精确到当前的时、分、秒
@@ -191,15 +189,15 @@
 					<li class="dropdown">
 					</li>
 					<li class="dropdown">
-						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="./images/exit.png" alt="" /></a>
+						<a href="" onclick="window.location.href='exit'" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/exit.png" alt="" /></a>
 					</li>
 				</ul>
 				<!--左侧导航栏-->
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li >
-								<a href="./delivery/deliveryHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
+							<li  class="highlight-item">
+								<a href="deliveryHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
 							<li>
 								<a href=""><i class="fa fa-download nav_icon"></i>商品管理<span class="fa arrow"></span></a>
@@ -224,13 +222,13 @@
                                         <a href="">库房设置</a>
                                     </li>
                                     <li>
-                                        <a href="./delivery/warehouseProductSetting.jsp">库房储备设置</a>
+                                        <a href="warehouseProductSetting.jsp">库房储备设置</a>
                                     </li>
                                     <li>
-                                        <a href="./delivery/warehouseValue.jsp">库房量查询</a>
+                                        <a href="warehouseValue.jsp">库房量查询</a>
                                     </li>
                                     <li>
-                                        <a href="./delivery/warehouseOrderSearch.jsp">出入单查询</a>
+                                        <a href="warehouseOrderSearch.jsp">出入单查询</a>
                                     </li>
                                 </ul>    	
 
@@ -255,18 +253,18 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="./delivery/stockManage.jsp"><i class="fa fa-briefcase nav_icon"></i>进货管理
+								<a href="stockManage.jsp"><i class="fa fa-briefcase nav_icon"></i>进货管理
 								</a>
 
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="./delivery/returnManage.jsp"><i class="fa fa-sign-out nav_icon"></i>退货管理</span>
+								<a href="returnManage.jsp"><i class="fa fa-sign-out nav_icon"></i>退货管理</span>
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
-							<li class="highlight-item">
-								<a href="./delivery/statistics.jsp"><i class="fa fa-sign-out nav_icon"></i>统计</span>
+							<li>
+								<a href="statistics.jsp"><i class="fa fa-sign-out nav_icon"></i>统计</span>
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
@@ -277,66 +275,54 @@
 				<!-- /.navbar-static-side -->
 			</nav>
 			<!--页面-->
-			<div id="page-wrapper" style="background: #f2f2f2;display: flex;">
-				<form action="./deliveryPartServlet?action=orderStatistics" method="post">
-					<div class="page-navigation">统计  / Statistics </div>
-					<div class="searchblock4" style="height: 280px;width: 240px;">
-						<p1>订购统计</p1>
-						<p>开始日期</p>
-						<input  type="date" name="start1" id="ipt1" style="width: 200px;" required="required" onblur="date()">
-						<p>结束日期</p>
-						<input  type="date" name="end1" id="ipt2" style="width: 200px;" required="required" onblur="dateEnd()">
-						<div class="buttonblock">
-							<button type="submit" style="margin-top: 20px;" onclick="checkform()">搜索</button>
+			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;">
+				<div class="page-navigation">主页 / Home page</div>
+				<div style="display: flex;flex-direction: row;">
+					<div class="homeblock1">
+						<div style="display: flex;margin: 40px 10px;">
+							<img src="../images/profile.png" />
+							<p style="margin: 30px 0 0 10px;">姓名：${employee.employeeName}</p>
 						</div>
+						<hr style="border-top: 2px solid #999; width: 220px;" />
+						<p style="margin: 40px 0 0 20px;">职位：配送中心管理员</p>
 					</div>
-				</form>
-				<div class="resultblock2">
-					<div class="title">
-						<p3 style="margin-left: 100px;">一级分类</p3>
-						<p3 style="margin-left: 40px;">二级分类</p3>
-						<p3 style="margin-left: 40px;">商品编号</p3>
-						<p3 style="margin-left: 10px;">商品名称</p3>
-						<p3 style="margin-left: 80px;">销售数量</p3>
-					</div>
-					<form action="" method="post" style="flex: 1;display: flex;flex-direction: column;">
-					<div class="result-content" >
-						<%
-							List l = (List)request.getAttribute("orderList");
-							if(!l.isEmpty()){
-						%>
-						<c:forEach items="${orderList}" var="order">
-						<div class="result-item" style="margin-top: 20px;">
-							<p3 style="margin-left: 50px;width: 80px;">${order.rank}</p3>
-								<p3 style="margin-left: 10px;width: 100px;">${order.firstClass}</p3>
-								<p3 style="margin-left: 10px;width: 120px;">${order.secondClass}</p3>
-								<p3 style="margin-left: 10px;width: 40px;">${order.productCode}</p3>
-								<p3 style="margin-left: 20px;width: 180px;">${order.productName}</p3>
-								<p3 style="margin-left: 20px;width: 80px;">${order.quantity}</p3>
-						</div>
-						</c:forEach>
-						<%
-						}else{
-						%>
-							<div class="result-item">
-							<p3 style="margin-left: 170px;">未查询到数据</p3>
+					<div style="display: flex;flex-direction: column;">
+						<div class="homeblock2">
+							<p style="margin: 15px;font-size: 20px;font-family: '微软雅黑';">进货管理</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<p style="margin: 0 0 0 15px;">根据库房库存量生成购货入库调拨单</p>
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='stockManage.jsp'">前往</button>
 							</div>
-						<%
-						}
-						%>
+						</div>
+						<div class="homeblock2">
+							<p style="margin: 10px;font-size: 20px;font-family: '微软雅黑';">退货管理</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<p style="margin: 0 0 0 15px;">安排商品退回到供应商</p>
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='returnManage.jsp'">前往</button>
+							</div>
+						</div>
 					</div>
-					</form>
-
+					<div class="homeblock2">
+							
+							<p style="margin: 15px;font-size: 20px;font-family: '微软雅黑';">统计</p>
+							<p style="border-top: 2px solid #999; width: 220px;margin:10px 0 8px 15px;height: 1px" />
+							<div class="buttonblock">
+								<button type="submit" onclick="window.location.href='statistics.jsp'">前往</button>
+							</div>
+						</div>
 				</div>
+
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
 		<!-- /#wrapper -->
 		<!-- Nav CSS -->
-		<link href="./css/custom.css" rel="stylesheet">
+		<link href="../css/custom.css" rel="stylesheet">
 		<!-- Metis Menu Plugin JavaScript -->
-		<script src="./js/metisMenu.min.js"></script>
-		<script src="./js/custom.js"></script>
+		<script src="../js/metisMenu.min.js"></script>
+		<script src="../js/custom.js"></script>
 	</body>
 
 </html>

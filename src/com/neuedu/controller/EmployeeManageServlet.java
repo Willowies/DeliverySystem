@@ -73,7 +73,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 1:
 					//客户服务中心
 					try {
-						response.sendRedirect(request.getContextPath()+"");
+						response.sendRedirect(request.getContextPath()+"/clientService/OrderManageHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -91,7 +91,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 3:
 					//分站中心
 					try {
-						response.sendRedirect(request.getContextPath()+"/.jsp");
+						response.sendRedirect(request.getContextPath()+"/substation/substationHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -100,7 +100,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 4:
 					//库房中心
 					try {
-						response.sendRedirect(request.getContextPath()+"/.jsp");
+						response.sendRedirect(request.getContextPath()+"/warehouse/warehouseHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -109,7 +109,7 @@ public class EmployeeManageServlet extends HttpServlet {
 				case 5:
 					//配送中心
 					try {
-						response.sendRedirect(request.getContextPath()+"/.jsp");
+						response.sendRedirect(request.getContextPath()+"/delivery/deliveryHome.jsp");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

@@ -107,7 +107,7 @@
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
 							<li>
-								<a href=""><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
+								<a href="deliveryHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
 							<li class="active">
 								<a href=""><i class="fa fa-download nav_icon"></i>商品管理<span class="fa arrow"></span></a>

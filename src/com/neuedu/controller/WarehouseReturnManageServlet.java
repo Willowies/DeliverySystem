@@ -53,7 +53,7 @@ public class WarehouseReturnManageServlet extends HttpServlet {
 		
 		Employee e = (Employee) request.getSession().getAttribute("employee");
 		if (e==null) {
-			response.sendRedirect(request.getContextPath()+"login/.jsp");
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		operator = e.getEmployeeName();
