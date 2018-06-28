@@ -18,22 +18,13 @@ public class NewOrder {
 	private int employeeId = 0;
 	private int whetherInvoice = 0;
 	private Date requireDate=null;
-	private Date finishDate=null;
+	private Date finishDate;
 	private Date generateDate=null;
 	private String newOrderRemark= "";
 	private String deliverRequest= "";
 	private int status=0;
 	private String operator= "";
 	private Date operateDate=null;
-	private boolean enoughOrNot = false;
-	
-	
-	public boolean isEnoughOrNot() {
-		return enoughOrNot;
-	}
-	public void setEnoughOrNot(boolean enoughOrNot) {
-		this.enoughOrNot = enoughOrNot;
-	}
 	public int getOrderId() {
 		return orderId;
 	}

@@ -13,7 +13,7 @@ public class Product {
 	private float productDiscount = 1;
 	private float productCost;
 	private String productModel;
-	private Supplier supplier;
+	private Supplier supplier = new Supplier();
 	private String manufacturer;
 	private Date expirationDate;
 	private int returnAble;

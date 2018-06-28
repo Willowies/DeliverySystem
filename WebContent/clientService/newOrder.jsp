@@ -171,7 +171,7 @@
 										<input type="hidden" name = "receiverName" class="form-control" value="${Client.clientName}" id="receiverName">
 										<input type="hidden" name = "receiverMobilePhone" class="form-control" value="${Client.clientMobilePhone}" id="receiverMobilePhone">
 										<input type="hidden" name = "receiverAddress" class="form-control"  	value="${Client.clientContactAddress}" id="receiverAddress">
-										<input type="hidden" name = "receiverPostCode" class="form-control"  	value="${Client.clientPostCode}" id="receiverPostCode">
+										<input type="hidden" name = "receiverPostCode" class="form-control"  	value="${Client.clientPostcode}" id="receiverPostCode">
 									
 									<div class="form-group">
 										<label class="hidden"></label>
@@ -267,7 +267,7 @@
 											<p>收货人：${Client.clientName}</p>
 											<p>手机：${Client.clientMobilePhone}</p>
 											<p>地址：${Client.clientContactAddress}</p>
-											<p>邮编：${Client.clientPostCode}</p>
+											<p>邮编：${Client.clientPostcode}</p>
 										</div>
 										<div class="col-md-1">
 											<hr style="width:2px;height:100px; "></hr>

@@ -234,7 +234,7 @@
 									<li>${p}</li>
 								</c:if>
 								<c:if test="${p!=pageNum}">
-									<li><a>href="OrderServlet?action=selectNewPageByCount,pageNum=${p}">${p}</a></li>
+									<li><a href="OrderServlet?action=selectNewPageByCount,pageNum=${p}">${p}</a></li>
 								</c:if>
 							</c:forEach>
 

@@ -11,7 +11,6 @@ public class CancelOrder {
 	//虽然订单中不存在删改，但是存在修改新订订单的行为，所以封装操作者名字和时间用于数据维护
 	private String operator;
 	private Date operateDate;
-	
 	public int getCancelOrderId() {
 		return cancelOrderId;
 	}
