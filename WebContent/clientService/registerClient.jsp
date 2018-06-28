@@ -60,7 +60,7 @@
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
 							<li >
-								<a href="OrderManageHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
+								<a href="generateOrder.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
 							<li class="highlight-item">
 								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
