@@ -60,10 +60,10 @@
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
 							<li >
-								<a href="generateOrder.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
+								<a href="OrderManageHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
-							<li class="highlight-item">
-								<a href="modifyOrderStatus.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
+							<li >
+								<a href="generateOrder.jsp"><i class="fa fa-edit nav_icon"></i>生成订单</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
@@ -71,7 +71,7 @@
 									<i class="fa fa-tasks nav_icon"></i>客户管理<span class="fa arrow"></span>
 								</a>
 								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
-								    <li><a href="registerClient.jsp">新增客户</a></li>
+								    <li><a href="registerClient.jsp" class="highlight-item">新增客户</a></li>
 								    <li><a href="selectResult.jsp">查询客户信息</a></li>
 								</ul>
 								
