@@ -45,13 +45,14 @@ public class SubInRecordDAOImp implements SubInRecordDAO {
 			    //修改库存量
 			    String str3 = " update warehouseproduct set productQuantity=productQuantity+?,allocatableQuantity=allocatableQuantity+?,"
 			    		+ "operator=?,operateDate=? "
-			    		+ " where warehouseId=?";
+			    		+ " where warehouseId=? and productId=?";
 			    ps = conn.prepareStatement(str3);
 			    ps.setInt(1, sir.getActuralQuantity());
 			    ps.setInt(2, sir.getActuralQuantity());
 			    ps.setString(3, employee);
 			    ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
 			    ps.setInt(5, warehouseId);
+			    ps.setInt(6, sir.getProductId());
 			    ps.executeUpdate();
 			    //修改任务单和订单状态
 			    String str4 = " update distributionorder d,producttransferorder p,workorder w,neworder n set w.workStatus=3,n.orderState=8,"

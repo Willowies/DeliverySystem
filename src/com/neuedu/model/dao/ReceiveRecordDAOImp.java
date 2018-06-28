@@ -40,9 +40,9 @@ public class ReceiveRecordDAOImp implements ReceiveRecordDAO {
 					quantity = rs.getInt("productQuantity");
 				}
 				//ÐÞ¸Ä¿â´æÁ¿
-				String str3 = " update workorder w,warehouseproduct wp "
+				String str3 = " update workorder w,warehouseproduct wp,neworder n "
 						+ "set wp.productQuantity=wp.productQuantity-?,wp.operator=?,wp.operateDate=? "
-						+ " where w.workId=? and w.warehouseId=wp.warehouseId";
+						+ " where w.workId=? and w.warehouseId=wp.warehouseId and w.orderId=n.newOrderId and n.productId=wp.productId";
 				ps = conn.prepareStatement(str3);
 				ps.setInt(1, quantity);
 				ps.setString(2, employee);
