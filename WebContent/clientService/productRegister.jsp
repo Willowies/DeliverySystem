@@ -20,7 +20,7 @@
 		<!-- Bootstrap Core CSS -->
 		<link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
-		<link href="../css/style.css" rel='stylesheet' type='text/css' />
+		<link href="../css/style2.css" rel='stylesheet' type='text/css' />
 		<link href="../css/font-awesome.css" rel="stylesheet">
 		<link href="../css/product-center.css" rel="stylesheet">
 		<link href="../css/bootstrap-select.min.css" rel="stylesheet">

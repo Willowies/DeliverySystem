@@ -28,7 +28,7 @@
 <link href="<%=basePath%>/css/bootstrap.min.css" rel='stylesheet'
 	type='text/css' />
 <!-- Custom CSS -->
-<link href="<%=basePath%>/css/style.css" rel='stylesheet'
+<link href="<%=basePath%>/css/style2.css" rel='stylesheet'
 	type='text/css' />
 <link href="<%=basePath%>/css/font-awesome.css" rel="stylesheet">
 <link href="<%=basePath%>/css/clientService.css" rel="stylesheet">
