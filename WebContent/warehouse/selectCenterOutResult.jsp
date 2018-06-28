@@ -76,10 +76,10 @@
 								<a href="#"><i class="fa fa-upload nav_icon"></i>中心库房调拨出库<span class="fa arrow"></span>
 								</a>
 							    <ul class="nav nav-second-level">
-							    	<li class="highlight-item">
+							    	<li >
                                         <a href="warehouse/centerOut.jsp">调拨出库</a>
                                     </li>
-                                    <li>
+                                    <li class="highlight-item">
                                         <a href="warehouse/selectCenterOut.jsp">查询出库信息</a>
                                     </li>
                                     <li>

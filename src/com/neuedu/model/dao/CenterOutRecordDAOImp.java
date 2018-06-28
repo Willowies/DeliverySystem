@@ -53,7 +53,7 @@ public class CenterOutRecordDAOImp implements CenterOutRecordDAO {
 				isSuccess = true;
 				//ÐÞ¸Ä¿â´æÁ¿
 				String str3 = " update warehouseproduct set productQuantity=productQuantity-?,operator=?,operateDate=? "
-						+ " where productId=?";
+						+ " where productId=? and warehouseId=1";
 				ps = conn.prepareStatement(str3);
 				ps.setInt(1, productQuantity);
 				ps.setString(2, employee);
