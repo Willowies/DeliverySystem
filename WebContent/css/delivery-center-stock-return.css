@@ -437,7 +437,10 @@
 	float: left;
 	margin: 0 20px;
 }
-
+.resultblock2 .title p4{
+	float: left;
+	margin: 0 13px;
+}
 .resultblock2 .result-content{
 	flex: 1;
 }

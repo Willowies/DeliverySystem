@@ -120,7 +120,7 @@
 	border-color: #CDCDCD;
 	border-bottom-width: 2px;
 	border-radius: 10px;
-	margin: 95px 50px 0 50px;
+	margin: 95px 50px 0 0px;
 	box-shadow: 5px 5px 5px #e2dfdf;
 	padding: 20px;
 	
@@ -412,7 +412,7 @@
 
 .resultblock2{
 	height: 550px;
-	width: 890px;
+	width: 850px;
 	background: #FFFFFF;
 	border: solid;
 	border-color: #CDCDCD;

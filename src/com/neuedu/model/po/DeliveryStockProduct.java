@@ -15,8 +15,50 @@ public class DeliveryStockProduct {
 	private int lack;
 	private int stock;
 	private Date stockDate;
+	private int max;
+	private String warehouseName;
+	private int total;
+	private int allocate;
+	private int allocated;
+	private int returnQ;
 	
 	
+	public String getWarehouseName() {
+		return warehouseName;
+	}
+	public void setWarehouseName(String warehouseName) {
+		this.warehouseName = warehouseName;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getAllocate() {
+		return allocate;
+	}
+	public void setAllocate(int allocate) {
+		this.allocate = allocate;
+	}
+	public int getAllocated() {
+		return allocated;
+	}
+	public void setAllocated(int allocated) {
+		this.allocated = allocated;
+	}
+	public int getReturnQ() {
+		return returnQ;
+	}
+	public void setReturnQ(int returnQ) {
+		this.returnQ = returnQ;
+	}
+	public int getMax() {
+		return max;
+	}
+	public void setMax(int max) {
+		this.max = max;
+	}
 	public int getProductId() {
 		return productId;
 	}
