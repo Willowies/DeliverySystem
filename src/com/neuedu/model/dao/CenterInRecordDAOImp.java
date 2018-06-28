@@ -32,25 +32,7 @@ public class CenterInRecordDAOImp implements CenterInRecordDAO {
 				ps.setString(5, cInRecord.getRemark());
 				ps.executeUpdate();
 				isSuccess = true;				
-				/*//校验是否成功入库
-				String sql1 = " select * from centerinrecord";
-				ps = conn.prepareStatement(sql1);
-				ResultSet rs = ps.executeQuery();
-				CenterInRecord cr = new CenterInRecord();
-				while(rs.next()){
-					cr.setProductId(rs.getInt(2));
-					cr.setExpectedQuantity(rs.getInt(3));
-					cr.setActuralQuantity(rs.getInt(4));
-					//java.sql.Date可自动转换java.util.Date
-					cr.setCenterInDate(rs.getDate(5));
-					cr.setRemark(rs.getString(6));
-				}
-				if(cr.getProductId() == cInRecord.getProductId() && cr.getExpectedQuantity() == cInRecord.getExpectedQuantity()
-					  && cr.getActuralQuantity() == cInRecord.getActuralQuantity() && cr.getCenterInDate() == cInRecord.getCenterInDate()
-					  && cr.getRemark() == cInRecord.getRemark()){
-					isSuccess = true;
-					
-				}*/
+				
 				//修改购货单状态
 				String str = " update purchaseinorder p set status=?,operator=?,operateDate=? where p.purchaseInId=?";
 				ps = conn.prepareStatement(str);
