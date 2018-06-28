@@ -113,11 +113,11 @@
 					<div class="page-navigation">查询订单 / search page</div>
 					<div class="searchblock">
 						<p1>查询单据</p1>
-						<p>分站</p>
+						<p>供应商</p>
 						<input type="text" name="supplier" id="createDate">
-						<p>签收日期</p>
+						<p>日期</p>
 						<input type="date" name="date" id="createDate">
-						<p>商品名</p>
+						<p>商品</p>
 						<input type="text" name="product" id="createDate">
 						<div class="buttonblock">
 							<button type="submit">搜索</button>

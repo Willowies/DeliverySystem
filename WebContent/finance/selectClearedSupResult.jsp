@@ -107,28 +107,28 @@
 			</nav>
 			<div id="page-wrapper" style="background: #f2f2f2;min-width: 800px;  min-height: 299px;">
 				<div class="page-navigation">
-					<strong>结算 / balance Page</strong>
+					<strong>>查询订单 / search page</strong>
 				</div>
 				<!-- 搜索 -->
 				<div style="display: flex;flex-direction: row;align-items:flex-start;">
 					<div class="homeblock3" style="margin-left:auto; margin-right:auto;">
-						<p style="margin: 15px;font-size: 18px;font-family: '微软雅黑';">查询签收单</p>
+						<p style="margin: 15px;font-size: 18px;font-family: '微软雅黑';">查询单据</p>
 						
 						<form action="../clearMoneyServlet?action=selectClearedSub" method="post" role="form">
 							<div class="form-group">
-								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">分站</p>
+								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">供应商</p>
 								<div style="margin: 0 0 0 15px; width:254px;">
-									<input type="text" name="substation" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
+									<input type="text" name="supplier" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
 								</div>
 							</div>
 							<div class="form-group">
-								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">签收日期</p>
+								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">日期</p>
 								<div style="margin: 0 0 0 15px; width:254px;">
 									<input type="date" name="date" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
 								</div>
 							</div>
 							<div class="form-group">
-								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">商品名</p>
+								<p style="margin: 15px 0 5px 15px;font-size: 15px; width:254px;">商品</p>
 								<div style="margin: 0 0 0 15px; width:254px;">
 									<input type="text" name="product" class="form-control1" style="height: 34px;border-radius: 4px; line-height:18px;" placeholder="">
 								</div>
