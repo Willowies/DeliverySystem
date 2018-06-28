@@ -199,27 +199,27 @@
 							<li  class="highlight-item">
 								<a href="deliveryHome.jsp"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
 							</li>
-							<li>
+							<li id="open-menu">
 								<a href=""><i class="fa fa-download nav_icon"></i>商品管理<span class="fa arrow"></span></a>
 								 <ul class="nav nav-second-level">
 							    	
                                     <li>
-                                        <a href="">商品一级分类管理</a>
+                                        <a href="../firstclass/firstClassHome.jsp">商品一级分类管理</a>
                                     </li>
                                     <li>
-                                        <a href="">商品二级分类管理</a>
+                                        <a href="../secondclass/secondClassHome.jsp">商品二级分类管理</a>
                                     </li>
                                     <li>
-                                        <a href="">商品管理</a>
+                                        <a href="../clientService/productRegister.jsp">商品管理</a>
                                     </li>
                                 </ul>  
 							</li>
-							<li>
+							<li id="open-menu">
 								<a href="#"><i class="fa fa-upload nav_icon"></i>库房管理<span class="fa arrow"></span></a>
 							   <ul class="nav nav-second-level">
 							   	
 							    	<li>
-                                        <a href="">库房设置</a>
+                                        <a href="../warehouse1/setWarehouse.jsp">库房设置</a>
                                     </li>
                                     <li>
                                         <a href="warehouseProductSetting.jsp">库房储备设置</a>
@@ -234,19 +234,16 @@
 
 								<!-- /.nav-second-level -->
 							</li>
-							<li>
+							<li id="open-menu">
 								<a href=""><i class="fa fa-download nav_icon"></i>供应商管理<span class="fa arrow"></span>
 								</a>
 								<ul class="nav nav-second-level">
 							   	
 							    	<li>
-                                        <a href="">供应商管理</a>
+                                        <a href="../supService/supRegister.jsp">注册供应商</a>
                                     </li>
-                                    <li>
-                                        <a href="">注册供应商</a>
-                                    </li>
-                                    <li>
-                                        <a href="">编辑供应商</a>
+							    	<li>
+                                        <a href="../supService/supSelectResult.jsp">查询供应商</a>
                                     </li>
                                     
                                 </ul>    	
