@@ -72,7 +72,7 @@
 								</a>
 								<ul class="nav nav-second-level collapse" aria-expanded="false" style="height:0px;">
 								    <li><a href="selectResult.jsp">查询客户信息</a></li>
-									<li><a href=".jsp">查询订购信息</a></li>
+
 								</ul>
 								<!-- /.nav-second-level -->
 							</li>
