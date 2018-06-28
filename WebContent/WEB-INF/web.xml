@@ -127,4 +127,14 @@
     <servlet-name>ClearMoneyServlet</servlet-name>
     <url-pattern>/clearMoneyServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WarehouseManageServlet</display-name>
+    <servlet-name>WarehouseManageServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.WarehouseManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WarehouseManageServlet</servlet-name>
+    <url-pattern>/warehouseManageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
