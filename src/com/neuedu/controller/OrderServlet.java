@@ -178,6 +178,7 @@ public class OrderServlet extends HttpServlet {
 		employee.setEmployeeId(1);
 		employee.setEmployeeName("Íõê»ÎÄ");
 		
+		
 		int productQuantity = Integer.parseInt(req.getParameter("productQuantity"));
 		String receiverName = req.getParameter("receiverName");
 		String receiverPhone = req.getParameter("receiverMobilePhone");
