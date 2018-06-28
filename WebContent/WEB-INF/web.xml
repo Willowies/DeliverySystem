@@ -89,4 +89,14 @@
     <servlet-name>SupSearchServlet</servlet-name>
     <url-pattern>/supService/supSearchServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>EmployeeManageServlet</display-name>
+    <servlet-name>EmployeeManageServlet</servlet-name>
+    <servlet-class>com.neuedu.controller.EmployeeManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeManageServlet</servlet-name>
+    <url-pattern>/employeeManageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
