@@ -23,11 +23,13 @@ public class NewOrderService {
 		Connection conn = DBUtil.getConn();
 		NewOrderDAO dao = new NewOrderDAOImp(conn);
 		dao.creatNewOrder(newOrder);
+		DBUtil.closeConn(conn);
 	}
 	public void deleteNewOrderById(int newOrderId,String operator,Date operatorDate){
 		Connection conn = DBUtil.getConn();
 		NewOrderDAO dao = new NewOrderDAOImp(conn);
 		dao.deleteNewOrderById(newOrderId, operator, operatorDate);
+		DBUtil.closeConn(conn);
 	}
 	public void setNewOrderState(int orderId,int orderState,String operator,Date operatorDate){
 		Connection conn = DBUtil.getConn();
