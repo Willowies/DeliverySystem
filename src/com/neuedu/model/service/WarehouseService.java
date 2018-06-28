@@ -18,6 +18,8 @@ import com.neuedu.model.dao.ReceiveRecordDAO;
 import com.neuedu.model.dao.ReceiveRecordDAOImp;
 import com.neuedu.model.dao.SubInRecordDAO;
 import com.neuedu.model.dao.SubInRecordDAOImp;
+import com.neuedu.model.dao.WarehouseDAO;
+import com.neuedu.model.dao.WarehouseDAOImp;
 import com.neuedu.model.dao.WorkOrderDAO;
 import com.neuedu.model.dao.WorkOrderDAOImp;
 import com.neuedu.model.po.CenterInRecord;
@@ -27,7 +29,7 @@ import com.neuedu.model.po.ProductTransferOrder;
 import com.neuedu.model.po.PurchaseInOrder;
 import com.neuedu.model.po.ReceiveRecord;
 import com.neuedu.model.po.SubInRecord;
-import com.neuedu.model.po.WorkOrder;
+import com.neuedu.model.po.Warehouse;
 import com.neuedu.utils.DBUtil;
 
 public class WarehouseService {
