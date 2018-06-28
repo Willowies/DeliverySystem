@@ -41,7 +41,8 @@ public class ProductDAOImp implements ProductDAO {
 		Date operateDate = p.getOperateDate();
 		
 		StringBuffer sbf = new StringBuffer("");
-		sbf.append("select *  from  product left join supplierinfo using(supid) where 1=1   ");
+		sbf.append("select * FROM product LEFT JOIN warehouseproduct USING (productId)"
+				+"LEFT JOIN warehouse USING(warehouseId) WHERE 1=1 and warehouseRank = 1");
 		if(productId != 0){
 			sbf.append(" and productId=?");
 		}
@@ -204,6 +205,7 @@ public class ProductDAOImp implements ProductDAO {
 				product.setStatus(rs.getInt("status"));
 				product.setOperator(rs.getString("operator"));
 				product.setOperateDate(rs.getDate("operateDate"));
+				product.setAllocatableQuantity(rs.getInt("allocatableQuantity"));
 				products.add(product);
 			}
 		} catch (SQLException e) {
