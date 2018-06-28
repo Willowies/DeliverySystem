@@ -19,8 +19,12 @@ public  interface WorkOrderDAO {
 	
 	public List<WorkOrder> selectPageWork(java.util.Date requireDate, int workStatus, int workType, int pageNum);
 	
+	public List<WorkOrder> selectPageWork(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType, int pageNum);
+	
 	public int selectPageCount(java.util.Date requireDate, int workStatus, int workType);
 
+	public int selectPageCount(int deliveryStaffId, java.util.Date requireDate, int workStatus, int workType);
+	
 	List<WorkOrder> searchWorkOrderByPage(WorkOrder order, int pageSize, int page);
 
 	List<WorkOrder> searchWorkOrderWithProduct(int workId);
@@ -28,4 +32,6 @@ public  interface WorkOrderDAO {
 	public List<WarehouseNameInfo> getWarehosueInfo();
 	
 	public boolean selectWorkOrder(int workId);
+	
+	public void workAssign(int workId, int workStatus, int deliveryStaffId);
 }

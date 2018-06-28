@@ -3,31 +3,32 @@ package com.neuedu.model.po;
 import java.util.Date;
 
 public class Sign {
-	private int signId;//绛炬敹鍗曞彿
-	private int workId;//浠诲姟鍗曞彿
-	private Date deliveryDate;//閫佽揣鏃ユ湡
-	private int receiptNeedOrNot;//鏄惁瑕佸彂绁�
-	private int clearingStatus;//缁撶畻鐘舵��
-	private String remark;//澶囨敞
-	private int customerFeedback;//瀹㈡埛鍙嶉
-	private String customerSignature;//瀹㈡埛绛惧悕
-	private int orderId;//璁㈠崟鍙�
-	private int workType;//浠诲姟绫诲瀷
-	private String productName;//鍟嗗搧鍚嶇О
-	private float productPrice;//鍗曚环
-	private int productQuantity;//鍟嗗搧鏁伴噺
-	private float total;//鍟嗗搧鎬讳环
-	private String customerName;//瀹㈡埛濮撳悕
-	private String customerPhone;//瀹㈡埛鑱旂郴鐢佃瘽
-	private int postCode;//閭紪
-	private String deliveryAddress;//閫佽揣鍦板潃
-	private String deliveryRequirement;//閫佽揣瑕佹眰
-	private int deliverySubstation;//閫佽揣鍒嗙珯
-	private String substationPhone;//鍒嗙珯鐢佃瘽
+	private int signId;
+	private int workId;
+	private Date deliveryDate;
+	private int receiptNeedOrNot;
+	private int clearingStatus;
+	private String remark;
+	private int customerFeedback;
+	private String customerSignature;
+	private int orderId;
+	private int workType;
+	private String productName;
+	private float productPrice;
+	private int productQuantity;
+	private float total;
+	private String customerName;
+	private String customerPhone;
+	private int postCode;
+	private String deliveryAddress;
+	private String deliveryRequirement;
+	private int deliverySubstation;
+	private String substationPhone;
 	private int status;
 	private String operator;
 	private Date operateDate;
 	private String substation;
+	private String substationAddress;
 	
 	public String getSubstation() {
 		return substation;
@@ -179,5 +180,11 @@ public class Sign {
 	}
 	public void setOperateDate(Date operateDate) {
 		this.operateDate = operateDate;
+	}
+	public String getSubstationAddress() {
+		return substationAddress;
+	}
+	public void setSubstationAddress(String substationAddress) {
+		this.substationAddress = substationAddress;
 	}
 }

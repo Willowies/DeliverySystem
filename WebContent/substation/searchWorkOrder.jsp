@@ -35,6 +35,8 @@
 		<!-- jQuery -->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap-select.min.js"></script>
+		<!-- Custom JS -->
+		<script src="js/popup.js"></script>
 		<!----webfonts--->
 		<!---//webfonts--->
 		<!-- Bootstrap Core JavaScript -->
@@ -66,7 +68,7 @@
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
 							<li >
-								<a href="substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
+								<a href="substation/substationHome.jsp"><i class="fa fa-home nav_icon"></i>主页</a>
 							</li>
 							<li class="highlight-item">
 								<a href="substation/searchWorkOrder.jsp"><i class="fa fa-search nav_icon"></i>查询任务单
@@ -74,21 +76,21 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="workAssign.jsp"><i class="fa fa-tasks nav_icon"></i>任务分配</a>
+								<a href="substation/workAssign.jsp"><i class="fa fa-tasks nav_icon"></i>任务分配</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="signPrint.jsp"><i class="fa fa-print nav_icon"></i>打印商品签收单
+								<a href="substation/signPrint.jsp"><i class="fa fa-print nav_icon"></i>打印商品签收单
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="feedbackRecord.jsp"><i class="fa fa-edit nav_icon"></i>回执录入
+								<a href="substation/feedbackRecord.jsp"><i class="fa fa-edit nav_icon"></i>回执录入
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="paymentQuery.jsp"><i class="fa fa-money nav_icon"></i>缴款查询
+								<a href="substation/paymentQuery.jsp"><i class="fa fa-money nav_icon"></i>缴款查询
 								</a>
 								<!-- /.nav-second-level -->
 							</li>
@@ -167,6 +169,7 @@
 							<p>要求完成日期</p>
 							<p>分站代号</p>
 						</div>
+						<div id="cover" style="background: #000; position:absolute; left: 0px; top: 0px; width:100%; filter: alpha(opacity=50); opacity: 0.5; display:none; z-index:1000;"></div>
 					<% 
 						List<WorkOrder> list = (ArrayList<WorkOrder>)request.getAttribute("resultList");
 						if(list!=null){
@@ -175,11 +178,11 @@
 								workOrder = list.get(i);
 					%>
 						<div class="searchItem">
-							<button class="workButton" onClick="showWorkOrder()">1</button>
-							<div id="showDivW" style="display:none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index:1050; overflow-y: auto !important;">
+							<button class="workButton" onClick="showWorkOrder<%=i%>()"><%=workOrder.getWorkId() %></button>
+							<div id="showDivW<%=i%>" style="display:none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index:1050; overflow-y: auto !important;">
 								<div class="homeblock5" style="margin-left:auto; margin-right:auto;">
 									<div style="padding:30px 45px 10px 45px;">
-										<button type="button" class="close" onClick="closebuttonW()">×</button>
+										<button type="button" class="close" onClick="closebuttonW<%=i%>()">×</button>
 										<p class="title">详细信息</p>
 									</div>
 									<div class="bodyStyle" style="padding-top:0;">
@@ -265,7 +268,7 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" onClick="closebuttonW()" style="width: 76px; margin-right:30px;">关闭</button>
+										<button type="button" class="btn btn-default" onClick="closebuttonW<%=i%>()" style="width: 76px; margin-right:30px;">关闭</button>
 									</div>
 								</div>
 							</div>
@@ -310,7 +313,7 @@
 								<%} %>
 							</p>
 							<p class="p90"><%=workOrder.getRequireDate() %></p>
-							<p class="p60"><%=workOrder.getWarehouseName() %></p>
+							<p class="p60"><%=workOrder.getWarehouseId() %></p>
 						</div>
 					<%	 }
 						}
@@ -320,10 +323,10 @@
 						        <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 						        <c:forEach  begin="1" end="${pageCount}" var="p">
 									<c:if test="${p==pageNum}">
-										<li><a href="#">${p}</a></li>
+										<li><a>${p}</a></li>
 									</c:if>
 									<c:if test="${p!=pageNum}">
-										<li><a href="userManageServlet?pageNum=${p}" >${p}</a></li>
+										<li><a href="substationServlet?action=search&pageNum=${p}" >${p}</a></li>
 									</c:if>
 								</c:forEach>
 						        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
