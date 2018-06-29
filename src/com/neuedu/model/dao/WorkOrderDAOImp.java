@@ -265,16 +265,14 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 			ps.executeUpdate();
 			
 			if (orderType == 1) {
-				ps = conn.prepareStatement(" update neworder set orderState = 6 "
-						+ "and operator=? and operateDate=?  where newOrderId=?");
+				ps = conn.prepareStatement(" update neworder set orderState = 6,operator=?,operateDate=?  where newOrderId=?");
 				ps.setString(1, operator);
 				ps.setDate(2, date);
 				ps.setInt(3, orderId);
 				
 				ps.executeUpdate();
 			}else {
-				ps = conn.prepareStatement(" update returnorder set orderState = 6 "
-						+ "and operator=? and operateDate=?  where returnOrderId=?");
+				ps = conn.prepareStatement(" update returnorder set orderState = 6,operator=?,operateDate=?  where returnOrderId=?");
 				ps.setString(1, operator);
 				ps.setDate(2, date);
 				ps.setInt(3, orderId);
@@ -353,8 +351,7 @@ public class WorkOrderDAOImp implements WorkOrderDAO {
 	public void modifyLackStatus(int orderId, String operator) {
 		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement(" update neworder set orderState = 1 "
-					+ "and operator=? and operateDate=? where newOrderId=?");
+			ps = conn.prepareStatement(" update neworder set orderState = 1,operator=?operateDate=? where newOrderId=?");
 			ps.setString(1, operator);
 			ps.setDate(2, new Date(new java.util.Date().getTime()));
 			ps.setInt(3, orderId);

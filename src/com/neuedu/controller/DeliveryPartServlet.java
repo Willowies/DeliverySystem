@@ -155,14 +155,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;	
 		}
@@ -198,7 +198,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;	
 		}
@@ -257,14 +257,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;	
 		}
@@ -304,7 +304,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -328,14 +328,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -372,7 +372,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -429,14 +429,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -471,7 +471,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -533,14 +533,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -580,7 +580,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			list.add(l.get(i));
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		
 		
 		request.getSession().setAttribute("returnPageNum", pageNum);
@@ -627,14 +627,14 @@ public class DeliveryPartServlet extends HttpServlet {
 		
 		if (!l.isEmpty()) {
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -668,7 +668,7 @@ public class DeliveryPartServlet extends HttpServlet {
 			}
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}

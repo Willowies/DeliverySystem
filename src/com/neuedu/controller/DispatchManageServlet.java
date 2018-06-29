@@ -138,13 +138,13 @@ public class DispatchManageServlet extends HttpServlet {
 		List<NewOrder> list = new ArrayList<NewOrder>();
 		
 		for (int i = 0; i < l.size(); i++) {
-			if (i>5) {
+			if (i>=5) {
 				break;
 			}
 			list.add(l.get(i));
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -176,7 +176,7 @@ public class DispatchManageServlet extends HttpServlet {
 			list.add(l.get(i));
 		}
 		
-		int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+		int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 		if (list.isEmpty()) {
 			pageNum = 1;
 		}
@@ -200,13 +200,13 @@ public class DispatchManageServlet extends HttpServlet {
 			List<NewOrder> list = new ArrayList<NewOrder>();
 			
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 			
-			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 			
 			List<WarehouseNameInfo> list2 = DispatchService.getInstance().warehouseNameInfo();
 			
@@ -227,18 +227,23 @@ public class DispatchManageServlet extends HttpServlet {
 			List<ReturnOrder> list = new ArrayList<ReturnOrder>();
 			
 			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+				if (i>=5) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 			
-			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			List<WarehouseNameInfo> list2 = DispatchService.getInstance().warehouseNameInfo();
+			
+			int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
+			
+			System.out.println("pagenum "+pageNum+" size"+l.size());
 			
 			request.getSession().setAttribute("type", 2);
 			request.getSession().setAttribute("dispatchPageNum", pageNum);
 			request.setAttribute("page", 1);
 			request.setAttribute("orderList", list);
+			request.setAttribute("names", list2);
 			request.getSession().setAttribute("dispatchOrder", returnOrder);
 			
 			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
@@ -271,11 +276,14 @@ public class DispatchManageServlet extends HttpServlet {
 				list.add(l.get(i));
 			}
 			
-			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			List<WarehouseNameInfo> list2 = DispatchService.getInstance().warehouseNameInfo();
+			
+			int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 			
 			request.getSession().setAttribute("type", 1);
 			request.getSession().setAttribute("pageNum", pageNum);
 			request.setAttribute("page", page);
+			request.setAttribute("names", list2);
 			request.setAttribute("orderList", list);
 			
 			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
@@ -285,19 +293,22 @@ public class DispatchManageServlet extends HttpServlet {
 			List<ReturnOrder> l = DispatchService.getInstance().searchReturnOrder(returnOrder);
 			List<ReturnOrder> list = new ArrayList<ReturnOrder>();
 			
-			for (int i = 0; i < l.size(); i++) {
-				if (i>5) {
+			for (int i = (page-1)*5; i < page*5 ; i++) {
+				if (i>=l.size()) {
 					break;
 				}
 				list.add(l.get(i));
 			}
 			
-			int pageNum = l.size()%5 == 0?list.size()/5:list.size()/5+1;
+			List<WarehouseNameInfo> list2 = DispatchService.getInstance().warehouseNameInfo();
+			
+			int pageNum = l.size()%5 == 0?l.size()/5:l.size()/5+1;
 			
 			request.getSession().setAttribute("type", 2);
 			request.getSession().setAttribute("dispatchPageNum", pageNum);
 			request.setAttribute("page", page);
 			request.setAttribute("orderList", list);
+			request.setAttribute("names", list2);
 			request.getSession().setAttribute("dispatchOrder", returnOrder);
 			
 			request.getRequestDispatcher("dispatch/dispatchGoodsResult.jsp").forward(request, response);
@@ -314,12 +325,14 @@ public class DispatchManageServlet extends HttpServlet {
 		int orderType = 0;
 		int orderId = 0;
 		
+		System.out.println("id"+id+warehouseName+type);
 		
 		if (type.contains("新订")) {
 			orderType = 1;
 		}else if (type.contains("退货")) {
 			orderType = 2;
 		}
+		
 		
 		if (id != null && !"".equals(id)) {
 			orderId = Integer.parseInt(id);
@@ -453,26 +466,6 @@ public class DispatchManageServlet extends HttpServlet {
 			order.setClientPhone(clientPhone);
 		}
 		List<WorkOrder> list = DispatchService.getInstance().searchWorkOrder(order);
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date d = null;
-//		try {
-//			d = sdf.parse("2018-06-22");
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		WorkOrder o = new WorkOrder();
-//		o.setWorkId(10001);
-//		o.setWorkType(1);
-//		o.setWorkStatus(1);
-//		o.setRequireDate(d);
-//		o.setWarehouseName("warehousename");
-//		o.setClientName("王昊文");
-//		o.setClientPhone("12341234123");
-//		List<WorkOrder> list = new ArrayList<>();
-//		for (int i = 0; i < 12; i++) {
-//			list.add(o);
-//		}
 		int pageNum = list.size()%5 == 0?list.size()/5:list.size()/5+1;
 		request.getSession().setAttribute("pageNum", pageNum);
 		request.getSession().setAttribute("workOrderListOriginal", list);
